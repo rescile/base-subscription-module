@@ -1,0 +1,16 @@
+audit_id = "ISAE3000"
+audit_name = "Assurance Report"
+description = "Verify that a company's internal processes, data security, and sustainability reports are reliable."
+
+[[control]]
+id = "COMPLIANCE"
+name = "Outsourcing"
+
+# Defines where and how to apply the control
+[[control.target]]
+description = "List cloud providers as outsourcing partners."
+origin_resource_types = [ "account" ]
+
+# Add or Change a property
+#[control.target.resource.properties]
+#aws_name = "aws_organizations_organizational_unit"

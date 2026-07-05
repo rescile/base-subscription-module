@@ -1,0 +1,41 @@
+[module]
+name = "Base Subscription Module"
+url = "https://github.com/rescile/base_subscription_module"
+version = "0.0.1"
+description = "The subscription module provides a foundation for hybrid cloud networking, identity, security, and governance controls that span both on-premises and public cloud infrastructure, enabling consistent, compliant, and repeatable deployments of workloads across the two."
+rescile_version = ">=0.1.183"
+
+# List of other modules this module depends on.
+[dependencies]
+graphviewer          = "https://github.com/rescile/graphviewer"
+#service-catalog      = "https://github.com/rescile/module-service-catalog"
+#compliance           = "https://github.com/rescile/rescile-ccm-lite-module"
+asset-editor         = "https://github.com/rescile/asset-editor-module/releases/download/v{version}/asset-editor.zip"
+#graml-module         = "https://github.com/rescile/graphml-module"
+#rescile-graphiql-module = "https://github.com/rescile/rescile-graphiql-module/releases/download/v{version}/graphiql-module-offline.zip"
+
+[params.tenant]
+description = "The tenant name identifiers the organization that uses the service."
+required = true
+default = "Tenant"
+
+[params.location]
+description = "The geographical region where solutions are deployed."
+required = true
+default = "Europe (Zurich)"
+
+[assets."provider.csv"]
+resource_type = "provider"
+description = "The subscription module combines private infrastructure with and public cloud providers that are tied together via networking and orchestration tools."
+name_template = "{{- name | lower -}}"
+[assets."provider.csv".columns]
+name = { type = "string", required = true }
+function = { type = "string", required = true }
+
+[assets."identity.csv"]
+resource_type = "identity"
+description = "tbd"
+name_template = "{{- name | lower -}}-{{- function | lower -}}"
+[assets."identity.csv".columns]
+name = { type = "string", required = true }
+function = { type = "string", required = true }

@@ -1,0 +1,16 @@
+audit_id = "MB"
+audit_name = "CATALOG"
+description = "tbd"
+
+[[control]]
+id = "PROFESSIONAL_SERVICES"
+name = "Platform Engineering"
+
+# Defines where and how to apply the control
+[[control.target]]
+description = "Managed Service."
+origin_resource_types = [ "account" ]
+
+# Add or Change a property
+[control.target.resource.properties]
+target_sla = 99.9
