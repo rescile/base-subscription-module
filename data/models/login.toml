@@ -2,6 +2,7 @@ origin_resource = "identity"
 
 [[create_resource]]
 resource_type = "login"
+match_on = { property = "active", value = true }
 relation_type = "DERIVED_FROM"
 name = "{{- origin_resource.name | lower -}}_{{- origin_resource.function | lower -}}"
 [create_resource.properties]
