@@ -3,13 +3,13 @@ audit_name = "CATALOG"
 description = "tbd"
 
 [[control]]
-id = "PROFESSIONAL_SERVICES"
-name = "Platform Engineering"
+id = "SERVICE_OPERATION"
+name = "Platform Management"
 
 # Defines where and how to apply the control
 [[control.target]]
-description = "Managed Service."
-origin_resource_types = [ "account" ]
+description = "Managed Service"
+origin_resource_types = [ "provider" ]
 
 # Add or Change a property
 [control.target.resource.properties]

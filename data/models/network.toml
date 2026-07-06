@@ -1,0 +1,16 @@
+origin_resource = "router"
+
+[[create_resource]]
+resource_type = "network"
+relation_type = "DEFINED_BY"
+name = "{{- origin_resource.name -}}-net"
+[create_resource.properties]
+function = "application"
+address_space = [
+    "10.0.0.0/16"
+]
+routing = "regional"
+dns = true
+ipv6 = false
+mtu = 1500
+internet_access = false

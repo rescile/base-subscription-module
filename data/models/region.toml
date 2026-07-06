@@ -1,0 +1,29 @@
+# This model represents a third tier model of a cloud domain and defines locations where provider resources can be consumed.
+origin_resource = "provider"
+
+locations = { "json!" = "location.json" }
+location = { "template!" = '''
+    {%- set loc = property.value | default(value="ZRH") -%}
+    {%- if loc == "ANY" -%}
+      {%- set_global loc = "anywhere" -%}
+    {%- else -%}
+      {# Split by the opening parenthesis "(" #}
+      {%- set parts = locations[loc].name | split(pat="(") -%}
+      {# Grab the second part, and strip out the closing parenthesis ")" and spaces #}
+      {%- set_global loc = parts[1] | replace(from=")", to="") | trim | lower -%}
+    {%- endif -%}
+    {{- loc -}}
+''' }
+
+[[create_resource]]
+match_on = { property = "active", value = true }
+create_from = { property = "region" }
+relation_type = "PROVIDED_BY"
+name = "{{- origin_resource.name | lower -}}_{{- property.value | lower -}}"
+[create_resource.properties]
+function = "{{- origin_resource.function | lower -}}"
+provider = "{{- origin_resource.name -}}"
+region_code = "{{- property.value -}}"
+location = "{{- location -}}"
+description = "The region describes a physical, geographical location where data is stored, and applications run, managed by {{ origin_resource.name | capitalize }}."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

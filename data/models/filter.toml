@@ -1,0 +1,14 @@
+origin_resource = "firewall"
+
+[[create_resource]]
+resource_type = "filter"
+relation_type = "PROTECTS"
+name = "{{- property.value -}}_filter"
+[create_resource.properties]
+function = "{{ property.value }}"
+filter = "{{- origin_resource.filter -}}"
+enabled = true
+stateful = true
+default_action = "deny"
+description = "Default perimeter protection configuration for networks, zones and segments."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

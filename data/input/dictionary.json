@@ -106,5 +106,14 @@
       "azure": "Azure DNS",
       "oci": "Public/Private DNS"
     }
+  },
+  "router": {
+    "definition": "tbd.",
+    "provider": {
+      "aws": "aws_ec2_transit_gateway",
+      "gcp": "tbd",
+      "azure": "tbd",
+      "oci": "tbd"
+    }
   }
 }

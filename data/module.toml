@@ -17,12 +17,7 @@ asset-editor         = "https://github.com/rescile/asset-editor-module/releases/
 [params.tenant]
 description = "The tenant name identifiers the organization that uses the service."
 required = true
-default = "Tenant"
-
-[params.location]
-description = "The geographical region where solutions are deployed."
-required = true
-default = "Europe (Zurich)"
+default = "Hybrid"
 
 [assets."provider.csv"]
 resource_type = "provider"
