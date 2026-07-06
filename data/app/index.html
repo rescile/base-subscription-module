@@ -1,228 +1,693 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>AWS Transit Hub Explorer | Rescile</title>
+        <title>rescile-ce</title>
         <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="style.css" />
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            appBg: "var(--bg)",
+                            appFg: "var(--fg)",
+                            appCard: "var(--card)",
+                            appBorder: "var(--border)",
+                            appHover: "var(--hover-bg)",
+                            appPrimary: "var(--primary)",
+                            appLink: "var(--link)",
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' width='799.093' height='615.175' viewBox='0 0 211.427 162.765'%3E%3Ccircle cx='103.549' cy='81.607' r='81.365' style='fill:%23003060;fill-opacity:1;stroke-width:.700344'/%3E%3Cpath d='M72.757 8.153c8.46-.581 16.821.756 24.879 2.962 5.289 1.827 9.994 4.258 13.238 8.203 2.758 4.053 2.19 5.057 1.502 10.492l13.232 60.664c3.905 18.85 12.57 21.406 20.491 25.688 6.988 4.48 13.207 7.37 24.253 10.285-7.57 2.312-15.238 4.53-24.249 5.448-5.45.147-11.084.808-15.696-1.408-10.515-5.549-13.255-12.905-16.361-20.176-4.636-11.958-5.698-23.614-7.85-35.239C101.236 89.53 92.589 98.84 84.83 108.9c-6.12 7.485-12.242 13.008-18.363 16.948-4.238 2.72-5.49 3.524-9.436 5.19-4.078 1.357-7.778 3.147-14.217 3.82 4.378-3.412 8.757-6.428 13.135-10.826 2.616-2.308 6.973-7.621 15.408-19.424C77.477 94.667 81.912 86.47 86 78.635c5.168-10.575 7.204-16.809 8.962-24.903.07-3.35-.717-5.038-1.616-7.378 3.547 1.685 5.55 3.838 8.013 5.851-1.509-6.262-3.044-12.556-4.841-19.167-1.008-3.71-3.997-8.105-7.012-12.509-2.131-2.66-4.304-5.245-7.012-6.86-3.345-2.093-6.681-3.775-9.736-5.516' style='fill:%23f9f9f9;fill-opacity:1;stroke-width:.187554'/%3E%3C/svg%3E"
+        />
+
+        <style>
+            :root,
+            :root[data-theme="light"] {
+                --bg: #f9fafb;
+                --fg: #111827;
+                --card: #ffffff;
+                --border: #e5e7eb;
+                --hover-bg: #f3f4f6;
+                --primary: #1e40af;
+                --link: #0d9488;
+                --overlay-bg: rgba(255, 255, 255, 0.8);
+            }
+            :root[data-theme="dark"] {
+                --bg: #0f172a;
+                --fg: #f9fafb;
+                --card: #1e293b;
+                --border: #334155;
+                --hover-bg: #334155;
+                --primary: #3b82f6;
+                --link: #38b2ac;
+                --overlay-bg: rgba(15, 23, 42, 0.9);
+            }
+            body {
+                font-family: "Inter", system-ui, sans-serif;
+                margin: 0;
+            }
+        </style>
     </head>
     <body
-        class="bg-gray-100 font-sans antialiased text-gray-900 h-screen flex overflow-hidden"
+        class="bg-appBg text-appFg h-screen flex overflow-hidden antialiased transition-colors duration-200"
     >
-        <!-- Sidebar -->
+        <!-- Sidebar Section -->
         <aside
-            class="w-64 bg-slate-900 shadow-xl flex-shrink-0 flex flex-col h-full z-10 text-white"
+            class="w-64 bg-appCard border-r border-appBorder flex-shrink-0 flex flex-col h-full z-10 transition-colors duration-200"
         >
             <div
-                class="h-16 flex items-center px-6 border-b border-slate-800 bg-slate-950"
+                class="h-16 flex items-center px-6 border-b border-appBorder justify-between"
             >
-                <svg
-                    class="w-6 h-6 text-amber-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
+                <h1
+                    class="text-base font-semibold tracking-tight text-appPrimary"
                 >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                    ></path>
-                </svg>
-                <h1 class="text-lg font-bold tracking-tight">
-                    AWS Transit Hub
+                    Subscription
                 </h1>
             </div>
-            <nav class="flex-1 overflow-y-auto py-4" id="nav-menu">
-                <!-- Navigation links injected by JS -->
-            </nav>
+            <nav class="flex-1 overflow-y-auto py-4" id="nav-menu"></nav>
+
             <div
-                class="p-4 border-t border-slate-800 text-xs text-slate-400 bg-slate-950 flex flex-col gap-3"
+                class="p-4 border-t border-appBorder text-xs text-appFg/60 flex items-center gap-2.5"
             >
-                <div>
-                    Total Graph Nodes:
-                    <span id="total-nodes" class="font-bold text-amber-500"
-                        >...</span
-                    >
-                </div>
-                <a
-                    href="https://www.rescile.com"
-                    target="_blank"
-                    style="border-bottom: none"
-                    class="flex items-center gap-2 hover:text-white transition-colors"
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    class="w-5 h-5 flex-shrink-0"
+                    viewBox="0 0 211.427 162.765"
                 >
-                    <svg
-                        style="height: 1.4em; width: auto"
-                        viewBox="0 0 211 163"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <circle cx="103" cy="81" r="81" fill="#f59e0b" />
-                        <path
-                            d="M72.7 8.1c8.4-.5 16.8.8 24.9 3 5.3 1.8 10 4.2 13.2 8.2 2.8 4.1 2.2 5.1 1.5 10.5l13.2 60.7c3.9 18.8 12.6 21.4 20.5 25.7 7 4.5 13.2 7.4 24.3 10.3-7.6 2.3-15.3 4.5-24.3 5.4-5.5.1-11.1.8-15.7-1.4-10.5-5.5-13.3-12.9-16.4-20.2-4.6-11.9-5.7-23.6-7.8-35.2C101.2 89.5 92.6 98.8 84.8 108.9c-6.1 7.5-12.2 13-18.4 16.9-4.2 2.7-5.5 3.5-9.4 5.2-4.1 1.4-7.8 3.1-14.2 3.8 4.4-3.4 8.8-6.4 13.1-10.8 2.6-2.3 7-7.6 15.4-19.4 6.1-8.6 10.5-16.8 14.6-24.6 5.2-10.6 7.2-16.8 9-24.9.1-3.4-.7-5-1.6-7.4 3.5 1.7 5.6 3.8 8 5.9-1.5-6.3-3-12.6-4.8-19.2-1-3.7-4-8.1-7-12.5-2.1-2.7-4.3-5.2-7-6.9-3.3-2.1-6.7-3.8-9.7-5.5"
-                            fill="#fff"
-                        />
-                    </svg>
-                    rescile
-                </a>
+                    <circle
+                        cx="103.549"
+                        cy="81.607"
+                        r="81.365"
+                        fill="var(--primary)"
+                    />
+                    <path
+                        d="M72.757 8.153c8.46-.581 16.821.756 24.879 2.962 5.289 1.827 9.994 4.258 13.238 8.203 2.758 4.053 2.19 5.057 1.502 10.492l13.232 60.664c3.905 18.85 12.57 21.406 20.491 25.688 6.988 4.48 13.207 7.37 24.253 10.285-7.57 2.312-15.238 4.53-24.249 5.448-5.45.147-11.084.808-15.696-1.408-10.515-5.549-13.255-12.905-16.361-20.176-4.636-11.958-5.698-23.614-7.85-35.239C101.236 89.53 92.589 98.84 84.83 108.9c-6.12 7.485-12.242 13.008-18.363 16.948-4.238 2.72-5.49 3.524-9.436 5.19-4.078 1.357-7.778 3.147-14.217 3.82 4.378-3.412 8.757-6.428 13.135-10.826 2.616-2.308 6.973-7.621 15.408-19.424C77.477 94.667 81.912 86.47 86 78.635c5.168-10.575 7.204-16.809 8.962-24.903.07-3.35-.717-5.038-1.616-7.378 3.547 1.685 5.55 3.838 8.013 5.851-1.509-6.262-3.044-12.556-4.841-19.167-1.008-3.71-3.997-8.105-7.012-12.509-2.131-2.66-4.304-5.245-7.012-6.86-3.345-2.093-6.681-3.775-9.736-5.516"
+                        fill="var(--card)"
+                    />
+                </svg>
+                <span class="font-medium tracking-wide">Rescile UCS</span>
             </div>
         </aside>
 
-        <!-- Main Content -->
+        <!-- Main Window Area Frame -->
         <main
-            class="flex-1 flex flex-col h-full relative overflow-hidden bg-slate-50"
+            class="flex-1 flex flex-col h-full relative overflow-hidden bg-appBg transition-colors duration-200"
         >
             <header
-                class="h-16 bg-white shadow-sm flex items-center justify-between px-8 z-0"
+                class="h-16 border-b border-appBorder flex items-center justify-between px-8 z-20 flex-shrink-0 bg-appCard"
             >
-                <h2
-                    id="view-title"
-                    class="text-xl font-semibold text-slate-800"
+                <!-- LEFT: View Title -->
+                <div class="flex-shrink-0">
+                    <h2
+                        id="view-title"
+                        class="text-lg font-semibold text-appFg tracking-tight border-b-0 p-0 m-0"
+                    >
+                        Identity Management
+                    </h2>
+                </div>
+
+                <!-- RIGHT: Actions Deck (Docs, Info, Appearance, Schema) -->
+                <div
+                    class="top-nav"
+                    style="
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: flex-end;
+                        gap: 16px;
+                        height: 100%;
+                    "
                 >
-                    Overview
-                </h2>
-                <div class="flex items-center gap-4">
-                    <button
-                        onclick="executeEngine('create')"
-                        class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 shadow-sm transition flex items-center gap-2"
+                    <div
+                        class="nav-item"
+                        title="GitHub"
+                        style="display: inline-flex; align-items: center"
                     >
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                        Create
-                    </button>
-                    <button
-                        onclick="executeEngine('update_state')"
-                        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 shadow-sm transition flex items-center gap-2"
-                    >
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-                        Update State
-                    </button>
-                    <button
-                        onclick="executeEngine('destroy')"
-                        class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 shadow-sm transition flex items-center gap-2"
-                    >
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                        Destroy
-                    </button>
-                    <button
-                        onclick="refreshCurrentView()"
-                        class="text-sm text-amber-600 hover:text-amber-800 flex items-center transition font-medium"
-                    >
-                        <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
+                        <a
+                            href="https://github.com/rescile/base_subscription_module"
+                            class="icon-btn"
+                            target="_blank"
+                            style="
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                            "
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                            ></path>
-                        </svg>
-                        Sync Data
-                    </button>
+                            <span
+                                class="material-symbols-outlined"
+                                style="
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                "
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="24px"
+                                    viewBox="0 0 24 24"
+                                    width="24px"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.24.73-.53v-1.84c-3.03.66-3.67-1.46-3.67-1.46-.5-1.27-1.21-1.61-1.21-1.61-.99-.68.08-.66.08-.66 1.1.08 1.67 1.13 1.67 1.13.97 1.66 2.54 1.18 3.16.9.1-.7.38-1.18.69-1.45-2.42-.27-4.96-1.21-4.96-5.37 0-1.18.42-2.15 1.12-2.92-.11-.27-.48-1.37.1-2.88 0 0 .9-.29 2.94 1.1a10.17 10.17 0 015.5 0c2.03-1.4 2.93-1.1 2.93-1.1.59 1.51.22 2.61.11 2.88.7.77 1.12 1.74 1.12 2.92 0 4.17-2.55 5.1-4.98 5.37.39.34.74 1 .74 2.01v2.98c0 .29.18.63.74.52A11 11 0 0012 1.27z"
+                                    />
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                    <div
+                        class="nav-item"
+                        title="Appearance"
+                        style="display: inline-flex; align-items: center"
+                    >
+                        <button
+                            onclick="toggleTheme()"
+                            class="theme-toggle"
+                            id="theme-btn"
+                            style="
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                padding: 0;
+                                border: none;
+                                background: transparent;
+                            "
+                        >
+                            <span
+                                class="material-symbols-outlined"
+                                id="theme-icon"
+                                style="
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                "
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="24px"
+                                    viewBox="0 -960 960 960"
+                                    width="24px"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z"
+                                    /></svg
+                            ></span>
+                        </button>
+                    </div>
                 </div>
             </header>
 
-            <div class="flex-1 overflow-hidden p-8 relative flex flex-col">
-                <!-- Loading Indicator -->
-                <div
-                    id="loader"
-                    class="hidden absolute inset-0 bg-slate-50 bg-opacity-75 flex items-center justify-center z-10"
-                >
-                    <div
-                        class="loader ease-linear rounded-full border-4 border-t-4 border-slate-200 h-12 w-12 mb-4"
-                    ></div>
-                </div>
-
-                <div
-                    id="readOnlyNotice"
-                    class="hidden mb-4 p-4 bg-blue-50 text-blue-700 border border-blue-200 rounded-lg flex items-center text-sm flex-shrink-0"
-                >
-                    <svg
-                        class="w-5 h-5 mr-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        ></path>
-                    </svg>
-                    This application is currently in read only mode because of
-                    missing enterprise features.
-                </div>
-
-                <!-- Content Container -->
-                <div
-                    id="content-container"
-                    class="bg-white shadow-md rounded-xl border border-slate-200 overflow-hidden flex-1 flex flex-col min-h-0"
-                >
-                    <div class="p-8 text-center text-slate-500 mt-20">
-                        Select a component category from the sidebar to explore
-                        the transit zone.
-                    </div>
-                </div>
-            </div>
+            <!-- 🛠️ ADD THIS CONTAINER SO THE TABLES HAVE A TARGET TO RENDER INSIDE -->
+            <div
+                id="content-container"
+                class="flex-1 overflow-hidden p-8 flex flex-col"
+            ></div>
         </main>
 
-        <!-- Build Progress Modal -->
+        <!-- Overlays (Hidden by default unless active/triggered) -->
         <div
-            id="buildModal"
-            class="hidden fixed inset-0 bg-slate-900 bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
-        >
-            <div
-                class="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col"
-            >
-                <div class="px-6 py-4 border-b border-slate-200">
-                    <h3
-                        class="text-lg font-bold text-slate-800 flex items-center gap-2"
-                    >
-                        <svg
-                            class="w-5 h-5 text-amber-500 animate-spin"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                            ></path>
-                        </svg>
-                        <span id="modalTitleText">Building Graph...</span>
-                    </h3>
-                </div>
-                <div class="p-6 overflow-y-auto flex-1 bg-slate-900">
-                    <pre
-                        id="buildLogs"
-                        class="text-xs text-slate-300 font-mono whitespace-pre-wrap word-break-all"
-                    ></pre>
-                </div>
-                <div
-                    class="px-6 py-4 border-t border-slate-200 flex justify-end bg-slate-50 rounded-b-xl"
-                >
-                    <button
-                        id="buildCloseBtn"
-                        onclick="closeBuildModal()"
-                        disabled
-                        class="px-4 py-2 text-sm font-medium text-slate-400 bg-slate-100 border border-slate-200 rounded cursor-not-allowed transition"
-                    >
-                        Building...
-                    </button>
-                </div>
-            </div>
-        </div>
+            id="endpoints-overlay"
+            onclick="handleOverlayClick(e)"
+            class="fixed inset-0 bg-black/50 hidden [&.active]:flex items-center justify-center z-[2000]"
+        ></div>
+        <div
+            id="info-overlay"
+            onclick="handleInfoOverlayClick(e)"
+            class="fixed inset-0 bg-black/50 hidden [&.active]:flex items-center justify-center z-[2000]"
+        ></div>
 
-        <!-- Scripts -->
-        <script src="app.js"></script>
-        <script src="graphql.js"></script>
+        <!-- Application Layer Scripts -->
+        <script src="identity.js"></script>
+        <script src="provider.js"></script>
+        <script src="navigation.js"></script>
+        <script src="ui.js"></script>
+
+        <!-- Document Utility & Modular Handlers Script Block -->
+        <script>
+            const SVGS = {
+                light_mode:
+                    '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z"/></svg>',
+                dark_mode:
+                    '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/></svg>',
+                check: '<svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="currentColor"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>',
+            };
+
+            function toggleOverlay(show) {
+                const el = document.getElementById("endpoints-overlay");
+                if (el) {
+                    if (show) el.classList.add("active");
+                    else el.classList.remove("active");
+                }
+            }
+            function handleOverlayClick(e) {
+                if (e.target.id === "endpoints-overlay") toggleOverlay(false);
+            }
+            function toggleInfoOverlay(show) {
+                const el = document.getElementById("info-overlay");
+                if (el) {
+                    if (show) el.classList.add("active");
+                    else el.classList.remove("active");
+                }
+            }
+            function handleInfoOverlayClick(e) {
+                if (e.target.id === "info-overlay") toggleInfoOverlay(false);
+            }
+
+            let currentActionsPage = 1;
+            const actionsPerPage = 5;
+
+            function updateActionsPagination() {
+                const list = document.getElementById("actions-list");
+                const controls = document.getElementById(
+                    "actions-pagination-controls",
+                );
+                if (!list || !controls) return;
+
+                const items = Array.from(list.children).filter(
+                    (child) => child.tagName === "LI",
+                );
+                const matchingItems = items.filter(
+                    (item) => !item.classList.contains("hidden"),
+                );
+                const totalPages = Math.ceil(
+                    matchingItems.length / actionsPerPage,
+                );
+                if (currentActionsPage > totalPages)
+                    currentActionsPage = totalPages || 1;
+
+                items.forEach((item) => {
+                    item.style.display = "none";
+                });
+
+                const start = (currentActionsPage - 1) * actionsPerPage;
+                const end = start + actionsPerPage;
+
+                matchingItems.slice(start, end).forEach((item) => {
+                    item.style.display = "";
+                });
+
+                if (totalPages > 1) {
+                    controls.style.display = "flex";
+                    document.getElementById("actions-page-info").innerText =
+                        `Page ${currentActionsPage} of ${totalPages}`;
+                    document.getElementById("actions-btn-prev").disabled =
+                        currentActionsPage === 1;
+                    document.getElementById("actions-btn-next").disabled =
+                        currentActionsPage === totalPages;
+                } else {
+                    controls.style.display = "none";
+                }
+            }
+
+            function changeActionsPage(dir) {
+                currentActionsPage += dir;
+                updateActionsPagination();
+            }
+
+            function toggleTheme() {
+                const html = document.documentElement;
+                const icon = document.getElementById("theme-icon");
+                const isDark = html.getAttribute("data-theme") === "dark";
+
+                const next = isDark ? "light" : "dark";
+                html.setAttribute("data-theme", next);
+                if (icon)
+                    icon.innerHTML =
+                        next === "dark" ? SVGS.light_mode : SVGS.dark_mode;
+                localStorage.setItem("theme", next);
+            }
+
+            const savedTheme = localStorage.getItem("theme");
+            const systemDark = window.matchMedia(
+                "(prefers-color-scheme: dark)",
+            ).matches;
+            const initialTheme = savedTheme || (systemDark ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", initialTheme);
+
+            let currentPage = 1;
+            const itemsPerPage = 5;
+
+            function updatePagination() {
+                const list = document.getElementById("downloads-list");
+                const controls = document.getElementById("pagination-controls");
+                if (!list || !controls) return;
+
+                const items = Array.from(list.children);
+                const matchingItems = items.filter(
+                    (item) => !item.classList.contains("hidden"),
+                );
+                const totalPages = Math.ceil(
+                    matchingItems.length / itemsPerPage,
+                );
+                if (currentPage > totalPages) currentPage = totalPages || 1;
+
+                items.forEach((item) => {
+                    item.style.display = "none";
+                });
+
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+
+                matchingItems.slice(start, end).forEach((item) => {
+                    item.style.display = "";
+                });
+
+                if (totalPages > 1) {
+                    controls.style.display = "flex";
+                    document.getElementById("page-info").innerText =
+                        `Page ${currentPage} of ${totalPages}`;
+                    document.getElementById("btn-prev").disabled =
+                        currentPage === 1;
+                    document.getElementById("btn-next").disabled =
+                        currentPage === totalPages;
+                } else {
+                    controls.style.display = "none";
+                }
+            }
+
+            function changePage(dir) {
+                currentPage += dir;
+                updatePagination();
+            }
+
+            async function copyText(text, btn) {
+                try {
+                    const fullUrl = text.startsWith("/")
+                        ? window.location.origin + text
+                        : text;
+                    await navigator.clipboard.writeText(fullUrl);
+
+                    const icon =
+                        btn.querySelector(".material-symbols-outlined") || btn;
+                    const originalIcon = icon.innerHTML;
+                    icon.innerHTML = SVGS.check;
+                    btn.style.color = "#10b981";
+
+                    setTimeout(() => {
+                        icon.innerHTML = originalIcon;
+                        btn.style.color = "";
+                    }, 2000);
+                } catch (err) {
+                    console.error("Failed to copy: ", err);
+                }
+            }
+
+            async function downloadActionInstruction(moduleId, actionName) {
+                try {
+                    const actsRes = await fetch(
+                        "/api/actions" + window.location.search,
+                    );
+                    const acts = await actsRes.json();
+                    const action = acts.find(
+                        (a) =>
+                            a.module_id === moduleId && a.name === actionName,
+                    );
+                    if (!action) {
+                        alert("Action not found");
+                        return;
+                    }
+
+                    const inputs = action.input || [];
+                    let payload = {};
+
+                    if (inputs.length > 0) {
+                        const modal = document.createElement("div");
+                        modal.className =
+                            "fixed inset-0 flex items-center justify-center p-4 z-[3000] transition-colors duration-200";
+                        modal.style.backgroundColor = "var(--overlay-bg)";
+
+                        let formHtml = `
+                            <div class="bg-appCard text-appFg border border-appBorder rounded-xl shadow-xl w-full max-w-md p-6 overflow-hidden transform transition-all">
+                                <h3 class="text-lg font-semibold tracking-tight text-appPrimary mb-4">Input Parameters: ${actionName}</h3>
+                                <form id="action-form" class="space-y-4">`;
+
+                        for (const inp of inputs) {
+                            const prop = inp.name;
+                            const desc = inp.description || prop;
+                            const defaultVal =
+                                inp.default !== undefined &&
+                                inp.default !== null
+                                    ? inp.default
+                                    : "";
+
+                            if (inp.resource_link) {
+                                const parts = inp.resource_link.split(".");
+                                const resType = parts[0];
+                                const resProp = parts[1] || "name";
+
+                                let optionsHtml = `<option value="">Select ${resType}</option>`;
+                                try {
+                                    const res = await fetch(
+                                        "/graphql" + window.location.search,
+                                        {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type":
+                                                    "application/json",
+                                            },
+                                            body: JSON.stringify({
+                                                query: `{ ${resType} { ${resProp} } }`,
+                                            }),
+                                        },
+                                    );
+                                    const json = await res.json();
+                                    if (json.data && json.data[resType]) {
+                                        const uniqueVals = [
+                                            ...new Set(
+                                                json.data[resType]
+                                                    .map(
+                                                        (item) => item[resProp],
+                                                    )
+                                                    .filter(Boolean),
+                                            ),
+                                        ].sort();
+                                        for (const val of uniqueVals) {
+                                            const selected =
+                                                val === defaultVal
+                                                    ? "selected"
+                                                    : "";
+                                            optionsHtml += `<option value="${val}" ${selected}>${val}</option>`;
+                                        }
+                                    }
+                                } catch (e) {
+                                    console.error(
+                                        "Failed to fetch resource link data",
+                                        e,
+                                    );
+                                }
+
+                                formHtml += `
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1.5 opacity-90">${desc} *</label>
+                                        <select name="${prop}" required class="w-full bg-appBg text-appFg border border-appBorder rounded-lg px-3 py-2 outline-none focus:border-appPrimary transition-all appearance-auto text-sm">
+                                            ${optionsHtml}
+                                        </select>
+                                    </div>`;
+                            } else {
+                                formHtml += `
+                                    <div>
+                                        <label class="block text-sm font-medium mb-1.5 opacity-90">${desc} *</label>
+                                        <input type="text" name="${prop}" value="${defaultVal}" required class="w-full bg-appBg text-appFg border border-appBorder rounded-lg px-3 py-2 outline-none focus:border-appPrimary transition-all text-sm" />
+                                    </div>`;
+                            }
+                        }
+
+                        formHtml += `
+                                    <div class="flex gap-3 justify-end pt-2 mt-6 border-t border-appBorder">
+                                        <button type="button" id="action-cancel" class="px-4 py-2 border border-appBorder bg-transparent hover:bg-appHover text-appFg rounded-lg text-sm font-medium transition-all">Cancel</button>
+                                        <button type="submit" class="px-4 py-2 bg-appPrimary hover:opacity-90 text-white rounded-lg text-sm font-medium transition-all shadow-sm">Download</button>
+                                    </div>
+                                </form>
+                            </div>`;
+
+                        modal.innerHTML = formHtml;
+                        document.body.appendChild(modal);
+
+                        const submitted = await new Promise((resolve) => {
+                            document.getElementById("action-cancel").onclick =
+                                () => {
+                                    document.body.removeChild(modal);
+                                    resolve(false);
+                                };
+                            document.getElementById("action-form").onsubmit = (
+                                e,
+                            ) => {
+                                e.preventDefault();
+                                const formData = new FormData(e.target);
+                                for (const [k, v] of formData.entries()) {
+                                    const schemaType = inputs.find(
+                                        (i) => i.name === k,
+                                    )?.type;
+                                    if (schemaType === "boolean") {
+                                        payload[k] = v === "true";
+                                    } else if (
+                                        schemaType === "number" ||
+                                        schemaType === "integer"
+                                    ) {
+                                        payload[k] = Number(v);
+                                    } else {
+                                        payload[k] = v;
+                                    }
+                                }
+                                document.body.removeChild(modal);
+                                resolve(true);
+                            };
+                        });
+
+                        if (!submitted) return;
+                    }
+
+                    const res = await fetch(
+                        "/api/actions/" +
+                            moduleId +
+                            "/" +
+                            actionName +
+                            window.location.search,
+                        {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(payload),
+                        },
+                    );
+                    if (res.ok) {
+                        const blob = await res.blob();
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.download = moduleId + "_" + actionName + ".tar.gz";
+                        document.body.appendChild(a);
+                        a.click();
+                        a.remove();
+                        window.URL.revokeObjectURL(url);
+                    } else {
+                        const errText = await res.text();
+                        alert("Failed to trigger action: " + errText);
+                    }
+                } catch (e) {
+                    console.error("Action trigger failed", e);
+                    alert("Action trigger failed");
+                }
+            }
+
+            function clearSearch() {
+                const searchEl = document.getElementById("main-search");
+                if (searchEl) {
+                    searchEl.value = "";
+                    filterContent();
+                    searchEl.focus();
+                }
+            }
+
+            function filterContent() {
+                const searchEl = document.getElementById("main-search");
+                if (!searchEl) return;
+
+                const clearBtn = document.getElementById("search-clear");
+                if (clearBtn) {
+                    if (searchEl.value.length > 0)
+                        clearBtn.classList.add("active");
+                    else clearBtn.classList.remove("active");
+                }
+
+                const query = searchEl.value.toLowerCase();
+                const items = document.querySelectorAll(
+                    ".card, .simple-list li",
+                );
+                const noResults = document.getElementById("no-results");
+                let visibleCount = 0;
+
+                items.forEach((item) => {
+                    if (item.innerText.toLowerCase().includes(query)) {
+                        item.classList.remove("hidden");
+                        visibleCount++;
+                    } else {
+                        item.classList.add("hidden");
+                    }
+                });
+
+                if (noResults) {
+                    noResults.style.display =
+                        visibleCount === 0 ? "block" : "none";
+                }
+
+                currentPage = 1;
+                if (typeof updatePagination === "function") updatePagination();
+                if (typeof updateActionsPagination === "function")
+                    updateActionsPagination();
+
+                const sections = document.querySelectorAll("h2");
+                sections.forEach((h2) => {
+                    let nextEl = h2.nextElementSibling;
+                    let hasVisible = false;
+
+                    let targetForSearch = nextEl;
+                    if (nextEl && nextEl.id === "downloads-wrapper") {
+                        targetForSearch = nextEl.querySelector(".simple-list");
+                    }
+                    if (nextEl && nextEl.id === "actions-wrapper") {
+                        targetForSearch = nextEl.querySelector(".simple-list");
+                    }
+
+                    if (
+                        targetForSearch &&
+                        (targetForSearch.classList.contains("listing") ||
+                            targetForSearch.classList.contains("simple-list"))
+                    ) {
+                        const innerCards =
+                            targetForSearch.querySelectorAll(".card, li");
+                        innerCards.forEach((c) => {
+                            if (!c.classList.contains("hidden"))
+                                hasVisible = true;
+                        });
+                        if (h2.classList.contains("section-header")) {
+                            h2.style.display = hasVisible ? "flex" : "none";
+                        } else {
+                            h2.style.display = hasVisible ? "block" : "none";
+                        }
+                        if (
+                            nextEl.id === "downloads-wrapper" ||
+                            nextEl.id === "actions-wrapper"
+                        ) {
+                            nextEl.style.display = hasVisible
+                                ? "block"
+                                : "none";
+                        }
+                    }
+                });
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const icon = document.getElementById("theme-icon");
+                if (icon)
+                    icon.innerHTML =
+                        initialTheme === "dark"
+                            ? SVGS.light_mode
+                            : SVGS.dark_mode;
+                updatePagination();
+
+                document.addEventListener("click", (e) => {
+                    const dropdowns =
+                        document.querySelectorAll("details.dropdown");
+                    dropdowns.forEach((details) => {
+                        if (!details.contains(e.target)) {
+                            details.removeAttribute("open");
+                        }
+                    });
+                });
+
+                if (typeof initApp === "function") initApp();
+            });
+        </script>
     </body>
 </html>

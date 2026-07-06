@@ -1,0 +1,8 @@
+function,_provider,cidr,dns,mtu,public,nat,firewall,description
+"application",aws,"10.10.0.0/16",true,1500,false,true,["default"],"The application network is a customer-facing data plane that carries the traffic between deployed workloads, services, and end users."
+"management",aws,"10.101.0.0/16",true,1500,false,true,["default"],"The management network is an isolated, tightly access-controlled network used to configure, monitor, and orchestrate infrastructure components, separate from the customer-facing data plane that carries actual workload traffic."
+"transit",aws,"10.100.0.0/16",false,1500,false,true,["default"],"The transit network is the interconnection layer that routes traffic between otherwise isolated networks, it acts as the backbone hub rather than carrying workload traffic itself."
+"salesforce",aws,"10.100.0.0/16",false,1500,false,true,["default"],"the salesforce network connects Hyperforce to a transit network at AWS and acts as the on-ramp for Salesforce's infrastructure."
+"application",azure,"10.10.0.0/16",true,1500,false,true,["default"],"The application network is a customer-facing data plane that carries the traffic between deployed workloads, services, and end users."
+"management",azure,"10.101.0.0/16",true,1500,false,true,["default"],"The management network is an isolated, tightly access-controlled network used to configure, monitor, and orchestrate infrastructure components, separate from the customer-facing data plane that carries actual workload traffic."
+"transit",azure,"10.100.0.0/16",false,1500,false,true,["default"],"The transit network is the interconnection layer that routes traffic between otherwise isolated networks, it acts as the backbone hub rather than carrying workload traffic itself."
