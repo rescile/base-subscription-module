@@ -2,7 +2,7 @@ origin_resource = "resident"
 
 [[create_resource]]
 resource_type = "subscription"
-name = " {{- tenant | lower -}}_cloud"
+name = " {{- tenant | lower -}}-cloud"
 [create_resource.properties]
 function = "infrastructure"
 description = "The subscription defines the cloud environment for the resident {{ tenant | capitalize }}."

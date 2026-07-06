@@ -4,7 +4,7 @@ origin_resource = "region"
 # Create the resource type
 [[create_resource]]
 resource_type = "router"
-name = "{{- origin_resource.name | lower -}}_router"
+name = "{{- origin_resource.name | lower -}}-router"
 relation_type = "CONNECTS_TO"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"

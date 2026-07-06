@@ -19,7 +19,7 @@ location = { "template!" = '''
 match_on = { property = "active", value = true }
 create_from = { property = "region" }
 relation_type = "PROVIDED_BY"
-name = "{{- origin_resource.name | lower -}}_{{- property.value | lower -}}"
+name = "{{- origin_resource.name | lower -}}-{{- property.value | lower -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
 provider = "{{- origin_resource.name -}}"

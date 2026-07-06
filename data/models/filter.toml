@@ -1,12 +1,11 @@
 origin_resource = "firewall"
 
 [[create_resource]]
-resource_type = "filter"
+create_from = { property = "filter" }
 relation_type = "PROTECTS"
-name = "{{- property.value -}}_filter"
+name = "{{- property.value -}}-filter"
 [create_resource.properties]
 function = "{{ property.value }}"
-filter = "{{- origin_resource.filter -}}"
 enabled = true
 stateful = true
 default_action = "deny"
