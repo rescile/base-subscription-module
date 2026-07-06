@@ -4,34 +4,10 @@ description = "tbd"
 
 [[control]]
 id = "RULE"
-name = "allow_https"
-
-# Defines where and how to apply the control
-[[control.target]]
-description = "Network Policies"
-origin_resource_types = [ "egress" ]
-
-# Add or Change a property
-[control.target.resource.properties]
-action = "allow"
-priority = 100
-protocol = "tcp"
-source = ["self"]
-destination = ["0.0.0.0/0"]
-destination_ports = ["443"]
-log = true
-
-
-audit_id = "SECURITY"
-audit_name = "Network"
-description = "tbd"
-
-[[control]]
-id = "RULE"
 name = "allow_dns"
 
 [[control.target]]
-description = "Network Policies"
+description = "Network Policy"
 origin_resource_types = [ "egress" ]
 
 [control.target.resource.properties]
