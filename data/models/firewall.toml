@@ -3,7 +3,7 @@ origin_resource = "network"
 [[create_resource]]
 create_from = { property = "firewall" }
 relation_type = "PROTECTS"
-name = "{{- origin_resource.name -}}-{{- property.value -}}-firewall"
+name = "{{- property.value -}}-{{- origin_resource.function -}}-firewall"
 [create_resource.properties]
 function = "{{ property.value }}"
 filter = ["egress","ingress"]

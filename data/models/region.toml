@@ -1,5 +1,5 @@
 # This model represents a third tier model of a cloud domain and defines locations where provider resources can be consumed.
-origin_resource = "provider"
+origin_resource = "account"
 
 locations = { "json!" = "location.json" }
 location = { "template!" = '''
@@ -16,13 +16,12 @@ location = { "template!" = '''
 ''' }
 
 [[create_resource]]
-match_on = { property = "active", value = true }
 create_from = { property = "region" }
-relation_type = "PROVIDED_BY"
-name = "{{- origin_resource.name | lower -}}-{{- property.value | lower -}}"
+relation_type = "DERIVED_FROM"
+name = "{% if property.value != 'ANY' %}{{- origin_resource.provider[0].name | lower -}}-{{- property.value | lower -}}{% else %}{{- origin_resource.provider[0].name | lower -}}{% endif %}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
-provider = "{{- origin_resource.name -}}"
+provider = "{{- origin_resource.provider[0].name -}}"
 region_code = "{{- property.value -}}"
 location = "{{- location -}}"
 description = "The region describes a physical, geographical location where data is stored, and applications run, managed by {{ origin_resource.name | capitalize }}."

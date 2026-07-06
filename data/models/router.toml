@@ -8,7 +8,19 @@ name = "{{- origin_resource.name | lower -}}-router"
 relation_type = "CONNECTS_TO"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
-region_code = "{{- origin_resource.region_code | lower -}}"
-provider = "{{- origin_resource.provider[0].name | lower -}}"
+provider = "{{- origin_resource.provider -}}"
+region = "{{- origin_resource.name -}}"
+ipv6 = false
 description = "The {{ origin_resource.function }} router in {{ origin_resource.location | capitalize }} is a regional network function that analyzes incoming data packets and forwards them toward their intended destination."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+origin_resource = "router"
+
+[[link_resources]]
+with = "network"
+join = { local = "provider", remote = "provider" }
+copy_properties = [
+  { from = "ipv6", as = "ipv6" },
+  { from = "created", as = "created" },
+]
+create_relation = { type = "CONNECTS_TO" }

@@ -34,3 +34,11 @@ name_template = "{{- name | lower -}}-{{- function | lower -}}"
 [assets."identity.csv".columns]
 name = { type = "string", required = true }
 function = { type = "string", required = true }
+
+[assets."network.csv"]
+resource_type = "network"
+description = "tbd"
+name_template = "{{- provider | lower -}}-{{- function | lower -}}-network"
+[assets."network.csv".columns]
+function = { type = "string", required = true }
+provider = { type = "string", required = true }
