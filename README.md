@@ -11,11 +11,9 @@ It ensures that every newly created account meets baseline organizational and te
 - Foundation for downstream domain controllers (network, IAM, storage, etc.) that build on top of an already-compliant account
 - Traceability of configuration as a prerequisite for ISAE audit evidence (compliance-as-code instead of manual evidence gathering)
 
-## Scope
-
 The module is deliberately limited to the essentials: no workload-specific resources, no detailed network design — only what is required for baseline account compliance. Anything beyond that belongs in specialized modules that build on top of this base module.
 
-## Provider-Agnostic Resources
+## Resources
 
 ### Audit & Logging
 - Central audit log (immutable, with defined retention period)
