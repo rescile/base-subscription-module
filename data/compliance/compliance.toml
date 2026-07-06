@@ -9,4 +9,4 @@ name = "Outsourcing"
 # Defines where and how to apply the control
 [[control.target]]
 description = "List cloud providers as outsourcing partners."
-origin_resource_types = [ "account" ]
+origin_resource_types = [ "subscription" ]

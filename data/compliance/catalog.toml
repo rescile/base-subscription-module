@@ -1,10 +1,10 @@
-audit_id = "MB"
-audit_name = "CATALOG"
-description = "tbd"
+audit_id = "PORTFOLIO"
+audit_name = "Technology Services"
+description = "The service catalog represents a curated, published set of infrastructure and platform services, like compute, storage, databases, networking, that customers can provision on demand, each with defined specs, SLAs, and pricing."
 
 [[control]]
-id = "SERVICE_OPERATION"
-name = "Platform Management"
+id = "SERVICE_CATALOG"
+name = "Terms and Conditions"
 
 # Defines where and how to apply the control
 [[control.target]]
