@@ -1,8 +1,8 @@
 # Base Subscription Module
 
-The **Hybrid Cloud Base Module** defines the minimal, provider-agnostic set of resources required to stand up an **ISAE 3402-compliant account** with any cloud provider (AWS, GCP, Azure, OCI) — serving as the declarative foundation on which all further domain-specific resources in the resource graph are built.
+The **Hybrid Cloud Base Module** defines the minimal, provider-agnostic set of resources required to stand up an **ISAE 3402-compliant account** with any cloud provider like AWS, GCP, Azure or OCI, serving as the declarative foundation on which all further domain-specific resources in the resource graph are built.
 
-It ensures that every newly created account meets baseline organizational and technical requirements for control evidence, auditability, and separation of duties from day one — regardless of the underlying provider.
+It ensures that every newly created account meets baseline organizational and technical requirements for control evidence, auditability, and separation of duties from day one, regardless of the underlying provider.
 
 ## Purpose
 
