@@ -6,7 +6,6 @@ description = "Verify that a company's internal processes, data security, and su
 id = "COMPLIANCE"
 name = "Outsourcing"
 
-# Defines where and how to apply the control
 [[control.target]]
 description = "List cloud providers as outsourcing partners."
 origin_resource_types = [ "subscription" ]
