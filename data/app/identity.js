@@ -36,7 +36,7 @@ window.DataService = {
       const identities = result.data?.identity || [];
 
       // Define standard headers matching your GraphQL fields
-      const headers = ["original_name", "function", "active", "description"];
+      const headers = ["name", "function", "active", "description"];
 
       // Map the array of objects into rows of simple arrays for ui.js
       const rows = identities.map((item) => [

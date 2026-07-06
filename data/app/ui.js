@@ -91,44 +91,43 @@ function updateTableDOM() {
 
   const state = getActiveState();
 
+  // 1. Header: Use standard style definitions matching your theme variables
   thead.innerHTML = `
-    <tr class="border-b border-appBorder bg-appHover/40 text-appFg/80 font-medium tracking-tight">
-        ${state.headers.map((h) => `<th class="px-4 py-3 text-left font-medium uppercase tracking-wider text-xs">${esc(h)}</th>`).join("")}
-        <th class="px-4 py-3 text-right font-medium uppercase tracking-wider text-xs w-16">Actions</th>
+    <tr style="background-color: var(--app-hover, rgba(255,255,255,0.04)); color: var(--app-fg); font-weight: 500;">
+        ${state.headers.map((h) => `<th class="px-4 py-3 text-left text-xs uppercase tracking-wider" style="border-b: 1px solid var(--app-border); font-weight: 500;">${esc(h)}</th>`).join("")}
+        <th class="px-4 py-3 text-right text-xs uppercase tracking-wider w-16" style="border-b: 1px solid var(--app-border); font-weight: 500;">Actions</th>
     </tr>`;
 
   if (state.rows.length === 0) {
     tbody.innerHTML = `
         <tr>
-            <td colspan="${state.headers.length + 1}" class="p-8 text-center text-appFg/50 bg-appCard/50">
+            <td colspan="${state.headers.length + 1}" class="p-8 text-center" style="color: var(--app-fg); opacity: 0.5;">
                 No data found. Click '+ Add Row' to start.
             </td>
         </tr>`;
     return;
   }
 
+  // 2. Body Cells: Clean 1px lines using your theme's explicit border variable
   tbody.innerHTML = state.rows
     .map((row, rowIndex) => {
-      return `
-      <tr class="hover:bg-appHover/40 border-b border-appBorder/60 transition-colors fd-data-row" id="fd-row-${rowIndex}">
+      return `<tr class="fd-data-row" id="fd-row-${rowIndex}">
             ${state.headers
               .map(
                 (headerName, colIndex) => `
-                <td class="px-3 py-2">
+                <td class="px-3 py-2" style="border-b: 1px solid var(--app-border);">
                     <input type="text"
                            name="${headerName}_row_${rowIndex}"
                            value="${esc(row[colIndex] || "")}"
                            oninput="window.updateStateValue(${rowIndex}, ${colIndex}, this.value)"
-                           class="w-full bg-transparent border border-appBorder text-appFg focus:border-appPrimary rounded-md px-2.5 py-1.5 outline-none transition-all text-sm">
-                </td>
-            `,
+                           style="width: 100%; background: transparent; border: 1px solid var(--app-border); color: var(--app-fg); border-radius: 6px; padding: 6px 10px; font-size: 14px; outline: none;">
+                </td>`,
               )
               .join("")}
-            <td class="px-3 py-2 text-right">
-                <button onclick="window.deleteTableRow(${rowIndex})" class="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 p-1.5 font-medium transition-colors">✕</button>
+            <td class="px-3 py-2 text-right" style="border-b: 1px solid var(--app-border);">
+                <button onclick="window.deleteTableRow(${rowIndex})" class="p-1" style="color: #ef4444; background: none; border: none; cursor: pointer; font-weight: 500;">✕</button>
             </td>
-        </tr>
-    `;
+        </tr>`;
     })
     .join("");
 }
