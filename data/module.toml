@@ -2,8 +2,8 @@
 name = "Base Subscription Module"
 url = "https://github.com/rescile/base_subscription_module"
 version = "0.0.1"
-description = "The subscription module provides a foundation for hybrid cloud networking, identity, security, and governance controls that span both on-premises and public cloud infrastructure, enabling consistent, compliant, and repeatable deployments of workloads across the two."
-rescile_version = ">=0.1.183"
+description = "A base subscription provides a enables a consistent and repeatable provisioning process for multi-cloud environments."
+rescile_version = ">=0.1.185"
 
 # List of other modules this module depends on.
 [dependencies]
@@ -20,10 +20,23 @@ description = "The tenant name identifiers the organization that uses the servic
 required = true
 default = "Hybrid"
 
+[params.location]
+description = "The location where tenant resources are deployed."
+required = true
+default = "Europe (Zurich)"
+
 [assets."identity.csv"]
 resource_type = "identity"
 description = "Common set of cloud identities."
 name_template = "{{- name | lower -}}-{{- function | lower -}}"
 [assets."identity.csv".columns]
+name = { type = "string", required = true }
+function = { type = "string", required = true }
+
+[assets."provider.csv"]
+resource_type = "provider"
+description = "Providers defined in the subscription module."
+name_template = "{{- name | lower -}}-{{- function | lower -}}"
+[assets."provider.csv".columns]
 name = { type = "string", required = true }
 function = { type = "string", required = true }
