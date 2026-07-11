@@ -30,7 +30,7 @@ resource_type = "identity"
 name_template = "{{- name | lower -}}-{{- function | lower -}}"
 description = "Common set of cloud identities."
 match_on = [
-    { property = "active", value = true }
+    { property = "active", value = "true" }
 ]
 [assets."identity.csv".columns]
 name = { type = "string", required = true }
@@ -41,7 +41,7 @@ resource_type = "provider"
 name_template = "{{- name | lower -}}"
 description = "Providers defined in the subscription module."
 match_on = [
-    { property = "active", value = true }
+    { property = "active", value = "true" }
 ]
 [assets."provider.csv".columns]
 name = { type = "string", required = true }

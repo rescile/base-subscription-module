@@ -7,12 +7,11 @@ window.ProviderDataService = {
     const query = `
       query {
         provider {
-          name
-          function
           active
-          domain
+          name
+          resident
+          function
           api
-          kms
           terms
           description
         }
@@ -20,12 +19,11 @@ window.ProviderDataService = {
     `;
 
     const headers = [
-      "name",
-      "function",
       "active",
-      "domain",
+      "name",
+      "resident",
+      "function",
       "api",
-      "kms",
       "terms",
       "description",
     ];
