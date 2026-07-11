@@ -27,16 +27,22 @@ default = "Europe (Zurich)"
 
 [assets."identity.csv"]
 resource_type = "identity"
-description = "Common set of cloud identities."
 name_template = "{{- name | lower -}}-{{- function | lower -}}"
+description = "Common set of cloud identities."
+match_on = [
+    { property = "active", value = true }
+]
 [assets."identity.csv".columns]
 name = { type = "string", required = true }
 function = { type = "string", required = true }
 
 [assets."provider.csv"]
 resource_type = "provider"
+name_template = "{{- name | lower -}}"
 description = "Providers defined in the subscription module."
-name_template = "{{- name | lower -}}-{{- function | lower -}}"
+match_on = [
+    { property = "active", value = true }
+]
 [assets."provider.csv".columns]
 name = { type = "string", required = true }
 function = { type = "string", required = true }
