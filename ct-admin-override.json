@@ -1,0 +1,13 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "controltower.amazonaws.com",
+        "AWS": "arn:aws:sts::448776203330:assumed-role/OrganizationAccountAccessRole/Management-Check"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
