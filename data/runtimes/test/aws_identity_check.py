@@ -1,42 +1,49 @@
 #!/usr/bin/env python3
-# AWS Identity Check Script
-# This script verifies your AWS identity and organization context using Boto3
+
+# AWS Identity Check Script - Enhanced with Color Coding
+
 import json
 import subprocess
-
 import boto3
 from botocore.exceptions import ClientError
 
+# ANSI Color Codes
+class COLORS:
+    HEADER = '\033[95m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+
+def print_status(message, color=COLORS.BLUE):
+    print(f"{color}{message}{COLORS.ENDC}")
 
 def get_rescile_secret(secret_name):
-    """Helper to query the local rescile-ce vault."""
     try:
         cmd = ["rescile-ce", "vault", "secret", "get", "aws", secret_name]
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
         return result.stdout.strip()
     except subprocess.CalledProcessError as e:
-        print(f"❌ Rescile Vault Fetch Failed for {secret_name}: {e.stderr.strip()}")
+        print(f"{COLORS.FAIL}❌ Rescile Vault Fetch Failed for {secret_name}: {e.stderr.strip()}{COLORS.ENDC}")
         return None
 
 def main():
-    print("=" * 60)
-    print("🔐 FETCHING CREDENTIALS FROM RESCILE VAULT")
-    print("=" * 60)
+    print(f"\n{COLORS.HEADER}{'=' * 60}")
+    print("FETCHING CREDENTIALS FROM RESCILE VAULT")
+    print(f"{'=' * 60}{COLORS.ENDC}")
 
-    # 1. Dynamically retrieve keys from your specific vault path
     access_key = get_rescile_secret("AWS_ACCESS_KEY_ID")
     secret_key = get_rescile_secret("AWS_SECRET_ACCESS_KEY")
-
-    # Check if a session token also exists in your vault configuration (common for SSO)
     session_token = get_rescile_secret("AWS_SESSION_TOKEN")
 
     if not access_key or not secret_key:
-        print("\n❌ Extraction aborted: Missing core keys in Rescile.")
+        print(f"\n{COLORS.FAIL}❌ Extraction aborted: Missing core keys in Rescile.{COLORS.ENDC}")
         return
 
-    print("✅ Credentials successfully loaded into script runtime memory.")
+    print(f"{COLORS.GREEN}✔ Credentials successfully loaded into runtime memory.{COLORS.ENDC}")
 
-    # 2. Spin up unmanaged boto3 clients targeting your default infrastructure hub
     region = "eu-central-2"
     session = boto3.Session(
         aws_access_key_id=access_key,
@@ -48,54 +55,52 @@ def main():
     sts_client = session.client("sts")
     org_client = session.client("organizations")
 
-    print("\n" + "=" * 60)
-    print("🚀 EXECUTING AWS RECONNAISSANCE SWEEP")
-    print("=" * 60)
+    print(f"\n{COLORS.HEADER}{'=' * 60}")
+    print("EXECUTING AWS RECONNAISSANCE SWEEP")
+    print(f"{'=' * 60}{COLORS.ENDC}")
 
-    # 3. Step 1: Active Caller ID Verification
-    account_id = None
+    # Identity Verification
     try:
         identity = sts_client.get_caller_identity()
         account_id = identity["Account"]
-        print(f"📍 Active Account ID : {account_id}")
-        print(f"📍 Target Region     : {region}")
-        print(f"📍 Assumed Identity  : {identity['Arn']}")
+        print(f"{COLORS.BOLD}Active Account ID :{COLORS.ENDC} {account_id}")
+        print(f"{COLORS.BOLD}Target Region     :{COLORS.ENDC} {region}")
+        print(f"{COLORS.BOLD}Assumed Identity  :{COLORS.ENDC} {identity['Arn']}")
     except ClientError as e:
-        print(f"❌ STS Identity Lookup Failed: {e.response['Error']['Message']}")
+        print(f"{COLORS.FAIL}STS Identity Lookup Failed: {e.response['Error']['Message']}{COLORS.ENDC}")
         return
 
-    # 4. Step 2: Global Organization Inspection
+    # Organization Inspection
     try:
-        org_desc = org_client.describe_organization()
-        org_data = org_desc["Organization"]
-        print(f"\n✅ Organization Context Found:")
-        print(f"   - Org ID           : {org_data['Id']}")
-        print(f"   - Management Acct  : {org_data['MasterAccountId']}")
-        print(f"   - Features Enabled : {org_data['FeatureSet']}")
+        org_data = org_client.describe_organization()["Organization"]
+        print(f"\n{COLORS.BLUE}Organization Context:{COLORS.ENDC}")
+        print(f"  - Org ID         : {org_data['Id']}")
+        print(f"  - Management Acct: {org_data['MasterAccountId']}")
+        print(f"  - Features       : {org_data['FeatureSet']}")
     except ClientError as e:
-        print(f"\n⚠️  describe_organization blocked: {e.response['Error']['Message']}")
+        print(f"\n{COLORS.WARNING}describe_organization blocked: {e.response['Error']['Message']}{COLORS.ENDC}")
 
-    # 5. Step 3: Local Upstream Parent Lookup
+    # Local Parent Lookup
     try:
-        parents_response = org_client.list_parents(ChildId=account_id)
-        print(f"\n✅ Direct Upstream Parent Mapping for Account {account_id}:")
-        for parent in parents_response["Parents"]:
-            print(f"   - Parent Container ID : {parent['Id']} (Type: {parent['Type']})")
+        parents = org_client.list_parents(ChildId=account_id)["Parents"]
+        print(f"\n{COLORS.BLUE}Direct Upstream Parent Mapping:{COLORS.ENDC}")
+        for p in parents:
+            print(f"  - Parent Container ID : {p['Id']} (Type: {p['Type']})")
     except ClientError as e:
-        print(f"\n⚠️  list_parents (for local account) blocked: {e.response['Error']['Message']}")
+        print(f"\n{COLORS.WARNING}list_parents blocked: {e.response['Error']['Message']}{COLORS.ENDC}")
 
-    # 6. Step 4: Tree Root Evaluation
+    # Tree Root Evaluation
     try:
-        roots_response = org_client.list_roots()
-        print(f"\n✅ Global Roots Visible:")
-        for root in roots_response["Roots"]:
-            print(f"   - Root Target ID      : {root['Id']} (Name: {root['Name']})")
+        roots = org_client.list_roots()["Roots"]
+        print(f"\n{COLORS.BLUE}Global Roots Visible:{COLORS.ENDC}")
+        for r in roots:
+            print(f"  - Root Target ID      : {r['Id']} (Name: {r['Name']})")
     except ClientError as e:
-        print(f"\n⚠️  list_roots completely blocked: {e.response['Error']['Message']}")
+        print(f"\n{COLORS.FAIL}list_roots blocked: {e.response['Error']['Message']}{COLORS.ENDC}")
 
-    print("\n" + "=" * 60)
-    print("🏁 SWEEP COMPLETE")
-    print("=" * 60)
+    print(f"\n{COLORS.HEADER}{'=' * 60}")
+    print(f"{COLORS.GREEN}🏁 SWEEP COMPLETE{COLORS.ENDC}")
+    print(f"{COLORS.HEADER}{'=' * 60}{COLORS.ENDC}")
 
 if __name__ == "__main__":
     main()

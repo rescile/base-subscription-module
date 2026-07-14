@@ -23,7 +23,7 @@ default = "Hybrid"
 [params.location]
 description = "The location where tenant resources are deployed."
 required = true
-default = "Europe (Zurich)"
+default = "Europe/Zurich"
 
 [assets."identity.csv"]
 resource_type = "identity"
