@@ -2,23 +2,6 @@
   "version": 1,
   "name_salt": "5Z9fJ-PpNQgw1kIMBtJSJw",
   "clients": {
-    "rescile-controller": {
-      "client_id": "rescile-controller",
-      "kdf_params": {
-        "algorithm": "argon2id",
-        "memory_kib": 262144,
-        "iterations": 3,
-        "parallelism": 4,
-        "salt": "aU9gbV5JOm7zkSYgjW6qkzMIi1sP7K_hZZuVoRP3fVk"
-      },
-      "auth_hash": "$argon2id$v=19$m=19456,t=2,p=1$vUh/r43DiecCbTvLEzO1VQ$uhGPjNdhHXCPzXIji0JkiRpIMO6NBuJW+3Ci7j7V6Ss",
-      "public_key": "-kkOtSaF8R2OAJf6CdkVJprP6PTQo80NZzWkoGO1QQ0",
-      "encrypted_private_key": {
-        "nonce": "vTVvMK4A_xfF7_OK",
-        "ciphertext": "3pdXY7Sb0fZ2bQUM5ktDvWZS6O3jrZ4XPBJ8RcxRtbg",
-        "tag": "7uKdlZ1cM8gR2QlWFlM5Dw"
-      }
-    },
     "ixDev": {
       "client_id": "ixDev",
       "kdf_params": {
@@ -35,22 +18,26 @@
         "ciphertext": "YMRGqetmZhTAIQBET7Ze-Hki0iyYDj-9pCJsQjkEI08",
         "tag": "uowPd8LdavXMzYxiTBWWQA"
       }
+    },
+    "rescile-controller": {
+      "client_id": "rescile-controller",
+      "kdf_params": {
+        "algorithm": "argon2id",
+        "memory_kib": 262144,
+        "iterations": 3,
+        "parallelism": 4,
+        "salt": "aU9gbV5JOm7zkSYgjW6qkzMIi1sP7K_hZZuVoRP3fVk"
+      },
+      "auth_hash": "$argon2id$v=19$m=19456,t=2,p=1$vUh/r43DiecCbTvLEzO1VQ$uhGPjNdhHXCPzXIji0JkiRpIMO6NBuJW+3Ci7j7V6Ss",
+      "public_key": "-kkOtSaF8R2OAJf6CdkVJprP6PTQo80NZzWkoGO1QQ0",
+      "encrypted_private_key": {
+        "nonce": "vTVvMK4A_xfF7_OK",
+        "ciphertext": "3pdXY7Sb0fZ2bQUM5ktDvWZS6O3jrZ4XPBJ8RcxRtbg",
+        "tag": "7uKdlZ1cM8gR2QlWFlM5Dw"
+      }
     }
   },
   "collections": {
-    "subscription": {
-      "collection_id": "subscription",
-      "client_access": {
-        "ixDev": {
-          "role": "Owner",
-          "ephemeral_public_key": "JWbtQ75i0IkTamzEvgFU3IVV6FwQUqfj5K6kWmtPSEI",
-          "nonce": "lDX5HSksBYxj0dZp",
-          "ciphertext": "hgRC0RFkpmmOhZS6e2f_bSYdA7wSuPZsm8B1VklRaBg",
-          "tag": "k0GNL3-MGcTuQDRNVt360Q"
-        }
-      },
-      "pending_invites": {}
-    },
     "admin": {
       "collection_id": "admin",
       "client_access": {
@@ -73,6 +60,19 @@
           "nonce": "qmW0wV0kAQTO_RBz",
           "ciphertext": "DSORZdTiKgdK0c53EAwNhHZTQvQX_iPZzGKftz7vR4k",
           "tag": "BMjrutTfofeaDSioW8i-Uw"
+        }
+      },
+      "pending_invites": {}
+    },
+    "subscription": {
+      "collection_id": "subscription",
+      "client_access": {
+        "ixDev": {
+          "role": "Owner",
+          "ephemeral_public_key": "JWbtQ75i0IkTamzEvgFU3IVV6FwQUqfj5K6kWmtPSEI",
+          "nonce": "lDX5HSksBYxj0dZp",
+          "ciphertext": "hgRC0RFkpmmOhZS6e2f_bSYdA7wSuPZsm8B1VklRaBg",
+          "tag": "k0GNL3-MGcTuQDRNVt360Q"
         }
       },
       "pending_invites": {}

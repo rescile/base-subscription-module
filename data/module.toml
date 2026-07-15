@@ -9,7 +9,7 @@ rescile_version = ">=0.1.185"
 [dependencies]
 graphviewer            = "https://github.com/rescile/graphviewer"
 asset-editor           = "https://github.com/rescile/asset-editor-module/releases/download/v{version}/asset-editor.zip"
-#aws-management-account = "https://github.com/rescile/aws_management_account.git"
+#aws-management-account = "https://github.com/rescile/aws-management-account.git"
 #service-catalog        = "https://github.com/rescile/module-service-catalog"
 #compliance             = "https://github.com/rescile/rescile-ccm-lite-module"
 #graml-module           = "https://github.com/rescile/graphml-module"
@@ -23,26 +23,15 @@ default = "Hybrid"
 [params.location]
 description = "The location where tenant resources are deployed."
 required = true
-default = "Europe/Zurich"
+default = "Zurich"
 
 [assets."identity.csv"]
 resource_type = "identity"
 name_template = "{{- name | lower -}}-{{- function | lower -}}"
 description = "Common set of cloud identities."
 match_on = [
-    { property = "active", value = "true" }
+    { property = "active", value = true }
 ]
 [assets."identity.csv".columns]
-name = { type = "string", required = true }
-function = { type = "string", required = true }
-
-[assets."provider.csv"]
-resource_type = "provider"
-name_template = "{{- name | lower -}}"
-description = "Providers defined in the subscription module."
-match_on = [
-    { property = "active", value = "true" }
-]
-[assets."provider.csv".columns]
 name = { type = "string", required = true }
 function = { type = "string", required = true }

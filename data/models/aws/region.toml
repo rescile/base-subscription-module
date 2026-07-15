@@ -1,0 +1,21 @@
+# This model represents a third tier model of a cloud domain and defines locations where provider resources can be consumed.
+origin_resource = "provider"
+
+regions = { "json!" = "aws-regions.json"}
+
+[[create_resource]]
+create_from = { property = "home_region", as = "region" }
+relation_type = "DERIVED_FROM"
+name = "{{- regions[location].aws_region_id -}}"
+[create_resource.properties]
+function = "home_region"
+provider = "{{- origin_resource.name -}}"
+country_code = "{{- regions[location].country_code -}}"
+api = "https://service-code.region-code.amazonaws.com"
+router = "{{- origin_resource.name -}}-transit-router"
+kms = "https://iam.amazonaws.com"
+services = "[kubernetes,container]"
+databases = "[redshift,dynamodb]"
+brokers = "[amq,kafka]"
+description = "The region describes a physical, geographical location where data is stored, and applications run, managed by {{ origin_resource.name | upper }}."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

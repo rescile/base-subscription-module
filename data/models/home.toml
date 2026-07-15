@@ -1,0 +1,16 @@
+# This model represents a third tier model of a cloud domain and defines locations where provider resources can be consumed.
+origin_resource = "subscription"
+
+code = { "json!" = "airports.json", jmespath = "values(@)[?city ==  'Zurich' ] | [0]" }
+
+[[create_resource]]
+resource_type = "home"
+relation_type = "DERIVED_FROM"
+name = "{{- location | lower -}}"
+[create_resource.properties]
+function = "region"
+region_code = "{{- code.iata -}}"
+timezone = "{{- code.tz -}}"
+country = "{{- code.country -}}"
+description = "The region describes a physical, geographical location where data is stored, and applications run, managed by {{ origin_resource.name | capitalize }}."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

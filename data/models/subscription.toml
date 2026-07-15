@@ -1,10 +1,11 @@
-origin_resource = "resident"
-
 [[create_resource]]
 resource_type = "subscription"
 name = " {{- tenant | lower -}}-cloud"
 [create_resource.properties]
-function = "infrastructure"
+function = "cloud"
+commercial_admin = "contract-manager"
+technical_admin = "account-administrator"
+home_region = "{{- location -}}"
 description = "The subscription defines the cloud environment for the resident {{ tenant | capitalize }}."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
@@ -12,8 +13,4 @@ origin_resource = "subscription"
 
 [[link_resources]]
 with = "identity"
-create_relation = { type = "BASELINE_TEMPLATE" }
-
-[[link_resources]]
-with = "provider"
 create_relation = { type = "BASELINE_TEMPLATE" }

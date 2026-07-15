@@ -9,7 +9,7 @@ name = "Terms and Conditions"
 # Defines where and how to apply the control
 [[control.target]]
 description = "Managed Service"
-origin_resource_types = [ "provider" ]
+origin_resource_types = [ "subscription" ]
 
 # Add or Change a property
 [control.target.resource.properties]
