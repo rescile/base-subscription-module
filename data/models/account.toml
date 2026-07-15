@@ -1,7 +1,5 @@
 origin_resource = "provider"
 
-regions = { "json!" = "aws-regions.json" }
-
 [[create_resource]]
 resource_type = "account"
 relation_type = "SATISFIES"
@@ -9,7 +7,7 @@ name = "{{- origin_resource.name | lower -}}_account"
 [create_resource.properties]
 function = "platform"
 provider = "{{- origin_resource.name | lower -}}"
-home_region = "{{- regions[location].aws_region_id -}}"
+home = "{{- location -}}"
 key = "{{- origin_resource.name | lower -}}-master-key"
 logging = true
 flow_logs = true

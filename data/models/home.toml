@@ -6,7 +6,7 @@ code = { "json!" = "airports.json", jmespath = "values(@)[?city ==  'Zurich' ] |
 [[create_resource]]
 resource_type = "home"
 relation_type = "DERIVED_FROM"
-name = "{{- location | lower -}}"
+name = "{{- location -}}"
 [create_resource.properties]
 function = "region"
 region_code = "{{- code.iata -}}"
