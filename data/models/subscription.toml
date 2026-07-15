@@ -9,8 +9,8 @@ home_region = "{{- location -}}"
 description = "The subscription defines the cloud environment for the resident {{ tenant | capitalize }}."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
-origin_resource = "subscription"
+origin_resource = "identity"
 
 [[link_resources]]
-with = "identity"
+with = "subscription"
 create_relation = { type = "BASELINE_TEMPLATE" }
