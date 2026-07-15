@@ -9,7 +9,7 @@ rescile_version = ">=0.1.185"
 [dependencies]
 graphviewer            = "https://github.com/rescile/graphviewer"
 asset-editor           = "https://github.com/rescile/asset-editor-module/releases/download/v{version}/asset-editor.zip"
-#aws-management-account = "https://github.com/rescile/aws-management-account.git"
+aws-management-account = "https://github.com/rescile/aws-management-account.git"
 #service-catalog        = "https://github.com/rescile/module-service-catalog"
 #compliance             = "https://github.com/rescile/rescile-ccm-lite-module"
 #graml-module           = "https://github.com/rescile/graphml-module"

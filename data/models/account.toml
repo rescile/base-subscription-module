@@ -1,0 +1,35 @@
+origin_resource = "provider"
+
+regions = { "json!" = "aws-regions.json" }
+
+[[create_resource]]
+resource_type = "account"
+relation_type = "SATISFIES"
+name = "{{- origin_resource.name | lower -}}_account"
+[create_resource.properties]
+function = "platform"
+provider = "{{- origin_resource.name | lower -}}"
+home_region = "{{- regions[location].aws_region_id -}}"
+key = "{{- origin_resource.name | lower -}}-master-key"
+logging = true
+flow_logs = true
+description = "The {{ origin_resource.name  }} account is a secure digital identity that grants authorized access to {{ origin_resource.name | capitalize }}'s cloud resources and enables a centralized management hub to automate cloud service deployments and configurations."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+origin_resource = "subscription"
+
+[[link_resources]]
+with = "account"
+create_relation = { type = "DEFINED_BY" }
+copy_properties = [
+  { from = "technical_admin", as = "contact" }
+]
+
+origin_resource = "identity"
+
+[[link_resources]]
+with = "account"
+create_relation = { type = "DEFINED_BY" }
+copy_properties = [
+  { from = "name", as = "identity" }
+]
