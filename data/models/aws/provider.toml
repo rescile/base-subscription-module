@@ -1,5 +1,3 @@
-regions = { "json!" = "aws-regions.json" }
-
 [[create_resource]]
 resource_type = "provider"
 name = "aws"
@@ -7,7 +5,6 @@ name = "aws"
 function = "platform"
 display = "Amazon Web Services (AWS)"
 active = true
-home_region = "{{- regions[location].aws_region_id -}}"
 clearance = "[ISAE,ISO27001,SOC2]"
 terms = "https://aws.amazon.com/legal/service-level-agreements/"
 description = "Amazon Web Services operates data centers to rent out computing power, storage, and/or software. The operator distinguishes itself through the broad service portfolio of platform services, ranging from serverless functions to hardware accelerators."

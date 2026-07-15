@@ -1,13 +1,9 @@
 origin_resource = "region"
 
 [[create_resource]]
-match_on = [
-    { property = "provider", value = "infrastructure" }
-]
-resource_type = "vault"
+create_from = { property = "vault"}
 relation_type = "OPERATED_BY"
-name = "{{- origin_resource.provider[0].name -}}-hardware-vault"
 [create_resource.properties]
-function = "hardware"
-description = "{{ origin_resource.provider[0].name | capitalize }}'s {{ vault_function }} vault is a key management system designed to protect sensitive information like passwords, encryption keys, and API tokens. It manages the lifecycle of these secrets, enforcing strict access control and encrypting the data at rest and in transit to mitigate the risk of data breaches."
+function = "kms"
+description = "{{ origin_resource.provider | capitalize }}'s kms represents a vault designed to protect sensitive information like passwords, encryption keys, and API tokens. It manages the lifecycle of these secrets, enforcing strict access control and encrypting the data at rest and in transit to mitigate the risk of data breaches."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

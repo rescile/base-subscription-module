@@ -1,11 +1,11 @@
 version = 1
 
 [[module]]
-name = "graphviewer"
-source = "https://github.com/rescile/graphviewer"
-commit = "744694f0820873011ecdb2fbbc0eb081b79f2065"
-
-[[module]]
 name = "asset-editor"
 source = "https://github.com/rescile/asset-editor-module/releases/download/v0.6.0/asset-editor.zip"
 checksum = "sha256-2f3a6f0873b0f0d01cf5d00fe20b5a97c2dc70038ec9da7a9d6ffc572ef299a8"
+
+[[module]]
+name = "graphviewer"
+source = "https://github.com/rescile/graphviewer"
+commit = "744694f0820873011ecdb2fbbc0eb081b79f2065"
