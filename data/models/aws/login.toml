@@ -1,0 +1,21 @@
+origin_resource = "account"
+
+[[create_resource]]
+create_from = { property = "login" }
+relation_type = "DERIVED_FROM"
+name = "{{- property.value | lower -}}_login"
+[create_resource.properties]
+function = "{{- property.value | lower -}}"
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+origin_resource = "identity"
+
+[[link_resources]]
+with = "login"
+match_with = [
+  { expression = "{% if origin_resource.name == target_resource.function %}true{% endif %}" }
+]
+create_relation = { type = "DEFINED_BY" }
+copy_properties = [
+  { from = "email", as = "email" }
+]

@@ -38,6 +38,19 @@
     }
   },
   "collections": {
+    "admin": {
+      "collection_id": "admin",
+      "client_access": {
+        "ixDev": {
+          "role": "Owner",
+          "ephemeral_public_key": "aJv-AI-s-_2FyJeBXGbAIC-zIkz7QN3B0HdLDpgSUT0",
+          "nonce": "2rrRnEbDWYVnM2sn",
+          "ciphertext": "9-va_WNs3x5Xbqmc-cD1bXsF3oYUKBIiqSecRUG-aqA",
+          "tag": "MeTjCXUcGsKFuAxrPG0kvw"
+        }
+      },
+      "pending_invites": {}
+    },
     "aws": {
       "collection_id": "aws",
       "client_access": {
@@ -60,19 +73,6 @@
           "nonce": "lDX5HSksBYxj0dZp",
           "ciphertext": "hgRC0RFkpmmOhZS6e2f_bSYdA7wSuPZsm8B1VklRaBg",
           "tag": "k0GNL3-MGcTuQDRNVt360Q"
-        }
-      },
-      "pending_invites": {}
-    },
-    "admin": {
-      "collection_id": "admin",
-      "client_access": {
-        "ixDev": {
-          "role": "Owner",
-          "ephemeral_public_key": "aJv-AI-s-_2FyJeBXGbAIC-zIkz7QN3B0HdLDpgSUT0",
-          "nonce": "2rrRnEbDWYVnM2sn",
-          "ciphertext": "9-va_WNs3x5Xbqmc-cD1bXsF3oYUKBIiqSecRUG-aqA",
-          "tag": "MeTjCXUcGsKFuAxrPG0kvw"
         }
       },
       "pending_invites": {}

@@ -3,6 +3,7 @@ resource_type = "subscription"
 name = " {{- tenant | lower -}}-cloud"
 [create_resource.properties]
 function = "cloud"
+email = "account-administrator@example.com"
 commercial_admin = "contract-manager"
 technical_admin = "account-administrator"
 home_region = "{{- location -}}"

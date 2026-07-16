@@ -1,0 +1,11 @@
+origin_resource = "resolver"
+
+[[create_resource]]
+create_from = { property = "zones", as = "zone" }
+relation_type = "DEFINED_BY"
+name = "{{- property.value | lower -}}"
+[create_resource.properties]
+function = "{% if origin_resource.public == true %}public{% else %}private{% endif %}"
+record = ["development"]
+description = "A DNS zone is an administrative namespace that a single entity manages, containing resource records that map domain names to IP addresses."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
