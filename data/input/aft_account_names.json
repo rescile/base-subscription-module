@@ -1,0 +1,78 @@
+{
+  "retrievedAt": "2026-07-15T16:15:24.170969+00:00",
+  "accountCount": 9,
+  "accounts": [
+    {
+      "accountId": "506221082076",
+      "arn": "arn:aws:organizations::138844332110:account/o-7msomcpjhz/506221082076",
+      "name": "p-acc-kpt-Salesforce",
+      "email": "p-acc-kpt-Salesforce@kpt.ch",
+      "status": "ACTIVE",
+      "joinedTimestamp": "2026-06-04T09:24:42.854000+02:00"
+    },
+    {
+      "accountId": "975448495452",
+      "arn": "arn:aws:organizations::138844332110:account/o-7msomcpjhz/975448495452",
+      "name": "AWS-KPT-SECURITY-HUB",
+      "email": "aws-security-hub@kpt.ch",
+      "status": "ACTIVE",
+      "joinedTimestamp": "2025-11-13T21:16:06.343000+01:00"
+    },
+    {
+      "accountId": "557980386859",
+      "arn": "arn:aws:organizations::138844332110:account/o-7msomcpjhz/557980386859",
+      "name": "Audit",
+      "email": "aws-audit@kpt.ch",
+      "status": "ACTIVE",
+      "joinedTimestamp": "2025-11-10T21:04:18.595000+01:00"
+    },
+    {
+      "accountId": "233903267961",
+      "arn": "arn:aws:organizations::138844332110:account/o-7msomcpjhz/233903267961",
+      "name": "d-acc-kpt-Salesforce",
+      "email": "d-acc-kpt-Salesforce@kpt.ch",
+      "status": "ACTIVE",
+      "joinedTimestamp": "2026-06-04T09:25:07.332000+02:00"
+    },
+    {
+      "accountId": "138844332110",
+      "arn": "arn:aws:organizations::138844332110:account/o-7msomcpjhz/138844332110",
+      "name": "AWS-KPT-MANAGEMENT",
+      "email": "senad.havkic@kpt.ch",
+      "status": "ACTIVE",
+      "joinedTimestamp": "2025-11-10T16:33:56.097000+01:00"
+    },
+    {
+      "accountId": "869425948717",
+      "arn": "arn:aws:organizations::138844332110:account/o-7msomcpjhz/869425948717",
+      "name": "p-acc-kpt-Salesforce",
+      "email": "aws-management@kpt.ch",
+      "status": "ACTIVE",
+      "joinedTimestamp": "2026-06-04T09:19:14.951000+02:00"
+    },
+    {
+      "accountId": "262907162487",
+      "arn": "arn:aws:organizations::138844332110:account/o-7msomcpjhz/262907162487",
+      "name": "AWS-KPT-TRANSITHUB-PROD",
+      "email": "aws-transithub@kpt.ch",
+      "status": "ACTIVE",
+      "joinedTimestamp": "2025-11-11T11:11:44.223000+01:00"
+    },
+    {
+      "accountId": "884308299767",
+      "arn": "arn:aws:organizations::138844332110:account/o-7msomcpjhz/884308299767",
+      "name": "Log Archive",
+      "email": "aws-log-archive@kpt.ch",
+      "status": "ACTIVE",
+      "joinedTimestamp": "2025-11-10T21:04:26.624000+01:00"
+    },
+    {
+      "accountId": "509399262440",
+      "arn": "arn:aws:organizations::138844332110:account/o-7msomcpjhz/509399262440",
+      "name": "AWS-KPT-TRANSITHUB-INT",
+      "email": "aws-transithub-dta@kpt.ch",
+      "status": "ACTIVE",
+      "joinedTimestamp": "2025-11-11T11:50:31.827000+01:00"
+    }
+  ]
+}

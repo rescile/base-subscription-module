@@ -1,11 +1,16 @@
 version = 1
 
 [[module]]
-name = "asset-editor"
-source = "https://github.com/rescile/asset-editor-module/releases/download/v0.6.0/asset-editor.zip"
-checksum = "sha256-2f3a6f0873b0f0d01cf5d00fe20b5a97c2dc70038ec9da7a9d6ffc572ef299a8"
+name = "aws-management-account"
+source = "https://github.com/rescile/aws-management-account.git"
+commit = "7dd4b773614d1a9ce26041bb1fee3668799cd617"
 
 [[module]]
 name = "graphviewer"
 source = "https://github.com/rescile/graphviewer"
 commit = "744694f0820873011ecdb2fbbc0eb081b79f2065"
+
+[[module]]
+name = "asset-editor"
+source = "https://github.com/rescile/asset-editor-module/releases/download/v0.6.0/asset-editor.zip"
+checksum = "sha256-2f3a6f0873b0f0d01cf5d00fe20b5a97c2dc70038ec9da7a9d6ffc572ef299a8"
