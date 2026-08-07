@@ -1,0 +1,38 @@
+origin_resource = "account"
+
+regions = { "json!" = "aws-regions.json"}
+
+range = { "template!" = '''
+    {%- set address = "10.0.0.0/16" -%}
+    {% if origin_resource.function == 'development' %}
+        {%- set_global address = "10.37.197.0/28" -%}
+    {% elif origin_resource.environment == 'DEV' %}
+        {%- set_global address = "10.37.196.0/24" -%}
+    {% elif origin_resource.environment == 'INT' %}
+        {%- set_global address = "10.37.197.128/27" -%}
+    {% elif origin_resource.environment == 'PROD' %}
+        {%- set_global address = "10.37.197.160/27" -%}
+    {% else %}
+        {%- set_global address = "10.37.198.0/28" -%}
+    {% endif %}
+    {{- address | default(value="10.0.0.0/16") -}}
+''' }
+
+# Create the resource type
+[[create_resource]]
+create_from = { property = "network" }
+relation_type = "DEFINED_BY"
+[create_resource.properties]
+function = "{{- origin_resource.function -}}"
+environment = "{{- origin_resource.environment -}}"
+account = "{{- origin_resource.name -}}"
+region = "{{- regions[origin_resource.home_region].aws_region_id -}}"
+cidr = "{{ range }}"
+subnets = "{% if origin_resource.function == 'development' %}[a]{% else %}[a, b]{% endif %}"
+load_balancer = "{% if origin_resource.function == 'development' %}{% else %}{{- origin_resource.name | lower -}}-lb{% endif %}"
+gateway = ["vpn"]
+resolver = "aws-dns-resolver"
+firewall = ["segment"]
+logging = true
+description = "An AWS network connects platform services with the transit gateway at AWS and acts as the on-ramp for application services."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

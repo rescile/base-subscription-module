@@ -1,0 +1,23 @@
+origin_resource = "subscription"
+
+[[create_resource]]
+create_from = { property = "public", as = "zone"}
+name = "{{- property.value | lower -}}"
+relation_type = "DERIVED_FROM"
+[create_resource.properties]
+function = "public"
+type = "A"
+is_alias = true
+description = "The public DNS zone maps a specific name to a value, for example, linking a hostname to an IP address or a domain to a mail server. Each record has a type (A, AAAA, MX, CNAME, TXT, etc.), a TTL, and the data relevant to that type."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+[[create_resource]]
+create_from = { property = "private", as = "zone"}
+name = "{{- property.value | lower -}}"
+relation_type = "DERIVED_FROM"
+[create_resource.properties]
+function = "private"
+type = "A"
+is_alias = true
+description = "The private DNS zone maps a specific name to a value, for example, linking a hostname to an IP address or a domain to a mail server. Each record has a type (A, AAAA, MX, CNAME, TXT, etc.), a TTL, and the data relevant to that type."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

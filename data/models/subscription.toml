@@ -1,17 +1,30 @@
+origin_resource = "tenant"
+
 [[create_resource]]
 resource_type = "subscription"
 name = " {{- tenant | lower -}}-cloud"
 [create_resource.properties]
-function = "cloud"
-email = "account-administrator@example.com"
 commercial_admin = "contract-manager"
 technical_admin = "account-administrator"
-home_region = "{{- location -}}"
+home = "{{- location -}}"
+public = ["domain.com"]
+private = ["domain-dev.com", "domain-int.com"]
+logging = true
+auditing = true
 description = "The subscription defines the cloud environment for the resident {{ tenant | capitalize }}."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
-origin_resource = "identity"
+origin_resource = "subscription"
 
 [[link_resources]]
-with = "subscription"
-create_relation = { type = "BASELINE_TEMPLATE" }
+with = "identity"
+join = { local = "commercial_admin", remote = "name" }
+create_relation = { type = "RESPONSIBLE_FOR" }
+
+[[link_resources]]
+with = "identity"
+join = { local = "technical_admin", remote = "name" }
+create_relation = { type = "RESPONSIBLE_FOR" }
+copy_properties = [
+  { from = "email", as = "email" }
+]
