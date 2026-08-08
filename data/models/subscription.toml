@@ -2,13 +2,11 @@ origin_resource = "tenant"
 
 [[create_resource]]
 resource_type = "subscription"
-name = " {{- tenant | lower -}}-cloud"
+name = "{{- tenant | lower -}}-{{- blueprint | lower -}}"
 [create_resource.properties]
 commercial_admin = "contract-manager"
 technical_admin = "account-administrator"
 home = "{{- location -}}"
-public = ["domain.com"]
-private = ["domain-dev.com", "domain-int.com"]
 logging = true
 auditing = true
 description = "The subscription defines the cloud environment for the resident {{ tenant | capitalize }}."

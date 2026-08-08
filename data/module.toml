@@ -27,6 +27,11 @@ description = "The location where tenant resources are deployed."
 required = true
 default = "Zurich"
 
+[params.blueprint]
+description = "A freeform name describing the business purpose of a description."
+required = true
+default = "blueprint"
+
 [assets."identity.csv"]
 resource_type = "identity"
 name_template = "{{- name | lower -}}-{{- function | lower -}}"

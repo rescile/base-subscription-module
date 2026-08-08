@@ -1,0 +1,65 @@
+{
+  "https-tcp-ingress": {
+    "function": "ingress",
+    "protocol": "tcp",
+    "port": 443,
+    "enable": true,
+    "stateful": true,
+    "default_action": "allow",
+    "description": "Default perimeter protection configuration for networks, zones and segments."
+  },
+  "https-tcp-egress": {
+    "function": "egress",
+    "protocol": "tcp",
+    "port": 443,
+    "enable": true,
+    "stateful": true,
+    "default_action": "allow",
+    "description": "Default perimeter protection configuration for networks, zones and segments."
+  },
+  "unrestricted-tcp-egress": {
+    "function": "egress",
+    "protocol": "tcp",
+    "port": 0,
+    "enable": true,
+    "stateful": true,
+    "default_action": "allow",
+    "description": "Allows unrestricted outbound traffic to assigned network zones."
+  },
+  "dns-tcp-egress": {
+    "function": "egress",
+    "protocol": "tcp",
+    "port": 53,
+    "enable": true,
+    "stateful": true,
+    "default_action": "allow",
+    "description": "Allows outbound DNS traffic."
+  },
+  "dns-tcp-ingress": {
+    "function": "ingress",
+    "protocol": "tcp",
+    "port": 53,
+    "enable": true,
+    "stateful": true,
+    "default_action": "allow",
+    "description": "Allows inbound DNS traffic."
+  },
+  "dns-udp-egress": {
+    "function": "egress",
+    "protocol": "udp",
+    "port": 53,
+    "enable": true,
+    "stateful": true,
+    "default_action": "allow",
+    "description": "Allows outbound DNS traffic."
+  },
+  "dns-udp-ingress": {
+    "function": "ingress",
+    "protocol": "udp",
+    "port": 53,
+    "enable": true,
+    "stateful": true,
+    "default_action": "allow",
+    "description": "Allows inbound DNS traffic."
+  }
+}

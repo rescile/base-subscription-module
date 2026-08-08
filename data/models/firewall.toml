@@ -1,0 +1,16 @@
+origin_resource = "subscription"
+
+inbound = { "json!" = "firewall-rules.json", jmespath = "values(@)[?function ==  'ingress' ]" }
+outbound = { "json!" = "firewall-rules.json", jmespath = "values(@)[?function ==  'egress' ]" }
+
+[[create_resource]]
+resource_type = "firewall"
+relation_type = "DERIVED_FROM"
+name = "{{- origin_resource.name -}}-default-firewall"
+[create_resource.properties]
+function = "{{- blueprint -}}"
+subscription = "{{- origin_resource.name -}}"
+ingress = "{{ inbound }}"
+egress = "{{ outbound }}"
+description = "The default firewall configuration is the set of rules and policies that determine what traffic is allowed to pass through into or from a network, and what gets blocked."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
