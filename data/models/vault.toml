@@ -7,5 +7,6 @@ name = "master"
 [create_resource.properties]
 function = "encryption"
 source_ip = ["192.168.1.50/32", "10.0.0.0/24"]
+provider = ["aws"]
 description = "The master key vault stores main keys for BYOK internally."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
