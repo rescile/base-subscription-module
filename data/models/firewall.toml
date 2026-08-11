@@ -5,8 +5,8 @@ outbound = { "json!" = "firewall-rules.json", jmespath = "values(@)[?function ==
 
 [[create_resource]]
 resource_type = "firewall"
-relation_type = "DERIVED_FROM"
-name = "{{- origin_resource.name -}}-default-firewall"
+relation_type = "BASELINE_TEMPLATE"
+name = "default-firewall"
 [create_resource.properties]
 function = "{{- blueprint -}}"
 subscription = "{{- origin_resource.name -}}"

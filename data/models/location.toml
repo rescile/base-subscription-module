@@ -1,14 +1,14 @@
 origin_resource = "subscription"
 
-code = { "json!" = "airports.json", jmespath = "values(@)[?city ==  'Zurich' ] | [0]" }
+data = { "json!" = "airports.json", jmespath = "values(@)[?city ==  'Zurich' ] | [0]" }
 
 [[create_resource]]
 create_from = { property = "home", as = "location" }
-relation_type = "DERIVED_FROM"
-name = "{{- code.iata -}}"
+relation_type = "BASELINE_TEMPLATE"
+name = "{{- property.value -}}"
 [create_resource.properties]
-function = "{{ property.value }}"
-timezone = "{{- code.tz -}}"
-site = "{{- code.city -}}"
-description = "The location refers to a physical data center where data is stored and applications are hosted."
+function = "home"
+code = "{{- data.iata -}}"
+timezone = "{{- data.tz -}}"
+description = "The home location {{ data.city }} refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

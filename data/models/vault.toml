@@ -3,7 +3,7 @@ origin_resource = "subscription"
 [[create_resource]]
 resource_type = "vault"
 relation_type = "BASELINE_TEMPLATE"
-name = "master"
+name = "master-keys"
 [create_resource.properties]
 function = "encryption"
 source_ip = ["192.168.1.50/32", "10.0.0.0/24"]

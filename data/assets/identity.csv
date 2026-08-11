@@ -1,7 +1,0 @@
-name,function,active,email,description
-account,administrator,true,"account-admin@example.com","The cloud administrator creates a supueruser for a cloud account with full access to all settings."
-contract,manager,true,"contract-manager@example.com","The provider manager is a commercial contact at a cloud provider and responsible for billing and resource management."
-kubernetes,operator,false,"kubernetes-operator@example.com","The Kubernetes operator has the necessary permissions to manage the Kubernetes resources at a cloud provider."
-cloud,auditor,true,"cloud-auditor@example.com","The cloud compliance auditor ensures that an organization’s cloud footprint follows specific regulatory frameworks like SOC2,HIPAA,GDPR,or PCI-DSS."
-observability,manager,true,"observability-manager@example.com","An observability manager collects disparate streams of operational data into one place."
-network,operator,false,"network-operator@example.com","The network operator designs the virtual layout of the cloud network,he defines security measures and manages access to gateways."
