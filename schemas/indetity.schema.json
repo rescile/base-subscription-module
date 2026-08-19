@@ -6,7 +6,8 @@
       "required": ["name"],
       "properties": {
         "name": { "type": "string" },
-        "function": { "type": "string" }
+        "function": { "type": "string" },
+        "email": { "type": "string" }
       }
     }
   }
