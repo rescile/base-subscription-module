@@ -1,12 +1,15 @@
 origin_resource = "resident"
 
+provider = { "json!" = "provider.json", jmespath = "values(@)[?name == 'AWS' ] | [0]" }
+
 [[create_resource]]
 resource_type = "subscription"
 relation_type = "DEFINED_BY"
 name = "{{- origin_resource.name | lower -}}-{{- subscription | lower -}}"
 [create_resource.properties]
 home = "{{- location -}}"
-environment = ["DEV", "PROD", "INT", "SRE"]
+provider = "{{ provider }}"
+environment = ["DEV", "PROD", "INT"]
 logging = true
 auditing = true
 description = "The subscription defines the cloud environment for the resident {{ origin_resource.name | capitalize }}."
