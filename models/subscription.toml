@@ -11,21 +11,3 @@ logging = true
 auditing = true
 description = "The subscription defines the cloud environment for the resident {{ origin_resource.name | capitalize }}."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
-
-origin_resource = "role"
-
-[[link_resources]]
-with = "subscription"
-match_with = [{ property = "name", value = "commercial-admin" }]
-create_relation = { type = "RESPONSIBLE_FOR" }
-copy_properties = [
-  { from = "name", as = "commercial-admin" }
-]
-
-[[link_resources]]
-with = "subscription"
-match_on = [{ property = "name", value = "technical-admin" }]
-create_relation = { type = "RESPONSIBLE_FOR" }
-copy_properties = [
-  { from = "name", as = "technical-admin" }
-]

@@ -59,12 +59,3 @@ function = "operator"
 scope = "network"
 description = "The network operator designs the virtual layout of the cloud network,he defines security measures and manages access to gateways."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
-
-origin_resource = "role"
-
-[[link_resources]]
-with = "identity"
-match_with = [
-  { expression = "{% if origin_resource.scope == target_resource.scope %}true{% endif %}" }
-]
-create_relation = { type = "RESPONSIBLE_FOR" }
