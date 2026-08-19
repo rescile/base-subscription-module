@@ -9,7 +9,7 @@ home = "{{- location -}}"
 environment = ["DEV", "PROD", "INT", "SRE"]
 logging = true
 auditing = true
-description = "The subscription defines the cloud environment for the resident {{ resident | capitalize }}."
+description = "The subscription defines the cloud environment for the resident {{ origin_resource.name | capitalize }}."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
 origin_resource = "subscription"
