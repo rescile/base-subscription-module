@@ -18,8 +18,15 @@ origin_resource = "subscription"
 with = "role"
 join = { local = "commercial-admin", remote = "name" }
 create_relation = { type = "RESPONSIBLE_FOR" }
+copy_properties = [
+  { from = "name", as = "commercial-admin" }
+]
+
 
 [[link_resources]]
 with = "role"
 join = { local = "technical-admin", remote = "name" }
 create_relation = { type = "RESPONSIBLE_FOR" }
+copy_properties = [
+  { from = "name", as = "technical-admin" }
+]
