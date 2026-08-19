@@ -1,40 +1,143 @@
 # Base Subscription Module
 
-The **Hybrid Cloud Base Subscription** defines a minimal set of resources required to stand up an **ISAE 3402-compliant account** accross multiple cloud provider like AWS, GCP, Azure or OCI. It serves as the foundation on which all further provider-specific resources in the resource graph are built. This base module ensures that every account meets baseline organizational and technical requirements for control evidence, auditability, and separation of duties from day one, regardless of the underlying provider.
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Rescile UCS](https://img.shields.io/badge/provisioned%20by-Rescile%20UCS-purple.svg)](https://www.rescile.com/)
+[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-## Purpose
+This module defines a foundation for resource deployments with rescile UCS. The module provides a standardized building block that lays the ground for provider specific infrastructure modules to construct complete hybrid-cloud environment. It creates and configures a foundation for a managed infrastructure target for subsequent resource deployments.
 
-The common foundation represents a consistent baseline for compliance-relevant account structure (logging, access control, tagging, budget/cost boundaries), ensures a provider-agnostic definition of the minimum required resources, implemented per provider via the respective adapter, provides a foundation for downstream domain controllers (network, IAM, storage, etc.) that build on top of an already-compliant account and enables traceability of configuration as a prerequisite for ISAE audit evidence (compliance-as-code instead of manual evidence gathering). The module is deliberately limited to the essentials: no workload-specific resources, no detailed network design — only what is required for baseline account compliance. Anything beyond that belongs in specialized modules that build on top of this base module.
+## Rescile UCS
+
+The module serves as  part of the **Rescile UCS infrastructure ecosystem**. Rescile UCS acts as the provisioning and orchestration environment. It maintains the infrastructure model, resolves dependencies and drives the execution of infrastructure changes. The relationship can be summarized as:
+
+```text
+┌──────────────────────────────┐
+│         Rescile UCS          │
+│                              │
+│   Model → Resolve → Deploy   │
+└───────────────┬──────────────┘
+                │
+                ▼
+┌──────────────────────────────┐
+│   Base Subscription Module   │
+│                              │
+│                              │
+└──────────────────────────────┘
+```
+
+UCS provides the common control plane, while individual modules describe the infrastructure resources that can be provisioned. This separation allows modules to remain focused on **what infrastructure should exist**, while UCS manages **how infrastructure is modeled, related and provisioned**. For more information, see the [Rescile UCS project](https://www.rescile.com/).
 
 ## Resources
 
-The following resources are defined in the baseline:
+| Resource            | Description                                                               |
+| ------------------- | ------------------------------------------------------------------------- |
+| `subscirption`      | tbd. |
+| `dns`               | tbd. |
+| `firewall`          | tbd. |
+| `location`          | tbd. |
+| `network`           | tbd. |
+| `observability`     | tbd. |
+| `role`              | tbd. |
 
-### Account Structure
-- Clear separation between the management account and workload account (no direct deployment into the root/org account)
-- Defined membership in an organizational unit (OU/folder/management group, depending on provider terminology)
 
-### Identity & Access Management
-- Baseline roles following the least-privilege principle (e.g., read-only auditor role for compliance checks)
-- Mandatory MFA policy for privileged access
-- Separation of break-glass access from regular administrative access
+## Repository Structure
 
-### Tagging & Ownership
-- Mandatory fields for owner, cost center, and compliance classification at the account level
-- Foundation for later mapping to domain controllers within the resource graph
+```text
+.
+├── README.md
+├── LICENSE
+├── NOTICE
+├── CONTRIBUTING.md
+├── data/
+│   └── models/
+│       ├── dns.toml
+│       ├── firewall.toml
+│       ├── location.toml
+│       ├── network.toml
+│       ├── observability.toml
+│       ├── role.toml
+│       └── subscirption.toml
+├── output/
+│   └── ...
+└── runtimes/
+    └── ...
+└── module.toml
+```
 
-### Policy-as-Code Guardrails
-- Deny unauthorized regions or services (deny-by-default for non-approved resources)
-- Encryption at rest and in transit enforced as a baseline, not opt-in
+The exact structure may evolve as additional resources are introduced. The intention is to keep resources independently understandable and make it straightforward for contributors to add new AWS capabilities.
 
-### Budget Boundaries
-- Cost thresholds with automatic notification
-- Quota/limit definitions to guard against misconfiguration
+## Contributing
 
-### Auditing & Logging
-- Central audit log (immutable, with defined retention period)
-- Log forwarding to a central security/compliance account (separate from the workload account)
+**Contributions are welcome.**
+
+This project is intended to grow beyond the initial AWS Region resource through contributions from infrastructure engineers, cloud architects and the wider Rescile community.
+
+Useful contributions include:
+
+* New resources
+* Resource schema improvements
+* Capability coverage
+* Dependency definitions
+* Validation and testing
+* Documentation and examples
+* Bug fixes
+
+### Contribution Workflow
+
+1. **Open an issue**: Describe the resource or improvement you would like to contribute.
+2. **Discuss the design**: For new resources, agree on the resource model, attributes and dependencies before implementing larger changes.
+3. **Fork the repository**: Create your own fork and work in a dedicated branch.
+4. **Implement the change**: Follow the existing resource structure and include tests and documentation where appropriate.
+5. **Submit a pull request**: Clearly describe what has changed and why.
+6. **Review**: Maintainers and community members review the implementation, resource model and compatibility with Rescile UCS.
+7. **Merge**: Once approved, the contribution becomes part of the shared module ecosystem.
+
+### Adding a New Resource
+
+A typical contribution should include:
+
+```text
+models/
+└── aws_<resource>/
+    ├── resource.toml
+    ├── schema.toml
+    └── ...
+```
+
+and, where appropriate:
+
+```text
+generators/
+└── ...
+
+input/
+└── ...
+
+output/
+└── ...
+```
+
+Contributors should avoid introducing provider-specific assumptions where the resource can be expressed through the common Rescile UCS infrastructure model.
+
+* **Design Principles**: The module follows a few basic principles:
+* **Declarative**: Resources describe the desired infrastructure state rather than prescribing an imperative sequence of operations.
+* **Composable**: Resources should be usable as building blocks for larger infrastructure configurations.
+* **Dependency-aware**: Relationships between resources should be explicitly represented so that Rescile UCS can construct and evaluate the resulting infrastructure dependency graph.
+* **Cloud-native**: The module should expose AWS capabilities without unnecessarily hiding important AWS-specific configuration.
+* **Community-driven**: The resource catalog should evolve based on real-world requirements and contributions from the community.
+
+## License
+
+This project is licensed under the *Apache License 2.0*. The Apache-2.0 license is a permissive open-source license that allows use, modification and redistribution while providing an explicit patent license to contributors. See [`LICENSE`](LICENSE) for the complete license text. Unless required by applicable law or agreed to in writing, software distributed under this license is provided **"AS IS"**, without warranties or conditions of any kind.
+
+## Copyright
+
+Copyright © Rescile GmbH
+
+Contributions are accepted under the terms of the Apache License 2.0.
 
 ---
 
-Each of these points is implemented per provider via the corresponding adapter (AWS, GCP, Azure, OCI) — the base module itself defines *what* must exist, not *how* it is technically realized at a given provider.
+**Build infrastructure together.**
+
+If you have a provider that should be available through the Rescile UCS ecosystem, contributions are welcome.
