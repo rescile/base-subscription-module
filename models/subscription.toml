@@ -3,10 +3,8 @@ origin_resource = "resident"
 [[create_resource]]
 resource_type = "subscription"
 relation_type = "DEFINED_BY"
-name = "{{- resident | lower -}}-{{- blueprint | lower -}}"
+name = "{{- origin_resource.name | lower -}}-{{- subscription | lower -}}"
 [create_resource.properties]
-commercial_admin = "contract-manager@kpt.ch"
-technical_admin = "cloud-administrator@kpt.ch"
 home = "{{- location -}}"
 environment = ["DEV", "PROD", "INT", "SRE"]
 logging = true

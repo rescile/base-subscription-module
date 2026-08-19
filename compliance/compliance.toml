@@ -8,4 +8,4 @@ name = "Outsourcing"
 
 [[control.target]]
 description = "List cloud providers as outsourcing partners."
-origin_resource_types = [ "subscription" ]
+origin_resource_types = [ "resident" ]
