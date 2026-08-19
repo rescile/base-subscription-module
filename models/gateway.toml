@@ -3,7 +3,7 @@ origin_resource = "network"
 [[create_resource]]
 create_from = { property = "gateway" }
 relation_type = "DERIVED_FROM"
-name = "{{- origin_resource.name -}}_{{- property.value -}}_gateway" # Improve using regex
+name = "{{- origin_resource.name -}}-{{- property.value -}}-gateway" # Improve using regex
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
 description = "The {{ origin_resource.function }} gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them."
