@@ -8,7 +8,7 @@ relation_type = "DEFINED_BY"
 name = "{{- origin_resource.name | lower -}}-{{- subscription | lower -}}"
 [create_resource.properties]
 home = "{{- location -}}"
-provider = "{{ provider }}"
+operator = "{{ provider }}"
 environment = ["DEV", "PROD", "INT"]
 logging = true
 auditing = true
