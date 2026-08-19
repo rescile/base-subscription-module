@@ -1,0 +1,23 @@
+origin_resource = "network"
+
+ports = { "template!" = '''
+{%- set p = [] -%}
+{%- set filters = origin_resource.filter -%}
+    {% for f in filters %}
+    {% if f.function == 'ingress' %}
+        {%- set_global p = p | concat(with=f.port) -%}
+    {%- endif -%}
+    {%- endfor -%}
+{{- p | unique | safe -}}
+''' }
+
+[[create_resource]]
+#match_on = [expression = "{% if 53 in ports %}true{% else %}false{% endif %}"] missing expression
+resource_type = "resolver"
+relation_type = "DEFINED_BY"
+name = "{{- origin_resource.name | lower -}}-resolver" # Improve with regex
+[create_resource.properties]
+function = "{{- origin_resource.function | lower -}}"
+zone = ["my.rescile.com"]
+description = "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

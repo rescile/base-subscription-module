@@ -2,7 +2,7 @@ origin_resource = "network"
 
 [[create_resource]]
 create_from = { property = "gateway" }
-relation_type = "DEFINED_BY"
+relation_type = "DERIVED_FROM"
 name = "{{- origin_resource.name -}}_{{- property.value -}}_gateway" # Improve using regex
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"

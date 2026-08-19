@@ -17,6 +17,6 @@ function = "{{- origin_resource.function -}}"
 cidr = "{{- segments[property.index] -}}"
 subnet = ["a", "b"]
 gateway = ["sf"]
-filter = ["{{- filters['unrestricted-tcp-egress'] -}}", "{{- filters['dns-udp-egress'] -}}", "{{- filters['dns-tcp-egress'] -}}"]
+filter = ["{{- filters['unrestricted-tcp-egress'] -}}", "{{- filters['dns-udp-ingress'] -}}", "{{- filters['dns-tcp-ingress'] -}}"]
 description = "The {{ origin_resource.function }} network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
