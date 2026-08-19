@@ -1,6 +1,0 @@
-[[create_resource]]
-resource_type = "resident"
-name = "{{- resident | lower -}}"
-[create_resource.properties]
-description = "The resident represents the organization that maintains a dedicated partition of compute, storage and network resources, isolated from other cloud customers, for their data, applications."
-created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

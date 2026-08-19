@@ -1,0 +1,29 @@
+schemas = ["./schemas/identity.schema.json"]
+
+[module]
+name = "Base Subscription Module"
+url = "https://github.com/rescile/base_subscription_module"
+version = "0.0.1"
+description = "A base subscription provides a enables a consistent and repeatable provisioning process for multi-cloud environments."
+rescile_version = ">=0.1.195"
+
+# List of other modules this module depends on.
+[dependencies]
+asset-editor = "https://github.com/rescile/asset-editor-module/releases/download/v{version}/asset-editor.zip"
+
+[params.location]
+description = "The location where management resources are deployed, for a cloud provider this represents the home region."
+required = true
+default = "Zurich"
+
+[params.subscription]
+description = "A freeform name describing the solution that is deployed, this entry is used for naming conventions."
+required = true
+default = "Subscription"
+
+[assets."identity.csv"]
+resource_type = "identity"
+name_template = "{{- name | lower -}}-{{- function | lower -}}"
+match_on = [
+    { property = "active", value = true }
+]

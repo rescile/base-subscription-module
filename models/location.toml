@@ -1,6 +1,6 @@
 origin_resource = "subscription"
 
-data = { "json!" = "airports.json", jmespath = "values(@)[?city == 'Zurich' ] | [0]" }
+data = { "json!" = "location_codes.json", jmespath = "values(@)[?city == 'Zurich' ] | [0]" }
 
 [[create_resource]]
 create_from = { property = "home", as = "location" }
