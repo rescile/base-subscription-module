@@ -16,7 +16,7 @@ origin_resource = "subscription"
 
 [[link_resources]]
 with = "role"
-join = { local = "commercial-admin", remote = "name" }
+match_with = [{ property = "name", value = "commercial-admin" }]
 create_relation = { type = "RESPONSIBLE_FOR" }
 copy_properties = [
   { from = "name", as = "commercial-admin" }
@@ -25,7 +25,7 @@ copy_properties = [
 
 [[link_resources]]
 with = "role"
-join = { local = "technical-admin", remote = "name" }
+match_on = [{ property = "name", value = "technical-admin" }]
 create_relation = { type = "RESPONSIBLE_FOR" }
 copy_properties = [
   { from = "name", as = "technical-admin" }
