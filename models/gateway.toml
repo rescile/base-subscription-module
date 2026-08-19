@@ -1,0 +1,10 @@
+origin_resource = "network"
+
+[[create_resource]]
+create_from = { property = "gateway" }
+relation_type = "DEFINED_BY"
+name = "{{- origin_resource.name -}}_{{- property.value -}}_gateway" # Improve using regex
+[create_resource.properties]
+function = "{{- origin_resource.function -}}"
+description = "The {{ origin_resource.function }} gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

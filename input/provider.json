@@ -1,0 +1,428 @@
+{
+  "aws": {
+    "name": "AWS",
+    "display": "Amazon Web Services",
+    "function": "cloud",
+    "category": "public-cloud",
+    "country": "US",
+    "services": [
+      "compute",
+      "storage",
+      "network",
+      "database",
+      "container",
+      "kubernetes",
+      "load-balancer",
+      "dns",
+      "iam",
+      "firewall",
+      "vpn",
+      "private-connectivity"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": false
+  },
+
+  "azure": {
+    "name": "Azure",
+    "display": "Microsoft Azure",
+    "function": "cloud",
+    "category": "public-cloud",
+    "country": "US",
+    "services": [
+      "compute",
+      "storage",
+      "network",
+      "database",
+      "container",
+      "kubernetes",
+      "load-balancer",
+      "dns",
+      "iam",
+      "firewall",
+      "vpn",
+      "private-connectivity"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": false
+  },
+
+  "gcp": {
+    "name": "GCP",
+    "display": "Google Cloud Platform",
+    "function": "cloud",
+    "category": "public-cloud",
+    "country": "US",
+    "services": [
+      "compute",
+      "storage",
+      "network",
+      "database",
+      "container",
+      "kubernetes",
+      "load-balancer",
+      "dns",
+      "iam",
+      "firewall",
+      "vpn",
+      "private-connectivity"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": false
+  },
+
+  "oci": {
+    "name": "OCI",
+    "display": "Oracle Cloud Infrastructure",
+    "function": "cloud",
+    "category": "public-cloud",
+    "country": "US",
+    "services": [
+      "compute",
+      "storage",
+      "network",
+      "database",
+      "container",
+      "kubernetes",
+      "load-balancer",
+      "dns",
+      "iam",
+      "firewall",
+      "vpn",
+      "private-connectivity"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": false
+  },
+
+  "ibm": {
+    "name": "IBM Cloud",
+    "display": "IBM Cloud",
+    "function": "cloud",
+    "category": "public-cloud",
+    "country": "US",
+    "services": [
+      "compute",
+      "storage",
+      "network",
+      "kubernetes",
+      "container",
+      "database",
+      "load-balancer",
+      "dns",
+      "iam",
+      "vpn"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": false
+  },
+
+  "OVH": {
+    "name": "OVH",
+    "display": "OVHcloud",
+    "function": "baremetal",
+    "category": "bare-metal-as-a-service",
+    "country": "FR",
+    "services": [
+      "baremetal",
+      "compute",
+      "storage",
+      "network",
+      "private-network",
+      "ip-management",
+      "firewall",
+      "load-balancer",
+      "kubernetes",
+      "private-connectivity"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": true
+  },
+
+  "Hetzner": {
+    "name": "Hetzner",
+    "display": "Hetzner Dedicated",
+    "function": "baremetal",
+    "category": "bare-metal-as-a-service",
+    "country": "DE",
+    "services": [
+      "baremetal",
+      "compute",
+      "storage",
+      "network",
+      "private-network",
+      "ip-management",
+      "firewall",
+      "load-balancer"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": true
+  },
+
+  "i3D": {
+    "name": "i3D",
+    "display": "i3D.net",
+    "function": "baremetal",
+    "category": "bare-metal-as-a-service",
+    "country": "NL",
+    "services": [
+      "baremetal",
+      "compute",
+      "network",
+      "private-network",
+      "ip-management",
+      "ddos-protection",
+      "private-connectivity"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": false,
+    "sovereign": true
+  },
+
+  "Leaseweb": {
+    "name": "Leaseweb",
+    "display": "Leaseweb",
+    "function": "baremetal",
+    "category": "bare-metal-as-a-service",
+    "country": "NL",
+    "services": [
+      "baremetal",
+      "compute",
+      "storage",
+      "network",
+      "private-network",
+      "ip-management",
+      "firewall",
+      "load-balancer",
+      "ddos-protection"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": true
+  },
+
+  "Worldstream": {
+    "name": "Worldstream",
+    "display": "Worldstream",
+    "function": "baremetal",
+    "category": "bare-metal-as-a-service",
+    "country": "NL",
+    "services": [
+      "baremetal",
+      "compute",
+      "storage",
+      "network",
+      "private-network",
+      "ip-management",
+      "ddos-protection"
+    ],
+    "regions": true,
+    "multi_region": false,
+    "api": true,
+    "terraform": false,
+    "sovereign": true
+  },
+
+  "Scaleway": {
+    "name": "Scaleway",
+    "display": "Scaleway",
+    "function": "cloud",
+    "category": "public-cloud",
+    "country": "FR",
+    "services": [
+      "baremetal",
+      "compute",
+      "storage",
+      "network",
+      "container",
+      "kubernetes",
+      "load-balancer",
+      "dns",
+      "firewall",
+      "private-network"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": true
+  },
+
+  "Online.net": {
+    "name": "Online",
+    "display": "Online.net",
+    "function": "baremetal",
+    "category": "bare-metal-as-a-service",
+    "country": "FR",
+    "services": [
+      "baremetal",
+      "compute",
+      "storage",
+      "network"
+    ],
+    "regions": true,
+    "multi_region": false,
+    "api": true,
+    "terraform": true,
+    "sovereign": true
+  },
+
+  "Contabo": {
+    "name": "Contabo",
+    "display": "Contabo",
+    "function": "baremetal",
+    "category": "dedicated-server",
+    "country": "DE",
+    "services": [
+      "baremetal",
+      "compute",
+      "storage",
+      "network",
+      "ip-management"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": false,
+    "sovereign": true
+  },
+
+  "Servers.com": {
+    "name": "Servers.com",
+    "display": "Servers.com",
+    "function": "baremetal",
+    "category": "bare-metal-as-a-service",
+    "country": "NL",
+    "services": [
+      "baremetal",
+      "compute",
+      "storage",
+      "network",
+      "private-network",
+      "ip-management",
+      "ddos-protection"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": true
+  },
+
+  "Megaport": {
+    "name": "Megaport",
+    "display": "Megaport",
+    "function": "naas",
+    "category": "network-as-a-service",
+    "country": "AU",
+    "services": [
+      "layer2-connectivity",
+      "cloud-connect",
+      "virtual-cross-connect",
+      "private-connectivity",
+      "internet-exchange"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": false
+  },
+
+  "Cloudflare": {
+    "name": "Cloudflare",
+    "display": "Cloudflare",
+    "function": "naas",
+    "category": "network-and-edge-as-a-service",
+    "country": "US",
+    "services": [
+      "network",
+      "dns",
+      "ddos-protection",
+      "cdn",
+      "edge",
+      "zero-trust",
+      "private-connectivity",
+      "load-balancer",
+      "firewall"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": false
+  },
+
+  "Latitude.sh": {
+    "name": "Latitude.sh",
+    "identifier": "Latitude.sh",
+    "function": "baremetal",
+    "category": "bare-metal-as-a-service",
+    "country": "US",
+    "services": [
+      "baremetal",
+      "compute",
+      "gpu",
+      "network",
+      "private-network",
+      "layer2",
+      "vlan",
+      "ip-management",
+      "ddos-protection",
+      "cloud-connect"
+    ],
+    "regions": true,
+    "multi_region": true,
+    "api": true,
+    "terraform": true,
+    "sovereign": false
+  },
+
+  "Leafcloud": {
+    "name": "Leafcloud",
+    "identifier": "Leafcloud",
+    "function": "cloud",
+    "category": "sovereign-cloud",
+    "country": "NL",
+    "services": [
+      "compute",
+      "gpu",
+      "network",
+      "private-network",
+      "storage",
+      "kubernetes",
+      "openstack",
+      "terraform"
+    ],
+    "regions": true,
+    "multi_region": false,
+    "api": true,
+    "terraform": true,
+    "sovereign": true
+  }
+}

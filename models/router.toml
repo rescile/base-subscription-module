@@ -1,0 +1,25 @@
+origin_resource = "location"
+
+[[create_resource]]
+resource_type = "router"
+relation_type = "SATISFIES"
+name = "{{- origin_resource.provider.name | lower -}}-{{- origin_resource.code | lower -}}-{{- origin_resource.function | lower -}}-router"
+[create_resource.properties]
+function = "{{- origin_resource.function | lower -}}"
+provider = "{{- origin_resource.provider -}}"
+location = "{{- origin_resource.name -}}"
+cidr = "10.0.0.0/19"
+bgp = ["172.16.0.1/30"]
+vpn = []
+description = "The {{ origin_resource.provider.display }} {{ origin_resource.function }} router is a virtual appliance that analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+origin_resource = "router"
+
+[[link_resources]]
+with = "subscription"
+join = { local = "provider", remote = "provider" }
+create_relation = { type = "SATISFIES" }
+copy_properties = [
+  { from = "account", as = "network" }
+]

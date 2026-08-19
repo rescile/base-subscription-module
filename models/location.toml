@@ -1,14 +1,30 @@
-origin_resource = "subscription"
+origin_resource = "account"
 
-data = { "json!" = "location_codes.json", jmespath = "values(@)[?city == 'Zurich' ] | [0]" }
+# Check the use of variables
+locations = { "json!" = "location_codes.json" }
 
 [[create_resource]]
 create_from = { property = "home", as = "location" }
-relation_type = "BASELINE_TEMPLATE"
-name = "{{- property.value -}}"
+relation_type = "DEFINED_BY"
+name = "{{- property.value | lower -}}"
 [create_resource.properties]
-function = "home"
-code = "{{- data.iata -}}"
-timezone = "{{- data.tz -}}"
-description = "The home location {{ data.city }} refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident."
+function = "{{- origin_resource.function | lower -}}"
+code = "{{- locations[property.value].iata  | upper -}}"
+timezone = "{{- locations[property.value].tz -}}"
+country = "{{- locations[property.value].country | upper -}}"
+provider = "{{- origin_resource.provider -}}"
+description = "The home location {{ property.value | capitalize }} refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+[[create_resource]]
+create_from = { property = "location" }
+relation_type = "DEFINED_BY"
+name = "{{- property.value | lower -}}"
+[create_resource.properties]
+function = "{{- origin_resource.function | lower -}}"
+code = "{{- locations[property.value].iata  | upper -}}"
+timezone = "{{- locations[property.value].tz -}}"
+country = "{{- locations[property.value].country | upper -}}"
+provider = "{{- origin_resource.provider -}}"
+description = "The home location {{ property.value | capitalize }} refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

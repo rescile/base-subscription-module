@@ -1,0 +1,16 @@
+origin_resource = "subscription"
+
+[[create_resource]]
+create_from = { property = "account" }
+relation_type = "BASELINE_TEMPLATE"
+name = "{{- origin_resource.provider.name | upper -}}-{{- origin_resource.name | upper -}}-{{- property.value  | upper -}}"
+[create_resource.properties]
+function = "{{- origin_resource.provider.function | lower -}}"
+provider = "{{- origin_resource.provider -}}"
+environment = "{{- property.value | lower -}}"
+home = "{{- origin_resource.home -}}"
+template = "Core" # Only AWS
+location = ["London", "Paris"] # for multi region deployments
+contract = "{{- origin_resource.provider.name | lower -}}" # Placeholder sla in provider json missing
+description = "The {{ origin_resource.provider.display }} account is a secure digital identity that grants authorized access to {{ origin_resource.provider.name | upper }}'s cloud resources and enables a centralized management hub to automate cloud service deployments and configurations."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

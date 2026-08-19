@@ -1,34 +1,22 @@
-origin_resource = "subscription"
+origin_resource = "router"
+
+filters = { "json!" = "firewall-rules.json" }
+
+segments = { "template!" = '''
+{%- set count = origin_resource.network | length -%}
+{%- set range = origin_resource.cidr -%}
+{{- range | cidr_split_n(n=count) | join(sep=',') -}}
+''' }
 
 [[create_resource]]
-resource_type = "network"
-relation_type = "BASELINE_TEMPLATE"
-name = "dev-network"
+create_from = { property = "network" }
+relation_type = "DEPENDS_ON"
+name = "{{- origin_resource.provider.name | lower -}}-{{- origin_resource.location[0].code | lower -}}-{{- property.value | lower -}}-network"
 [create_resource.properties]
-function = "{{- subscription -}}"
-environment = "dev"
-cidr = "10.37.196.0/24"
-description = "A network segment is a portion of a computer network that's separated from the rest, either physically or logically. It behaves as a distinct, self-contained broadcast or addressing domain."
-created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
-
-[[create_resource]]
-resource_type = "network"
-relation_type = "BASELINE_TEMPLATE"
-name = "int-network"
-[create_resource.properties]
-function = "{{- subscription -}}"
-environment = "int"
-cidr = "10.37.197.128/27"
-description = "A network segment is a portion of a computer network that's separated from the rest, either physically or logically. It behaves as a distinct, self-contained broadcast or addressing domain."
-created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
-
-[[create_resource]]
-resource_type = "network"
-relation_type = "BASELINE_TEMPLATE"
-name = "prod-network"
-[create_resource.properties]
-function = "{{- subscription -}}"
-environment = "prod"
-cidr = "10.37.197.160/27"
-description = "A network segment is a portion of a computer network that's separated from the rest, either physically or logically. It behaves as a distinct, self-contained broadcast or addressing domain."
+function = "{{- origin_resource.function -}}"
+cidr = "{{- segments[property.index] -}}"
+subnet = ["a", "b"]
+gateway = ["sf"]
+filter = ["{{- filters['unrestricted-tcp-egress'] -}}", "{{- filters['dns-udp-egress'] -}}", "{{- filters['dns-tcp-egress'] -}}"]
+description = "The {{ origin_resource.function }} network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
