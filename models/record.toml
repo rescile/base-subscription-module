@@ -1,9 +1,21 @@
 origin_resource = "zone"
 
 [[create_resource]]
+match_on = [ { property = "function", not = "local" } ]
 create_from = { property = "record" }
 relation_type = "DERIVED_FROM"
 name = "{{- property.value | lower -}}.{{- origin_resource.name -}}"
 [create_resource.properties]
-function = "A"
+function = "{{- origin_resource.function | lower -}}"
+type = "A"
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+[[create_resource]]
+match_on = [ { property = "function", value = "local" } ]
+create_from = { property = "record" }
+relation_type = "DERIVED_FROM"
+name = "{{- property.value | lower -}}.{{- origin_resource.name -}}"
+[create_resource.properties]
+function = "{{- property.value | lower -}}"
+type = "A"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

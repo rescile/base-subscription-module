@@ -1,37 +1,239 @@
 {
   "vertices": [
     {
-      "id": "d6322506-ef04-4fa6-baae-5ffabeb52388",
-      "label": "subnet",
+      "id": "5b227c7c-c41b-409c-9531-8ba4bb6fe828",
+      "label": "location",
       "properties": {
-        "name": "aws-zrh-int-network_a",
-        "cidr": "10.0.8.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+        "name": "london",
+        "function": "cloud",
+        "timezone": "Europe/London",
+        "code": "STN",
+        "country": "GB",
+        "created": "2026-08-19T22:18:46Z",
+        "description": "The home location London refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
+        "provider": {
+          "api": true,
+          "category": "public-cloud",
+          "country": "US",
+          "display": "Amazon Web Services",
+          "function": "cloud",
+          "multi_region": true,
+          "name": "AWS",
+          "regions": true,
+          "services": [
+            "compute",
+            "storage",
+            "network",
+            "database",
+            "container",
+            "kubernetes",
+            "load-balancer",
+            "dns",
+            "iam",
+            "firewall",
+            "vpn",
+            "private-connectivity"
+          ],
+          "sovereign": false,
+          "terraform": true
+        },
+        "_source_model_file": "mod0::Base Subscription Module::location:0"
       }
     },
     {
-      "id": "ad5f4f7e-062e-40c6-80fa-57b7a11c2ed1",
-      "label": "gateway",
+      "id": "d9dcaa6c-720f-48db-aaec-10e370161cfc",
+      "label": "key",
       "properties": {
-        "name": "aws-ory-int-network-sf-gateway",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
-        "function": "cloud",
-        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
+        "name": "subscription-vault-key",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "encryption",
+        "_source_model_file": "mod0::Base Subscription Module::key:0"
       }
     },
     {
-      "id": "743da3c4-2ac0-4e34-8501-1294f40be227",
-      "label": "zone",
+      "id": "bf292e90-bad8-483c-8d5e-dcb1891f446e",
+      "label": "network",
       "properties": {
-        "name": "my.rescile.com",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "A DNS zone is an administrative namespace that a single entity manages, containing resource records that map domain names to IP addresses.",
+        "name": "aws-zrh-prod-network",
+        "filter": [
+          {
+            "function": "egress",
+            "protocol": "tcp",
+            "port": 0,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows unrestricted outbound traffic to assigned network zones."
+          },
+          {
+            "function": "ingress",
+            "protocol": "udp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          },
+          {
+            "function": "ingress",
+            "protocol": "tcp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          }
+        ],
+        "cidr": "10.0.16.0/21",
+        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+        "gateway": [
+          "sf"
+        ],
+        "subnet": [
+          "a",
+          "b"
+        ],
         "function": "cloud",
-        "_source_model_file": "mod0::Base Subscription Module::zone:0",
-        "record": [
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::network:0"
+      }
+    },
+    {
+      "id": "187bbe14-97b9-47ff-9c53-491ff1760906",
+      "label": "account",
+      "properties": {
+        "name": "AWS-RESCILE-SUBSCRIPTION-PROD",
+        "location": [
+          "London",
+          "Paris"
+        ],
+        "environment": "prod",
+        "function": "cloud",
+        "template": "Core",
+        "created": "2026-08-19T22:18:46Z",
+        "description": "The Amazon Web Services account is a secure digital identity that grants authorized access to AWS's cloud resources and enables a centralized management hub to automate cloud service deployments and configurations.",
+        "home": "Zurich",
+        "contract": "aws",
+        "provider": {
+          "api": true,
+          "category": "public-cloud",
+          "country": "US",
+          "display": "Amazon Web Services",
+          "function": "cloud",
+          "multi_region": true,
+          "name": "AWS",
+          "regions": true,
+          "services": [
+            "compute",
+            "storage",
+            "network",
+            "database",
+            "container",
+            "kubernetes",
+            "load-balancer",
+            "dns",
+            "iam",
+            "firewall",
+            "vpn",
+            "private-connectivity"
+          ],
+          "sovereign": false,
+          "terraform": true
+        },
+        "_source_model_file": "mod0::Base Subscription Module::account:0"
+      }
+    },
+    {
+      "id": "11b426a9-97e7-4b65-a0a8-79ac9d0b3dfc",
+      "label": "record",
+      "properties": {
+        "name": "syslog.utils.local",
+        "type": "A",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "syslog",
+        "_source_model_file": "mod0::Base Subscription Module::record:0"
+      }
+    },
+    {
+      "id": "bfd17907-cc8e-4cfe-a20e-4cce11b3cc8a",
+      "label": "router",
+      "properties": {
+        "name": "aws-zrh-cloud-router",
+        "description": "The Amazon Web Services cloud router is a virtual appliance that analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.",
+        "vpn": [],
+        "cidr": "10.0.0.0/19",
+        "provider": {
+          "api": true,
+          "category": "public-cloud",
+          "country": "US",
+          "display": "Amazon Web Services",
+          "function": "cloud",
+          "multi_region": true,
+          "name": "AWS",
+          "regions": true,
+          "services": [
+            "compute",
+            "storage",
+            "network",
+            "database",
+            "container",
+            "kubernetes",
+            "load-balancer",
+            "dns",
+            "iam",
+            "firewall",
+            "vpn",
+            "private-connectivity"
+          ],
+          "sovereign": false,
+          "terraform": true
+        },
+        "location": [
+          {
+            "name": "zurich",
+            "provider": {
+              "api": true,
+              "category": "public-cloud",
+              "country": "US",
+              "display": "Amazon Web Services",
+              "function": "cloud",
+              "multi_region": true,
+              "name": "AWS",
+              "regions": true,
+              "services": [
+                "compute",
+                "storage",
+                "network",
+                "database",
+                "container",
+                "kubernetes",
+                "load-balancer",
+                "dns",
+                "iam",
+                "firewall",
+                "vpn",
+                "private-connectivity"
+              ],
+              "sovereign": false,
+              "terraform": true
+            },
+            "timezone": "Europe/Zurich",
+            "created": "2026-08-19T22:18:47Z",
+            "description": "The home location Zurich refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
+            "country": "CH",
+            "code": "ZRH",
+            "function": "cloud",
+            "_source_model_file": "mod0::Base Subscription Module::location:0",
+            "id": "d428351b-9b78-4ed2-9462-7273e918c54e"
+          }
+        ],
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "bgp": [
+          "172.16.0.1/30"
+        ],
+        "_source_model_file": "mod0::Base Subscription Module::router:0",
+        "network": [
           "DEV",
           "INT",
           "PROD"
@@ -39,11 +241,657 @@
       }
     },
     {
-      "id": "ec99b307-6e57-4ecb-8482-7361d51b930a",
+      "id": "56f71415-23bf-4ddf-84de-6659e57de302",
+      "label": "router",
+      "properties": {
+        "name": "aws-ory-cloud-router",
+        "description": "The Amazon Web Services cloud router is a virtual appliance that analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.",
+        "vpn": [],
+        "cidr": "10.0.0.0/19",
+        "provider": {
+          "api": true,
+          "category": "public-cloud",
+          "country": "US",
+          "display": "Amazon Web Services",
+          "function": "cloud",
+          "multi_region": true,
+          "name": "AWS",
+          "regions": true,
+          "services": [
+            "compute",
+            "storage",
+            "network",
+            "database",
+            "container",
+            "kubernetes",
+            "load-balancer",
+            "dns",
+            "iam",
+            "firewall",
+            "vpn",
+            "private-connectivity"
+          ],
+          "sovereign": false,
+          "terraform": true
+        },
+        "location": [
+          {
+            "name": "paris",
+            "function": "cloud",
+            "timezone": "Europe/Paris",
+            "code": "ORY",
+            "country": "FR",
+            "created": "2026-08-19T22:18:46Z",
+            "description": "The home location Paris refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
+            "provider": {
+              "api": true,
+              "category": "public-cloud",
+              "country": "US",
+              "display": "Amazon Web Services",
+              "function": "cloud",
+              "multi_region": true,
+              "name": "AWS",
+              "regions": true,
+              "services": [
+                "compute",
+                "storage",
+                "network",
+                "database",
+                "container",
+                "kubernetes",
+                "load-balancer",
+                "dns",
+                "iam",
+                "firewall",
+                "vpn",
+                "private-connectivity"
+              ],
+              "sovereign": false,
+              "terraform": true
+            },
+            "_source_model_file": "mod0::Base Subscription Module::location:0",
+            "id": "7dd42e68-fd35-4527-bb89-d9262f7636da"
+          }
+        ],
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "bgp": [
+          "172.16.0.1/30"
+        ],
+        "_source_model_file": "mod0::Base Subscription Module::router:0",
+        "network": [
+          "DEV",
+          "INT",
+          "PROD"
+        ]
+      }
+    },
+    {
+      "id": "5b2f5896-415f-467e-8a67-f99c35295a98",
+      "label": "router",
+      "properties": {
+        "name": "aws-stn-cloud-router",
+        "description": "The Amazon Web Services cloud router is a virtual appliance that analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.",
+        "vpn": [],
+        "cidr": "10.0.0.0/19",
+        "provider": {
+          "api": true,
+          "category": "public-cloud",
+          "country": "US",
+          "display": "Amazon Web Services",
+          "function": "cloud",
+          "multi_region": true,
+          "name": "AWS",
+          "regions": true,
+          "services": [
+            "compute",
+            "storage",
+            "network",
+            "database",
+            "container",
+            "kubernetes",
+            "load-balancer",
+            "dns",
+            "iam",
+            "firewall",
+            "vpn",
+            "private-connectivity"
+          ],
+          "sovereign": false,
+          "terraform": true
+        },
+        "location": [
+          {
+            "name": "london",
+            "function": "cloud",
+            "timezone": "Europe/London",
+            "code": "STN",
+            "country": "GB",
+            "created": "2026-08-19T22:18:46Z",
+            "description": "The home location London refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
+            "provider": {
+              "api": true,
+              "category": "public-cloud",
+              "country": "US",
+              "display": "Amazon Web Services",
+              "function": "cloud",
+              "multi_region": true,
+              "name": "AWS",
+              "regions": true,
+              "services": [
+                "compute",
+                "storage",
+                "network",
+                "database",
+                "container",
+                "kubernetes",
+                "load-balancer",
+                "dns",
+                "iam",
+                "firewall",
+                "vpn",
+                "private-connectivity"
+              ],
+              "sovereign": false,
+              "terraform": true
+            },
+            "_source_model_file": "mod0::Base Subscription Module::location:0",
+            "id": "5b227c7c-c41b-409c-9531-8ba4bb6fe828"
+          }
+        ],
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "bgp": [
+          "172.16.0.1/30"
+        ],
+        "_source_model_file": "mod0::Base Subscription Module::router:0",
+        "network": [
+          "DEV",
+          "INT",
+          "PROD"
+        ]
+      }
+    },
+    {
+      "id": "8c9499d4-056e-4b79-a36b-5e42ac8ee7b1",
+      "label": "resolver",
+      "properties": {
+        "name": "aws-stn-int-network-resolver",
+        "zone": [
+          "my.rescile.com"
+        ],
+        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
+      }
+    },
+    {
+      "id": "02ad1e4b-d239-4ed1-8732-3cb697fec34c",
+      "label": "account",
+      "properties": {
+        "name": "AWS-RESCILE-SUBSCRIPTION-INT",
+        "location": [
+          "London",
+          "Paris"
+        ],
+        "environment": "int",
+        "function": "cloud",
+        "template": "Core",
+        "created": "2026-08-19T22:18:46Z",
+        "description": "The Amazon Web Services account is a secure digital identity that grants authorized access to AWS's cloud resources and enables a centralized management hub to automate cloud service deployments and configurations.",
+        "home": "Zurich",
+        "contract": "aws",
+        "provider": {
+          "api": true,
+          "category": "public-cloud",
+          "country": "US",
+          "display": "Amazon Web Services",
+          "function": "cloud",
+          "multi_region": true,
+          "name": "AWS",
+          "regions": true,
+          "services": [
+            "compute",
+            "storage",
+            "network",
+            "database",
+            "container",
+            "kubernetes",
+            "load-balancer",
+            "dns",
+            "iam",
+            "firewall",
+            "vpn",
+            "private-connectivity"
+          ],
+          "sovereign": false,
+          "terraform": true
+        },
+        "_source_model_file": "mod0::Base Subscription Module::account:0"
+      }
+    },
+    {
+      "id": "cf0bccd4-1894-41a7-8064-4ecfe404c01e",
+      "label": "gateway",
+      "properties": {
+        "name": "aws-zrh-prod-network-sf-gateway",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
+        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
+      }
+    },
+    {
+      "id": "b9646646-2e66-46eb-8261-5633ed6ed34b",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-stn-dev-network_b",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.4.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "f8a07f3f-ed99-41ea-9362-7b1344a89baa",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-ory-prod-network_b",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.20.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "72d15574-bfaf-4512-b6ea-710159243c81",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-zrh-dev-network_a",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.0.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "29172e7b-ab55-4549-a40b-4db62faf68f2",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-zrh-int-network_b",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.12.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "b84f66ed-114e-44c9-9d63-4e0960e8c74f",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-stn-prod-network_a",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.16.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "68fdcf70-1e60-4148-9d3b-81aef3c38639",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-zrh-dev-network_b",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.4.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "7a55764d-2e8a-42bb-911e-48bf70e34b88",
+      "label": "gateway",
+      "properties": {
+        "name": "aws-ory-prod-network-sf-gateway",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
+        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
+      }
+    },
+    {
+      "id": "b0c2fa8e-70da-41c0-b9d0-9a0fd19a908d",
+      "label": "network",
+      "properties": {
+        "name": "aws-ory-dev-network",
+        "filter": [
+          {
+            "function": "egress",
+            "protocol": "tcp",
+            "port": 0,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows unrestricted outbound traffic to assigned network zones."
+          },
+          {
+            "function": "ingress",
+            "protocol": "udp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          },
+          {
+            "function": "ingress",
+            "protocol": "tcp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          }
+        ],
+        "cidr": "10.0.0.0/21",
+        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+        "gateway": [
+          "sf"
+        ],
+        "subnet": [
+          "a",
+          "b"
+        ],
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::network:0"
+      }
+    },
+    {
+      "id": "b63a0418-6895-48a8-bbc2-a7bc6c3ad27c",
+      "label": "resolver",
+      "properties": {
+        "name": "aws-zrh-prod-network-resolver",
+        "zone": [
+          "my.rescile.com"
+        ],
+        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
+      }
+    },
+    {
+      "id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b",
+      "label": "zone",
+      "properties": {
+        "name": "utils.local",
+        "created": "2026-08-19T22:18:47Z",
+        "description": "A DNS zone is an administrative namespace that a single entity manages, containing resource records that map domain names to IP addresses.",
+        "function": "local",
+        "_source_model_file": "mod0::Base Subscription Module::zone:0",
+        "record": [
+          "syslog",
+          "vault"
+        ]
+      }
+    },
+    {
+      "id": "937501bc-563e-4cb9-8ead-9ed4c0d3a12e",
+      "label": "resolver",
+      "properties": {
+        "name": "aws-ory-dev-network-resolver",
+        "zone": [
+          "my.rescile.com"
+        ],
+        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
+      }
+    },
+    {
+      "id": "f1647ba0-ea12-46a0-aa3e-9617855b5947",
+      "label": "record",
+      "properties": {
+        "name": "dev.my.rescile.com",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "type": "A",
+        "_source_model_file": "mod0::Base Subscription Module::record:0"
+      }
+    },
+    {
+      "id": "367c6daa-2f83-48e4-87ef-d50c0909c1b6",
+      "label": "network",
+      "properties": {
+        "name": "aws-zrh-dev-network",
+        "filter": [
+          {
+            "function": "egress",
+            "protocol": "tcp",
+            "port": 0,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows unrestricted outbound traffic to assigned network zones."
+          },
+          {
+            "function": "ingress",
+            "protocol": "udp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          },
+          {
+            "function": "ingress",
+            "protocol": "tcp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          }
+        ],
+        "cidr": "10.0.0.0/21",
+        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+        "gateway": [
+          "sf"
+        ],
+        "subnet": [
+          "a",
+          "b"
+        ],
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::network:0"
+      }
+    },
+    {
+      "id": "88047e91-fff9-42e3-967b-7b7a17d9e6d6",
+      "label": "audit",
+      "properties": {
+        "name": "ISAE3000",
+        "audit_name": "Assurance Report"
+      }
+    },
+    {
+      "id": "b32e82e0-dc43-469d-b5e5-c432bc540082",
+      "label": "resolver",
+      "properties": {
+        "name": "aws-ory-int-network-resolver",
+        "zone": [
+          "my.rescile.com"
+        ],
+        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
+      }
+    },
+    {
+      "id": "52b3baec-2053-40da-a954-685d19afb4fa",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-ory-int-network_a",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.8.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "e47cdf9a-44f5-4714-bd7d-45fa0f23d0cc",
+      "label": "resolver",
+      "properties": {
+        "name": "aws-zrh-dev-network-resolver",
+        "zone": [
+          "my.rescile.com"
+        ],
+        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
+      }
+    },
+    {
+      "id": "a891258c-e243-4c44-afd4-4551d456cb7f",
+      "label": "gateway",
+      "properties": {
+        "name": "aws-stn-int-network-sf-gateway",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
+        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
+      }
+    },
+    {
+      "id": "85f1e010-ceb9-4ba2-8137-9e5d88e81b7c",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-stn-int-network_a",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.8.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "7ca2e1f0-d93b-44f0-adcd-ea883556a595",
+      "label": "gateway",
+      "properties": {
+        "name": "aws-stn-dev-network-sf-gateway",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
+        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
+      }
+    },
+    {
+      "id": "1bf4fc84-f17b-44a5-ace8-c97246f30d31",
+      "label": "account",
+      "properties": {
+        "name": "AWS-RESCILE-SUBSCRIPTION-DEV",
+        "location": [
+          "London",
+          "Paris"
+        ],
+        "environment": "dev",
+        "function": "cloud",
+        "template": "Core",
+        "created": "2026-08-19T22:18:46Z",
+        "description": "The Amazon Web Services account is a secure digital identity that grants authorized access to AWS's cloud resources and enables a centralized management hub to automate cloud service deployments and configurations.",
+        "home": "Zurich",
+        "contract": "aws",
+        "provider": {
+          "api": true,
+          "category": "public-cloud",
+          "country": "US",
+          "display": "Amazon Web Services",
+          "function": "cloud",
+          "multi_region": true,
+          "name": "AWS",
+          "regions": true,
+          "services": [
+            "compute",
+            "storage",
+            "network",
+            "database",
+            "container",
+            "kubernetes",
+            "load-balancer",
+            "dns",
+            "iam",
+            "firewall",
+            "vpn",
+            "private-connectivity"
+          ],
+          "sovereign": false,
+          "terraform": true
+        },
+        "_source_model_file": "mod0::Base Subscription Module::account:0"
+      }
+    },
+    {
+      "id": "efaaa180-5fe4-471b-b4de-8f62a38bbfe0",
+      "label": "network",
+      "properties": {
+        "name": "aws-stn-dev-network",
+        "filter": [
+          {
+            "function": "egress",
+            "protocol": "tcp",
+            "port": 0,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows unrestricted outbound traffic to assigned network zones."
+          },
+          {
+            "function": "ingress",
+            "protocol": "udp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          },
+          {
+            "function": "ingress",
+            "protocol": "tcp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          }
+        ],
+        "cidr": "10.0.0.0/21",
+        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+        "gateway": [
+          "sf"
+        ],
+        "subnet": [
+          "a",
+          "b"
+        ],
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::network:0"
+      }
+    },
+    {
+      "id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71",
       "label": "subscription",
       "properties": {
         "name": "rescile-subscription",
-        "description": "The subscription defines the cloud environment for the resident Rescile.",
+        "created": "2026-08-19T22:18:46Z",
+        "util": [
+          "vault",
+          "syslog"
+        ],
         "home": "Zurich",
         "logging": true,
         "provider": {
@@ -78,262 +926,56 @@
           "INT"
         ],
         "auditing": true,
-        "created": "2026-08-19T21:43:30Z",
+        "description": "The subscription defines the cloud environment for the resident Rescile.",
         "_source_model_file": "mod0::Base Subscription Module::subscription:0"
       }
     },
     {
-      "id": "2060e535-fc50-4f0b-aeda-a6550fe9011a",
-      "label": "network",
-      "properties": {
-        "name": "aws-stn-dev-network",
-        "cidr": "10.0.0.0/21",
-        "subnet": [
-          "a",
-          "b"
-        ],
-        "function": "cloud",
-        "gateway": [
-          "sf"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
-        "filter": [
-          {
-            "function": "egress",
-            "protocol": "tcp",
-            "port": 0,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows unrestricted outbound traffic to assigned network zones."
-          },
-          {
-            "function": "ingress",
-            "protocol": "udp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          },
-          {
-            "function": "ingress",
-            "protocol": "tcp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          }
-        ],
-        "_source_model_file": "mod0::Base Subscription Module::network:0"
-      }
-    },
-    {
-      "id": "3369b147-cb87-44dc-b931-aa3d6408cdd7",
-      "label": "gateway",
-      "properties": {
-        "name": "aws-ory-prod-network-sf-gateway",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
-        "function": "cloud",
-        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
-      }
-    },
-    {
-      "id": "65593682-7caf-465f-91ef-6937e38e8886",
-      "label": "gateway",
-      "properties": {
-        "name": "aws-zrh-int-network-sf-gateway",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
-        "function": "cloud",
-        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
-      }
-    },
-    {
-      "id": "9c113132-2544-4932-aed0-9cf78864fb41",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-ory-prod-network_b",
-        "cidr": "10.0.20.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "3a65642d-752a-4773-9cd2-9b145d1c06fa",
-      "label": "audit",
-      "properties": {
-        "name": "ISAE3000",
-        "audit_name": "Assurance Report"
-      }
-    },
-    {
-      "id": "bb27b70e-73f7-4199-bd95-c3bdd58e2ec1",
-      "label": "account",
-      "properties": {
-        "name": "AWS-RESCILE-SUBSCRIPTION-INT",
-        "function": "cloud",
-        "home": "Zurich",
-        "template": "Core",
-        "description": "The Amazon Web Services account is a secure digital identity that grants authorized access to AWS's cloud resources and enables a centralized management hub to automate cloud service deployments and configurations.",
-        "location": [
-          "London",
-          "Paris"
-        ],
-        "environment": "int",
-        "created": "2026-08-19T21:43:30Z",
-        "contract": "aws",
-        "provider": {
-          "api": true,
-          "category": "public-cloud",
-          "country": "US",
-          "display": "Amazon Web Services",
-          "function": "cloud",
-          "multi_region": true,
-          "name": "AWS",
-          "regions": true,
-          "services": [
-            "compute",
-            "storage",
-            "network",
-            "database",
-            "container",
-            "kubernetes",
-            "load-balancer",
-            "dns",
-            "iam",
-            "firewall",
-            "vpn",
-            "private-connectivity"
-          ],
-          "sovereign": false,
-          "terraform": true
-        },
-        "_source_model_file": "mod0::Base Subscription Module::account:0"
-      }
-    },
-    {
-      "id": "24eb9fa6-0acb-4d2a-b8a0-f93180e2d15b",
-      "label": "resolver",
-      "properties": {
-        "name": "aws-stn-prod-network-resolver",
-        "zone": [
-          "my.rescile.com"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "function": "cloud",
-        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
-        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
-      }
-    },
-    {
-      "id": "add8403b-630c-49e4-944d-67cbb9a6f979",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-zrh-dev-network_b",
-        "cidr": "10.0.4.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "e47b3190-13d1-4bb1-8e7e-27f09ec342af",
-      "label": "resolver",
-      "properties": {
-        "name": "aws-ory-int-network-resolver",
-        "zone": [
-          "my.rescile.com"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "function": "cloud",
-        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
-        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
-      }
-    },
-    {
-      "id": "6c7aba02-ee14-46d3-8006-e3a35ab6097c",
+      "id": "133d185d-54de-4b5f-9893-b2d850ec0151",
       "label": "subnet",
       "properties": {
         "name": "aws-ory-dev-network_a",
+        "created": "2026-08-19T22:18:47Z",
         "cidr": "10.0.0.0/22",
-        "created": "2026-08-19T21:43:32Z",
         "description": "tbd",
         "_source_model_file": "mod0::Base Subscription Module::subnet:0"
       }
     },
     {
-      "id": "13f7e8d7-6273-4f1a-bb90-7c0cd9342d99",
+      "id": "54c6dbf7-2166-4280-bf86-3b1ef066feee",
+      "label": "vault",
+      "properties": {
+        "name": "subscription-vault",
+        "function": "encryption",
+        "key": [
+          "subscription-vault-key"
+        ],
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::vault:0"
+      }
+    },
+    {
+      "id": "85cac350-0b4e-4a6c-b981-aaebb4863868",
       "label": "subnet",
       "properties": {
-        "name": "aws-ory-int-network_a",
-        "cidr": "10.0.8.0/22",
-        "created": "2026-08-19T21:43:32Z",
+        "name": "aws-ory-int-network_b",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.12.0/22",
         "description": "tbd",
         "_source_model_file": "mod0::Base Subscription Module::subnet:0"
       }
     },
     {
-      "id": "41a38639-e069-420c-a264-4ead1d4ff858",
-      "label": "gateway",
-      "properties": {
-        "name": "aws-ory-dev-network-sf-gateway",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
-        "function": "cloud",
-        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
-      }
-    },
-    {
-      "id": "7e25653b-6e38-44e2-9b01-4340cab02354",
-      "label": "location",
-      "properties": {
-        "name": "london",
-        "function": "cloud",
-        "provider": {
-          "api": true,
-          "category": "public-cloud",
-          "country": "US",
-          "display": "Amazon Web Services",
-          "function": "cloud",
-          "multi_region": true,
-          "name": "AWS",
-          "regions": true,
-          "services": [
-            "compute",
-            "storage",
-            "network",
-            "database",
-            "container",
-            "kubernetes",
-            "load-balancer",
-            "dns",
-            "iam",
-            "firewall",
-            "vpn",
-            "private-connectivity"
-          ],
-          "sovereign": false,
-          "terraform": true
-        },
-        "code": "STN",
-        "created": "2026-08-19T21:43:31Z",
-        "timezone": "Europe/London",
-        "country": "GB",
-        "description": "The home location London refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
-        "_source_model_file": "mod0::Base Subscription Module::location:0"
-      }
-    },
-    {
-      "id": "ae38f047-5c69-4230-a12c-8c4b0e7043bc",
+      "id": "7dd42e68-fd35-4527-bb89-d9262f7636da",
       "label": "location",
       "properties": {
         "name": "paris",
         "function": "cloud",
+        "timezone": "Europe/Paris",
+        "code": "ORY",
+        "country": "FR",
+        "created": "2026-08-19T22:18:46Z",
+        "description": "The home location Paris refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
         "provider": {
           "api": true,
           "category": "public-cloud",
@@ -360,124 +1002,25 @@
           "sovereign": false,
           "terraform": true
         },
-        "code": "ORY",
-        "created": "2026-08-19T21:43:31Z",
-        "timezone": "Europe/Paris",
-        "country": "FR",
-        "description": "The home location Paris refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
         "_source_model_file": "mod0::Base Subscription Module::location:0"
       }
     },
     {
-      "id": "cb3dd63e-bb9d-495b-a991-4d1ce466c017",
-      "label": "network",
-      "properties": {
-        "name": "aws-ory-prod-network",
-        "cidr": "10.0.16.0/21",
-        "subnet": [
-          "a",
-          "b"
-        ],
-        "function": "cloud",
-        "gateway": [
-          "sf"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
-        "filter": [
-          {
-            "function": "egress",
-            "protocol": "tcp",
-            "port": 0,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows unrestricted outbound traffic to assigned network zones."
-          },
-          {
-            "function": "ingress",
-            "protocol": "udp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          },
-          {
-            "function": "ingress",
-            "protocol": "tcp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          }
-        ],
-        "_source_model_file": "mod0::Base Subscription Module::network:0"
-      }
-    },
-    {
-      "id": "9a993693-a521-4309-affe-5ef9377803ed",
+      "id": "58ad013f-1cb5-4ccf-a08d-60fb29b09138",
       "label": "record",
       "properties": {
-        "name": "int.my.rescile.com",
-        "function": "A",
-        "created": "2026-08-19T21:43:32Z",
+        "name": "vault.utils.local",
+        "type": "A",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "vault",
         "_source_model_file": "mod0::Base Subscription Module::record:0"
       }
     },
     {
-      "id": "4fa59f21-c0cd-46ae-948f-56103fc751b7",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-ory-prod-network_a",
-        "cidr": "10.0.16.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "28c9a08e-0a18-4eea-a2b6-afac12ef5ff4",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-stn-dev-network_b",
-        "cidr": "10.0.4.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "1e219a25-7e97-4ed4-bebe-3a22f0f4df25",
-      "label": "resolver",
-      "properties": {
-        "name": "aws-zrh-dev-network-resolver",
-        "zone": [
-          "my.rescile.com"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "function": "cloud",
-        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
-        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
-      }
-    },
-    {
-      "id": "dffee55e-c6ae-4243-82a7-4126ec502eb5",
+      "id": "98e95ed0-cbd1-42e9-9614-ca6d6b6cfa53",
       "label": "network",
       "properties": {
         "name": "aws-stn-prod-network",
-        "cidr": "10.0.16.0/21",
-        "subnet": [
-          "a",
-          "b"
-        ],
-        "function": "cloud",
-        "gateway": [
-          "sf"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
         "filter": [
           {
             "function": "egress",
@@ -507,754 +1050,131 @@
             "description": "Allows inbound DNS traffic."
           }
         ],
+        "cidr": "10.0.16.0/21",
+        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+        "gateway": [
+          "sf"
+        ],
+        "subnet": [
+          "a",
+          "b"
+        ],
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
         "_source_model_file": "mod0::Base Subscription Module::network:0"
       }
     },
     {
-      "id": "6b52cdc7-8777-45e8-972b-86937c8bb469",
+      "id": "90b0c923-c6e1-4477-bfd8-5fc0e34f189a",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-zrh-prod-network_b",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.20.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "e155ea72-dbe3-4fee-ba0a-552ce9f6ab97",
       "label": "resolver",
       "properties": {
         "name": "aws-stn-dev-network-resolver",
         "zone": [
           "my.rescile.com"
         ],
-        "created": "2026-08-19T21:43:32Z",
-        "function": "cloud",
         "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
         "_source_model_file": "mod0::Base Subscription Module::resolver:0"
       }
     },
     {
-      "id": "77c54751-8b99-4261-b874-2167c97530b5",
+      "id": "7e1dedea-91e8-443b-b568-98ae9db4d5aa",
+      "label": "control",
+      "properties": {
+        "name": "COMPLIANCE",
+        "control_name": "Outsourcing",
+        "evidence_summary": {}
+      }
+    },
+    {
+      "id": "c2ffaad9-44a0-4ebd-a746-e713dd1ee7fc",
       "label": "subnet",
       "properties": {
-        "name": "aws-stn-prod-network_b",
-        "cidr": "10.0.20.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "cbf4e38c-8573-40ba-ae4b-88482aa4c3cf",
-      "label": "resolver",
-      "properties": {
-        "name": "aws-zrh-prod-network-resolver",
-        "zone": [
-          "my.rescile.com"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "function": "cloud",
-        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
-        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
-      }
-    },
-    {
-      "id": "789eeb6d-c9a6-46da-8b6a-ff4a0e470cd0",
-      "label": "account",
-      "properties": {
-        "name": "AWS-RESCILE-SUBSCRIPTION-DEV",
-        "function": "cloud",
-        "home": "Zurich",
-        "template": "Core",
-        "description": "The Amazon Web Services account is a secure digital identity that grants authorized access to AWS's cloud resources and enables a centralized management hub to automate cloud service deployments and configurations.",
-        "location": [
-          "London",
-          "Paris"
-        ],
-        "environment": "dev",
-        "created": "2026-08-19T21:43:30Z",
-        "contract": "aws",
-        "provider": {
-          "api": true,
-          "category": "public-cloud",
-          "country": "US",
-          "display": "Amazon Web Services",
-          "function": "cloud",
-          "multi_region": true,
-          "name": "AWS",
-          "regions": true,
-          "services": [
-            "compute",
-            "storage",
-            "network",
-            "database",
-            "container",
-            "kubernetes",
-            "load-balancer",
-            "dns",
-            "iam",
-            "firewall",
-            "vpn",
-            "private-connectivity"
-          ],
-          "sovereign": false,
-          "terraform": true
-        },
-        "_source_model_file": "mod0::Base Subscription Module::account:0"
-      }
-    },
-    {
-      "id": "10cb1ead-426e-4a9b-96cf-85ed3e9df9c0",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-zrh-prod-network_a",
+        "name": "aws-ory-prod-network_a",
+        "created": "2026-08-19T22:18:47Z",
         "cidr": "10.0.16.0/22",
-        "created": "2026-08-19T21:43:32Z",
         "description": "tbd",
         "_source_model_file": "mod0::Base Subscription Module::subnet:0"
       }
     },
     {
-      "id": "cb2ea747-606b-47ea-9e19-dd86f285055e",
-      "label": "gateway",
-      "properties": {
-        "name": "aws-stn-prod-network-sf-gateway",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
-        "function": "cloud",
-        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
-      }
-    },
-    {
-      "id": "43360a89-361b-4072-87a7-d26c40a1af15",
+      "id": "75e9e677-98ec-466d-aa1b-98202a852188",
       "label": "resolver",
       "properties": {
         "name": "aws-ory-prod-network-resolver",
         "zone": [
           "my.rescile.com"
         ],
-        "created": "2026-08-19T21:43:32Z",
-        "function": "cloud",
         "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
         "_source_model_file": "mod0::Base Subscription Module::resolver:0"
       }
     },
     {
-      "id": "bedfe508-3dd2-4d39-9868-163f7b3e2d5d",
-      "label": "gateway",
-      "properties": {
-        "name": "aws-stn-int-network-sf-gateway",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
-        "function": "cloud",
-        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
-      }
-    },
-    {
-      "id": "8d0cbdda-1c96-471a-bf65-89d1ddb873cb",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-zrh-dev-network_a",
-        "cidr": "10.0.0.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "0a7bad26-2a97-4d4f-8d73-2ccade1a4f64",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-zrh-int-network_b",
-        "cidr": "10.0.12.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "9b465b64-d011-43f2-a223-03c8454c8846",
-      "label": "router",
-      "properties": {
-        "name": "aws-zrh-cloud-router",
-        "bgp": [
-          "172.16.0.1/30"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "cidr": "10.0.0.0/19",
-        "function": "cloud",
-        "location": [
-          {
-            "name": "zurich",
-            "code": "ZRH",
-            "description": "The home location Zurich refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
-            "provider": {
-              "api": true,
-              "category": "public-cloud",
-              "country": "US",
-              "display": "Amazon Web Services",
-              "function": "cloud",
-              "multi_region": true,
-              "name": "AWS",
-              "regions": true,
-              "services": [
-                "compute",
-                "storage",
-                "network",
-                "database",
-                "container",
-                "kubernetes",
-                "load-balancer",
-                "dns",
-                "iam",
-                "firewall",
-                "vpn",
-                "private-connectivity"
-              ],
-              "sovereign": false,
-              "terraform": true
-            },
-            "timezone": "Europe/Zurich",
-            "function": "cloud",
-            "country": "CH",
-            "created": "2026-08-19T21:43:32Z",
-            "_source_model_file": "mod0::Base Subscription Module::location:0",
-            "id": "6b7f90b0-d0f2-4812-a191-690eba437976"
-          }
-        ],
-        "provider": {
-          "api": true,
-          "category": "public-cloud",
-          "country": "US",
-          "display": "Amazon Web Services",
-          "function": "cloud",
-          "multi_region": true,
-          "name": "AWS",
-          "regions": true,
-          "services": [
-            "compute",
-            "storage",
-            "network",
-            "database",
-            "container",
-            "kubernetes",
-            "load-balancer",
-            "dns",
-            "iam",
-            "firewall",
-            "vpn",
-            "private-connectivity"
-          ],
-          "sovereign": false,
-          "terraform": true
-        },
-        "description": "The Amazon Web Services cloud router is a virtual appliance that analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.",
-        "vpn": [],
-        "_source_model_file": "mod0::Base Subscription Module::router:0",
-        "network": [
-          "DEV",
-          "INT",
-          "PROD"
-        ]
-      }
-    },
-    {
-      "id": "3cb403ba-028c-4492-9356-1895c5d6e614",
-      "label": "account",
-      "properties": {
-        "name": "AWS-RESCILE-SUBSCRIPTION-PROD",
-        "function": "cloud",
-        "home": "Zurich",
-        "template": "Core",
-        "description": "The Amazon Web Services account is a secure digital identity that grants authorized access to AWS's cloud resources and enables a centralized management hub to automate cloud service deployments and configurations.",
-        "location": [
-          "London",
-          "Paris"
-        ],
-        "environment": "prod",
-        "created": "2026-08-19T21:43:30Z",
-        "contract": "aws",
-        "provider": {
-          "api": true,
-          "category": "public-cloud",
-          "country": "US",
-          "display": "Amazon Web Services",
-          "function": "cloud",
-          "multi_region": true,
-          "name": "AWS",
-          "regions": true,
-          "services": [
-            "compute",
-            "storage",
-            "network",
-            "database",
-            "container",
-            "kubernetes",
-            "load-balancer",
-            "dns",
-            "iam",
-            "firewall",
-            "vpn",
-            "private-connectivity"
-          ],
-          "sovereign": false,
-          "terraform": true
-        },
-        "_source_model_file": "mod0::Base Subscription Module::account:0"
-      }
-    },
-    {
-      "id": "1050d978-4548-40f3-a6e0-dbe20b30115a",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-stn-int-network_b",
-        "cidr": "10.0.12.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "859dc6f2-2077-4c18-b5a1-790c9ff818e1",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-ory-int-network_b",
-        "cidr": "10.0.12.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "3756e3c2-f281-4bf5-bcd0-20a15e78bf03",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-stn-int-network_a",
-        "cidr": "10.0.8.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "07f8e30c-a1a9-458b-ae66-1657ba2bc8e9",
-      "label": "router",
-      "properties": {
-        "name": "aws-ory-cloud-router",
-        "bgp": [
-          "172.16.0.1/30"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "cidr": "10.0.0.0/19",
-        "function": "cloud",
-        "location": [
-          {
-            "name": "paris",
-            "function": "cloud",
-            "provider": {
-              "api": true,
-              "category": "public-cloud",
-              "country": "US",
-              "display": "Amazon Web Services",
-              "function": "cloud",
-              "multi_region": true,
-              "name": "AWS",
-              "regions": true,
-              "services": [
-                "compute",
-                "storage",
-                "network",
-                "database",
-                "container",
-                "kubernetes",
-                "load-balancer",
-                "dns",
-                "iam",
-                "firewall",
-                "vpn",
-                "private-connectivity"
-              ],
-              "sovereign": false,
-              "terraform": true
-            },
-            "code": "ORY",
-            "created": "2026-08-19T21:43:31Z",
-            "timezone": "Europe/Paris",
-            "country": "FR",
-            "description": "The home location Paris refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
-            "_source_model_file": "mod0::Base Subscription Module::location:0",
-            "id": "ae38f047-5c69-4230-a12c-8c4b0e7043bc"
-          }
-        ],
-        "provider": {
-          "api": true,
-          "category": "public-cloud",
-          "country": "US",
-          "display": "Amazon Web Services",
-          "function": "cloud",
-          "multi_region": true,
-          "name": "AWS",
-          "regions": true,
-          "services": [
-            "compute",
-            "storage",
-            "network",
-            "database",
-            "container",
-            "kubernetes",
-            "load-balancer",
-            "dns",
-            "iam",
-            "firewall",
-            "vpn",
-            "private-connectivity"
-          ],
-          "sovereign": false,
-          "terraform": true
-        },
-        "description": "The Amazon Web Services cloud router is a virtual appliance that analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.",
-        "vpn": [],
-        "_source_model_file": "mod0::Base Subscription Module::router:0",
-        "network": [
-          "DEV",
-          "INT",
-          "PROD"
-        ]
-      }
-    },
-    {
-      "id": "6189f566-814d-4a5b-bcc8-4a53e973c589",
-      "label": "subnet",
-      "properties": {
-        "name": "aws-zrh-prod-network_b",
-        "cidr": "10.0.20.0/22",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "tbd",
-        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
-      }
-    },
-    {
-      "id": "4dea3d66-c986-4c47-b533-7f2a6558e660",
-      "label": "resident",
-      "properties": {
-        "name": "rescile",
-        "created": "2026-08-19T21:43:30Z",
-        "description": "The resident represents the organization that maintains a dedicated partition of compute, storage and network resources, isolated from other cloud customers, for their data, applications.",
-        "_source_model_file": "mod0::Base Subscription Module::temp/resident:0"
-      }
-    },
-    {
-      "id": "2cf67d61-d95d-4beb-bf2c-47ffb40962fe",
-      "label": "network",
-      "properties": {
-        "name": "aws-zrh-int-network",
-        "cidr": "10.0.8.0/21",
-        "subnet": [
-          "a",
-          "b"
-        ],
-        "function": "cloud",
-        "gateway": [
-          "sf"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
-        "filter": [
-          {
-            "function": "egress",
-            "protocol": "tcp",
-            "port": 0,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows unrestricted outbound traffic to assigned network zones."
-          },
-          {
-            "function": "ingress",
-            "protocol": "udp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          },
-          {
-            "function": "ingress",
-            "protocol": "tcp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          }
-        ],
-        "_source_model_file": "mod0::Base Subscription Module::network:0"
-      }
-    },
-    {
-      "id": "51735f56-8f4a-4ff1-819d-c315f214503b",
-      "label": "network",
-      "properties": {
-        "name": "aws-ory-dev-network",
-        "cidr": "10.0.0.0/21",
-        "subnet": [
-          "a",
-          "b"
-        ],
-        "function": "cloud",
-        "gateway": [
-          "sf"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
-        "filter": [
-          {
-            "function": "egress",
-            "protocol": "tcp",
-            "port": 0,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows unrestricted outbound traffic to assigned network zones."
-          },
-          {
-            "function": "ingress",
-            "protocol": "udp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          },
-          {
-            "function": "ingress",
-            "protocol": "tcp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          }
-        ],
-        "_source_model_file": "mod0::Base Subscription Module::network:0"
-      }
-    },
-    {
-      "id": "97e52c94-0cc3-401d-9fae-3744742b504c",
-      "label": "network",
-      "properties": {
-        "name": "aws-zrh-prod-network",
-        "cidr": "10.0.16.0/21",
-        "subnet": [
-          "a",
-          "b"
-        ],
-        "function": "cloud",
-        "gateway": [
-          "sf"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
-        "filter": [
-          {
-            "function": "egress",
-            "protocol": "tcp",
-            "port": 0,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows unrestricted outbound traffic to assigned network zones."
-          },
-          {
-            "function": "ingress",
-            "protocol": "udp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          },
-          {
-            "function": "ingress",
-            "protocol": "tcp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          }
-        ],
-        "_source_model_file": "mod0::Base Subscription Module::network:0"
-      }
-    },
-    {
-      "id": "70e71cdb-9296-4307-bca7-b532398bb5da",
-      "label": "gateway",
-      "properties": {
-        "name": "aws-zrh-prod-network-sf-gateway",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
-        "function": "cloud",
-        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
-      }
-    },
-    {
-      "id": "73a31bd5-4ed3-4d8a-bdba-9b8d85594452",
-      "label": "router",
-      "properties": {
-        "name": "aws-stn-cloud-router",
-        "bgp": [
-          "172.16.0.1/30"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "cidr": "10.0.0.0/19",
-        "function": "cloud",
-        "location": [
-          {
-            "name": "london",
-            "function": "cloud",
-            "provider": {
-              "api": true,
-              "category": "public-cloud",
-              "country": "US",
-              "display": "Amazon Web Services",
-              "function": "cloud",
-              "multi_region": true,
-              "name": "AWS",
-              "regions": true,
-              "services": [
-                "compute",
-                "storage",
-                "network",
-                "database",
-                "container",
-                "kubernetes",
-                "load-balancer",
-                "dns",
-                "iam",
-                "firewall",
-                "vpn",
-                "private-connectivity"
-              ],
-              "sovereign": false,
-              "terraform": true
-            },
-            "code": "STN",
-            "created": "2026-08-19T21:43:31Z",
-            "timezone": "Europe/London",
-            "country": "GB",
-            "description": "The home location London refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
-            "_source_model_file": "mod0::Base Subscription Module::location:0",
-            "id": "7e25653b-6e38-44e2-9b01-4340cab02354"
-          }
-        ],
-        "provider": {
-          "api": true,
-          "category": "public-cloud",
-          "country": "US",
-          "display": "Amazon Web Services",
-          "function": "cloud",
-          "multi_region": true,
-          "name": "AWS",
-          "regions": true,
-          "services": [
-            "compute",
-            "storage",
-            "network",
-            "database",
-            "container",
-            "kubernetes",
-            "load-balancer",
-            "dns",
-            "iam",
-            "firewall",
-            "vpn",
-            "private-connectivity"
-          ],
-          "sovereign": false,
-          "terraform": true
-        },
-        "description": "The Amazon Web Services cloud router is a virtual appliance that analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.",
-        "vpn": [],
-        "_source_model_file": "mod0::Base Subscription Module::router:0",
-        "network": [
-          "DEV",
-          "INT",
-          "PROD"
-        ]
-      }
-    },
-    {
-      "id": "44c709d2-cb81-41f6-ae1e-76080c1f255a",
-      "label": "resolver",
-      "properties": {
-        "name": "aws-stn-int-network-resolver",
-        "zone": [
-          "my.rescile.com"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "function": "cloud",
-        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
-        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
-      }
-    },
-    {
-      "id": "9b5a1251-2d78-4ea3-a32d-85ae5b15ac80",
+      "id": "57815dfc-314c-43c7-90e3-90093bf162e7",
       "label": "subnet",
       "properties": {
         "name": "aws-stn-dev-network_a",
+        "created": "2026-08-19T22:18:47Z",
         "cidr": "10.0.0.0/22",
-        "created": "2026-08-19T21:43:32Z",
         "description": "tbd",
         "_source_model_file": "mod0::Base Subscription Module::subnet:0"
       }
     },
     {
-      "id": "4fdd2d62-7bc5-49a3-b84b-f0a06c0dfc46",
+      "id": "04eebd22-bf9d-46c4-9a43-ea7424ef4bd8",
       "label": "resolver",
       "properties": {
         "name": "aws-zrh-int-network-resolver",
         "zone": [
           "my.rescile.com"
         ],
-        "created": "2026-08-19T21:43:32Z",
-        "function": "cloud",
         "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
         "_source_model_file": "mod0::Base Subscription Module::resolver:0"
       }
     },
     {
-      "id": "69dbf878-ed83-4458-9953-5fab1e77903b",
+      "id": "1c4d77d2-59fa-4597-ad8b-1e7083c90a52",
       "label": "subnet",
       "properties": {
-        "name": "aws-stn-prod-network_a",
+        "name": "aws-zrh-prod-network_a",
+        "created": "2026-08-19T22:18:47Z",
         "cidr": "10.0.16.0/22",
-        "created": "2026-08-19T21:43:32Z",
         "description": "tbd",
         "_source_model_file": "mod0::Base Subscription Module::subnet:0"
       }
     },
     {
-      "id": "83d62a93-cb7e-4220-80b6-6cdcad25728f",
-      "label": "resolver",
+      "id": "604f3e8d-78a5-4ce1-9236-4185953b36e5",
+      "label": "gateway",
       "properties": {
-        "name": "aws-ory-dev-network-resolver",
-        "zone": [
-          "my.rescile.com"
-        ],
-        "created": "2026-08-19T21:43:32Z",
+        "name": "aws-stn-prod-network-sf-gateway",
+        "created": "2026-08-19T22:18:47Z",
         "function": "cloud",
-        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
-        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
+        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
+        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
       }
     },
     {
-      "id": "c96a0b06-aafe-486d-8eff-48fb70908880",
+      "id": "5d8946c1-170c-4deb-8dbb-8f24f13d267a",
       "label": "network",
       "properties": {
-        "name": "aws-zrh-dev-network",
-        "cidr": "10.0.0.0/21",
-        "subnet": [
-          "a",
-          "b"
-        ],
-        "function": "cloud",
-        "gateway": [
-          "sf"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+        "name": "aws-ory-prod-network",
         "filter": [
           {
             "function": "egress",
@@ -1284,16 +1204,217 @@
             "description": "Allows inbound DNS traffic."
           }
         ],
+        "cidr": "10.0.16.0/21",
+        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+        "gateway": [
+          "sf"
+        ],
+        "subnet": [
+          "a",
+          "b"
+        ],
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
         "_source_model_file": "mod0::Base Subscription Module::network:0"
       }
     },
     {
-      "id": "6b7f90b0-d0f2-4812-a191-690eba437976",
+      "id": "6d90cb14-1f35-4119-b2fc-9dba27291514",
+      "label": "network",
+      "properties": {
+        "name": "aws-ory-int-network",
+        "filter": [
+          {
+            "function": "egress",
+            "protocol": "tcp",
+            "port": 0,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows unrestricted outbound traffic to assigned network zones."
+          },
+          {
+            "function": "ingress",
+            "protocol": "udp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          },
+          {
+            "function": "ingress",
+            "protocol": "tcp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          }
+        ],
+        "cidr": "10.0.8.0/21",
+        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+        "gateway": [
+          "sf"
+        ],
+        "subnet": [
+          "a",
+          "b"
+        ],
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::network:0"
+      }
+    },
+    {
+      "id": "0fc334f2-f513-4e61-b59f-7a2a775d717d",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-zrh-int-network_a",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.8.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "d8d189c2-2bcf-4617-b650-d47bc9855826",
+      "label": "gateway",
+      "properties": {
+        "name": "aws-ory-dev-network-sf-gateway",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
+        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
+      }
+    },
+    {
+      "id": "180f7d97-0a9e-4e9e-b77f-d16c501675e8",
+      "label": "gateway",
+      "properties": {
+        "name": "aws-zrh-int-network-sf-gateway",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
+        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
+      }
+    },
+    {
+      "id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00",
+      "label": "zone",
+      "properties": {
+        "name": "my.rescile.com",
+        "function": "cloud",
+        "description": "A DNS zone is an administrative namespace that a single entity manages, containing resource records that map domain names to IP addresses.",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::zone:0",
+        "record": [
+          "DEV",
+          "INT",
+          "PROD"
+        ]
+      }
+    },
+    {
+      "id": "a1439470-d577-4c91-8fae-5f13f9d189e2",
+      "label": "resolver",
+      "properties": {
+        "name": "aws-stn-prod-network-resolver",
+        "zone": [
+          "my.rescile.com"
+        ],
+        "description": "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network.",
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::resolver:0"
+      }
+    },
+    {
+      "id": "fac4ac69-ad4e-4864-a594-802203a65d0e",
+      "label": "network",
+      "properties": {
+        "name": "aws-zrh-int-network",
+        "filter": [
+          {
+            "function": "egress",
+            "protocol": "tcp",
+            "port": 0,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows unrestricted outbound traffic to assigned network zones."
+          },
+          {
+            "function": "ingress",
+            "protocol": "udp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          },
+          {
+            "function": "ingress",
+            "protocol": "tcp",
+            "port": 53,
+            "enable": true,
+            "stateful": true,
+            "default_action": "allow",
+            "description": "Allows inbound DNS traffic."
+          }
+        ],
+        "cidr": "10.0.8.0/21",
+        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+        "gateway": [
+          "sf"
+        ],
+        "subnet": [
+          "a",
+          "b"
+        ],
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "_source_model_file": "mod0::Base Subscription Module::network:0"
+      }
+    },
+    {
+      "id": "cac115d7-6b2d-43fb-b423-c402ebc94805",
+      "label": "record",
+      "properties": {
+        "name": "int.my.rescile.com",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "type": "A",
+        "_source_model_file": "mod0::Base Subscription Module::record:0"
+      }
+    },
+    {
+      "id": "0cd1e741-3a1b-47c3-8f69-6dd711c330fa",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-stn-int-network_b",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.12.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
+      }
+    },
+    {
+      "id": "0d154957-d41a-4076-bb2b-0e5c299d3cc5",
+      "label": "gateway",
+      "properties": {
+        "name": "aws-zrh-dev-network-sf-gateway",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
+        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
+      }
+    },
+    {
+      "id": "d428351b-9b78-4ed2-9462-7273e918c54e",
       "label": "location",
       "properties": {
         "name": "zurich",
-        "code": "ZRH",
-        "description": "The home location Zurich refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
         "provider": {
           "api": true,
           "category": "public-cloud",
@@ -1321,138 +1442,41 @@
           "terraform": true
         },
         "timezone": "Europe/Zurich",
-        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
+        "description": "The home location Zurich refers to the physical data center of a provider where management applications are hosted and data is stored, protected by privacy laws of the resident.",
         "country": "CH",
-        "created": "2026-08-19T21:43:32Z",
+        "code": "ZRH",
+        "function": "cloud",
         "_source_model_file": "mod0::Base Subscription Module::location:0"
       }
     },
     {
-      "id": "236c3216-9d6f-4e73-b99f-d56848d782e1",
-      "label": "gateway",
-      "properties": {
-        "name": "aws-stn-dev-network-sf-gateway",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
-        "function": "cloud",
-        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
-      }
-    },
-    {
-      "id": "2112fcb5-1d06-4e77-b0da-f68534a30d59",
-      "label": "record",
-      "properties": {
-        "name": "dev.my.rescile.com",
-        "function": "A",
-        "created": "2026-08-19T21:43:32Z",
-        "_source_model_file": "mod0::Base Subscription Module::record:0"
-      }
-    },
-    {
-      "id": "079216b9-ee22-42ed-9ab6-57fc4d1206a1",
+      "id": "059db3ef-d4d4-4f7d-9783-c7681a722a44",
       "label": "subnet",
       "properties": {
-        "name": "aws-ory-dev-network_b",
-        "cidr": "10.0.4.0/22",
-        "created": "2026-08-19T21:43:32Z",
+        "name": "aws-stn-prod-network_b",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.20.0/22",
         "description": "tbd",
         "_source_model_file": "mod0::Base Subscription Module::subnet:0"
       }
     },
     {
-      "id": "c63080e7-fc5a-431f-963a-7695e5112da4",
-      "label": "network",
-      "properties": {
-        "name": "aws-ory-int-network",
-        "cidr": "10.0.8.0/21",
-        "subnet": [
-          "a",
-          "b"
-        ],
-        "function": "cloud",
-        "gateway": [
-          "sf"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
-        "filter": [
-          {
-            "function": "egress",
-            "protocol": "tcp",
-            "port": 0,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows unrestricted outbound traffic to assigned network zones."
-          },
-          {
-            "function": "ingress",
-            "protocol": "udp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          },
-          {
-            "function": "ingress",
-            "protocol": "tcp",
-            "port": 53,
-            "enable": true,
-            "stateful": true,
-            "default_action": "allow",
-            "description": "Allows inbound DNS traffic."
-          }
-        ],
-        "_source_model_file": "mod0::Base Subscription Module::network:0"
-      }
-    },
-    {
-      "id": "fed8ca4a-4fc8-4bb8-9969-b78ce5b8a2dd",
+      "id": "473ea32e-a98e-494a-ab88-9dfbac795f5d",
       "label": "record",
       "properties": {
         "name": "prod.my.rescile.com",
-        "function": "A",
-        "created": "2026-08-19T21:43:32Z",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "type": "A",
         "_source_model_file": "mod0::Base Subscription Module::record:0"
       }
     },
     {
-      "id": "a38b674c-fc06-4277-8dd1-896164c9fc6a",
-      "label": "control",
-      "properties": {
-        "name": "COMPLIANCE",
-        "control_name": "Outsourcing",
-        "evidence_summary": {}
-      }
-    },
-    {
-      "id": "28196f7d-cef4-43c4-82e6-d420363194eb",
-      "label": "gateway",
-      "properties": {
-        "name": "aws-zrh-dev-network-sf-gateway",
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
-        "function": "cloud",
-        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
-      }
-    },
-    {
-      "id": "369bdcbd-bf4a-4ce8-9967-9b40899ed6ca",
+      "id": "30068ef8-13a2-42e7-8322-a10f4a2d147a",
       "label": "network",
       "properties": {
         "name": "aws-stn-int-network",
-        "cidr": "10.0.8.0/21",
-        "subnet": [
-          "a",
-          "b"
-        ],
-        "function": "cloud",
-        "gateway": [
-          "sf"
-        ],
-        "created": "2026-08-19T21:43:32Z",
-        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
         "filter": [
           {
             "function": "egress",
@@ -1482,567 +1506,708 @@
             "description": "Allows inbound DNS traffic."
           }
         ],
+        "cidr": "10.0.8.0/21",
+        "description": "The cloud network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+        "gateway": [
+          "sf"
+        ],
+        "subnet": [
+          "a",
+          "b"
+        ],
+        "function": "cloud",
+        "created": "2026-08-19T22:18:47Z",
         "_source_model_file": "mod0::Base Subscription Module::network:0"
+      }
+    },
+    {
+      "id": "8df169f1-639b-46c2-88f0-eb4e7ef36536",
+      "label": "resident",
+      "properties": {
+        "name": "rescile",
+        "created": "2026-08-19T22:18:46Z",
+        "description": "The resident represents the organization that maintains a dedicated partition of compute, storage and network resources, isolated from other cloud customers, for their data, applications.",
+        "_source_model_file": "mod0::Base Subscription Module::temp/resident:0"
+      }
+    },
+    {
+      "id": "6b94a0dc-4616-4eea-a099-cbb35ba94fa8",
+      "label": "gateway",
+      "properties": {
+        "name": "aws-ory-int-network-sf-gateway",
+        "created": "2026-08-19T22:18:47Z",
+        "function": "cloud",
+        "description": "The cloud gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them.",
+        "_source_model_file": "mod0::Base Subscription Module::gateway:0"
+      }
+    },
+    {
+      "id": "b0561c74-07b3-42d4-bbf6-a517723d742a",
+      "label": "subnet",
+      "properties": {
+        "name": "aws-ory-dev-network_b",
+        "created": "2026-08-19T22:18:47Z",
+        "cidr": "10.0.4.0/22",
+        "description": "tbd",
+        "_source_model_file": "mod0::Base Subscription Module::subnet:0"
       }
     }
   ],
   "edges": [
     {
-      "id": "2ba8e2a7-57fd-46c2-864f-6931f400dd05",
-      "label": "DEPENDS_ON",
+      "id": "20ec41ae-ee22-4bae-bd9a-9bcf7cdb5714",
+      "label": "DEFINED_BY",
       "properties": {},
-      "start_id": "07f8e30c-a1a9-458b-ae66-1657ba2bc8e9",
-      "end_id": "51735f56-8f4a-4ff1-819d-c315f214503b"
+      "start_id": "02ad1e4b-d239-4ed1-8732-3cb697fec34c",
+      "end_id": "d428351b-9b78-4ed2-9462-7273e918c54e"
     },
     {
-      "id": "0da0d59b-4307-41b8-9aa8-bae2a2e92b9d",
+      "id": "ddcba6c1-c7cd-4bea-bb82-63225b369263",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "367c6daa-2f83-48e4-87ef-d50c0909c1b6",
+      "end_id": "68fdcf70-1e60-4148-9d3b-81aef3c38639"
+    },
+    {
+      "id": "c0d4d9da-97da-4f25-a576-ef5067bd4f4c",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "e47cdf9a-44f5-4714-bd7d-45fa0f23d0cc",
+      "end_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00"
+    },
+    {
+      "id": "245b746e-ced2-4333-96cf-5b222a204c44",
       "label": "BASELINE_TEMPLATE",
       "properties": {},
-      "start_id": "ec99b307-6e57-4ecb-8482-7361d51b930a",
-      "end_id": "bb27b70e-73f7-4199-bd95-c3bdd58e2ec1"
+      "start_id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71",
+      "end_id": "1bf4fc84-f17b-44a5-ace8-c97246f30d31"
     },
     {
-      "id": "bec3862a-34d3-40d5-8fa8-7e9c4a63048a",
+      "id": "3ba5b9a1-41fb-475e-983d-cdc3d256b24c",
       "label": "DEFINED_BY",
       "properties": {},
-      "start_id": "2cf67d61-d95d-4beb-bf2c-47ffb40962fe",
-      "end_id": "4fdd2d62-7bc5-49a3-b84b-f0a06c0dfc46"
+      "start_id": "02ad1e4b-d239-4ed1-8732-3cb697fec34c",
+      "end_id": "7dd42e68-fd35-4527-bb89-d9262f7636da"
     },
     {
-      "id": "4180d044-696a-4960-8144-578c6ab8ee71",
+      "id": "e69b0eaf-e87c-4c6e-a8f0-e30e67c41c7a",
+      "label": "SATISFIES",
+      "properties": {},
+      "start_id": "5b2f5896-415f-467e-8a67-f99c35295a98",
+      "end_id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71"
+    },
+    {
+      "id": "1a56f370-c6d4-4e7a-9b9b-daa1fddd5d76",
       "label": "DEPENDS_ON",
       "properties": {},
-      "start_id": "24eb9fa6-0acb-4d2a-b8a0-f93180e2d15b",
-      "end_id": "743da3c4-2ac0-4e34-8501-1294f40be227"
+      "start_id": "937501bc-563e-4cb9-8ead-9ed4c0d3a12e",
+      "end_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b"
     },
     {
-      "id": "43fd660c-68fc-477c-8dee-a9ea67bdff40",
-      "label": "DEFINED_BY",
+      "id": "53f1066a-ffd6-4830-8b9c-86b6bb2fe3cd",
+      "label": "SATISFIES",
       "properties": {},
-      "start_id": "bb27b70e-73f7-4199-bd95-c3bdd58e2ec1",
-      "end_id": "7e25653b-6e38-44e2-9b01-4340cab02354"
+      "start_id": "58ad013f-1cb5-4ccf-a08d-60fb29b09138",
+      "end_id": "54c6dbf7-2166-4280-bf86-3b1ef066feee"
     },
     {
-      "id": "cdfc896f-65d3-404d-87ba-65376706f298",
+      "id": "27a31425-8fd1-43fb-a150-d7d2e2b3852e",
+      "label": "SATISFIES",
+      "properties": {},
+      "start_id": "56f71415-23bf-4ddf-84de-6659e57de302",
+      "end_id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71"
+    },
+    {
+      "id": "c3ec2fc2-70d2-466a-8b31-99888880d724",
       "label": "DERIVED_FROM",
       "properties": {},
-      "start_id": "cb3dd63e-bb9d-495b-a991-4d1ce466c017",
-      "end_id": "9c113132-2544-4932-aed0-9cf78864fb41"
+      "start_id": "98e95ed0-cbd1-42e9-9614-ca6d6b6cfa53",
+      "end_id": "059db3ef-d4d4-4f7d-9783-c7681a722a44"
     },
     {
-      "id": "4c606ac5-ace0-4829-8f07-b49f8350ad0a",
+      "id": "a849af65-51e5-481e-b5d3-813d5a9e1feb",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "e47cdf9a-44f5-4714-bd7d-45fa0f23d0cc",
+      "end_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b"
+    },
+    {
+      "id": "0b295616-5f83-40b5-bdc4-50c4427c3f9c",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "04eebd22-bf9d-46c4-9a43-ea7424ef4bd8",
+      "end_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b"
+    },
+    {
+      "id": "d0b4b83e-2543-4d64-926f-8244f1a83f3b",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "bf292e90-bad8-483c-8d5e-dcb1891f446e",
+      "end_id": "cf0bccd4-1894-41a7-8064-4ecfe404c01e"
+    },
+    {
+      "id": "e932984d-7488-470d-81aa-7f9906eabb2e",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "e155ea72-dbe3-4fee-ba0a-552ce9f6ab97",
+      "end_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b"
+    },
+    {
+      "id": "0a872e4d-cc40-4d38-acac-37b048e41014",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "187bbe14-97b9-47ff-9c53-491ff1760906",
+      "end_id": "7dd42e68-fd35-4527-bb89-d9262f7636da"
+    },
+    {
+      "id": "c2535af5-3cc4-4439-a2ec-51a6e1071cba",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "5d8946c1-170c-4deb-8dbb-8f24f13d267a",
+      "end_id": "7a55764d-2e8a-42bb-911e-48bf70e34b88"
+    },
+    {
+      "id": "a6abaf96-dafe-40f1-9032-4c8fca5328dd",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "b0c2fa8e-70da-41c0-b9d0-9a0fd19a908d",
+      "end_id": "b0561c74-07b3-42d4-bbf6-a517723d742a"
+    },
+    {
+      "id": "d66c73ee-6692-4cf6-a3c4-7eac7b2333f5",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "fac4ac69-ad4e-4864-a594-802203a65d0e",
+      "end_id": "04eebd22-bf9d-46c4-9a43-ea7424ef4bd8"
+    },
+    {
+      "id": "7b0cb96a-5508-48f3-8174-715edfc7454d",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "75e9e677-98ec-466d-aa1b-98202a852188",
+      "end_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00"
+    },
+    {
+      "id": "edd9aa37-9171-41c1-a343-07e34fa810be",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "30068ef8-13a2-42e7-8322-a10f4a2d147a",
+      "end_id": "85f1e010-ceb9-4ba2-8137-9e5d88e81b7c"
+    },
+    {
+      "id": "8692485d-0b21-4a57-aaf0-1d5040bca804",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "bfd17907-cc8e-4cfe-a20e-4cce11b3cc8a",
+      "end_id": "fac4ac69-ad4e-4864-a594-802203a65d0e"
+    },
+    {
+      "id": "6b3d8cac-63a5-48d1-9609-30a66d10ea6b",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "6d90cb14-1f35-4119-b2fc-9dba27291514",
+      "end_id": "85cac350-0b4e-4a6c-b981-aaebb4863868"
+    },
+    {
+      "id": "316650cf-3d7d-4692-8c30-df0fdfe7b453",
+      "label": "SATISFIES",
+      "properties": {},
+      "start_id": "d428351b-9b78-4ed2-9462-7273e918c54e",
+      "end_id": "bfd17907-cc8e-4cfe-a20e-4cce11b3cc8a"
+    },
+    {
+      "id": "fd1195e3-2fbc-4b15-b571-72cf9519b338",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "8df169f1-639b-46c2-88f0-eb4e7ef36536",
+      "end_id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71"
+    },
+    {
+      "id": "20b620bf-f6d0-4720-8f28-56720c890ffc",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "efaaa180-5fe4-471b-b4de-8f62a38bbfe0",
+      "end_id": "b9646646-2e66-46eb-8261-5633ed6ed34b"
+    },
+    {
+      "id": "5d290ed7-884f-47d2-a4a4-668ee41a8757",
+      "label": "BASELINE_TEMPLATE",
+      "properties": {},
+      "start_id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71",
+      "end_id": "187bbe14-97b9-47ff-9c53-491ff1760906"
+    },
+    {
+      "id": "f8d014f3-eeae-44c2-9a48-db55eb816509",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "6d90cb14-1f35-4119-b2fc-9dba27291514",
+      "end_id": "b32e82e0-dc43-469d-b5e5-c432bc540082"
+    },
+    {
+      "id": "85c5a744-52f4-4c8d-b497-ab06fedfe594",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "5d8946c1-170c-4deb-8dbb-8f24f13d267a",
+      "end_id": "75e9e677-98ec-466d-aa1b-98202a852188"
+    },
+    {
+      "id": "8e4d5be2-a7b3-48b6-8ae8-c2be7487d7cc",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00",
+      "end_id": "cac115d7-6b2d-43fb-b423-c402ebc94805"
+    },
+    {
+      "id": "c7e836a3-b493-481c-af47-22d798929332",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "54c6dbf7-2166-4280-bf86-3b1ef066feee",
+      "end_id": "d9dcaa6c-720f-48db-aaec-10e370161cfc"
+    },
+    {
+      "id": "a4300bce-1a17-4e4a-b30f-a3a8e1e7dd0e",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "efaaa180-5fe4-471b-b4de-8f62a38bbfe0",
+      "end_id": "57815dfc-314c-43c7-90e3-90093bf162e7"
+    },
+    {
+      "id": "2e30408e-2ee3-4ed7-8771-93659b927222",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "04eebd22-bf9d-46c4-9a43-ea7424ef4bd8",
+      "end_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00"
+    },
+    {
+      "id": "7a0cd76a-c335-4cb7-97be-1b55dde7559f",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "bf292e90-bad8-483c-8d5e-dcb1891f446e",
+      "end_id": "90b0c923-c6e1-4477-bfd8-5fc0e34f189a"
+    },
+    {
+      "id": "289bbe9b-3a12-4192-9504-64edce1850aa",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "937501bc-563e-4cb9-8ead-9ed4c0d3a12e",
+      "end_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00"
+    },
+    {
+      "id": "e67f822a-4580-4605-a33a-e30a40b18f7d",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "e155ea72-dbe3-4fee-ba0a-552ce9f6ab97",
+      "end_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00"
+    },
+    {
+      "id": "45dbfa97-b733-4c39-9661-590586907820",
+      "label": "SATISFIES",
+      "properties": {},
+      "start_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b",
+      "end_id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71"
+    },
+    {
+      "id": "2f5b9e9d-677f-4488-a9db-5150f6932821",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "b63a0418-6895-48a8-bbc2-a7bc6c3ad27c",
+      "end_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b"
+    },
+    {
+      "id": "59e1d91f-4eba-4fa8-a6db-aa9593b6866b",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00",
+      "end_id": "f1647ba0-ea12-46a0-aa3e-9617855b5947"
+    },
+    {
+      "id": "2e9fd663-18a6-4fb2-b739-44e91bf33753",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "fac4ac69-ad4e-4864-a594-802203a65d0e",
+      "end_id": "180f7d97-0a9e-4e9e-b77f-d16c501675e8"
+    },
+    {
+      "id": "4085d119-551e-4cfa-a89c-4b499b778fd1",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "367c6daa-2f83-48e4-87ef-d50c0909c1b6",
+      "end_id": "e47cdf9a-44f5-4714-bd7d-45fa0f23d0cc"
+    },
+    {
+      "id": "ad1a6e59-ce41-4f62-9a63-3815694bb48c",
+      "label": "BASELINE_TEMPLATE",
+      "properties": {},
+      "start_id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71",
+      "end_id": "02ad1e4b-d239-4ed1-8732-3cb697fec34c"
+    },
+    {
+      "id": "5ee7e3c8-4ba0-43be-907f-489e184dc7a1",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "a1439470-d577-4c91-8fae-5f13f9d189e2",
+      "end_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00"
+    },
+    {
+      "id": "e41c8e98-aad3-49e0-8ee7-9a0f6c6a31da",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "30068ef8-13a2-42e7-8322-a10f4a2d147a",
+      "end_id": "0cd1e741-3a1b-47c3-8f69-6dd711c330fa"
+    },
+    {
+      "id": "bbd2ab4b-67b6-414b-89d0-346b0a9f13ed",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "5d8946c1-170c-4deb-8dbb-8f24f13d267a",
+      "end_id": "c2ffaad9-44a0-4ebd-a746-e713dd1ee7fc"
+    },
+    {
+      "id": "78ecea76-7890-401f-a009-656347f51e5c",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "02ad1e4b-d239-4ed1-8732-3cb697fec34c",
+      "end_id": "5b227c7c-c41b-409c-9531-8ba4bb6fe828"
+    },
+    {
+      "id": "f34bec97-6419-455e-bcd9-31087e73d66f",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "a1439470-d577-4c91-8fae-5f13f9d189e2",
+      "end_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b"
+    },
+    {
+      "id": "daac4f68-9b76-4e2d-93b3-ae5abfb44d35",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "6d90cb14-1f35-4119-b2fc-9dba27291514",
+      "end_id": "52b3baec-2053-40da-a954-685d19afb4fa"
+    },
+    {
+      "id": "3602f598-d735-408f-9101-f05a7d288a9f",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "56f71415-23bf-4ddf-84de-6659e57de302",
+      "end_id": "b0c2fa8e-70da-41c0-b9d0-9a0fd19a908d"
+    },
+    {
+      "id": "1b040a14-87cb-41c4-bb25-fb426c65811a",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "5b2f5896-415f-467e-8a67-f99c35295a98",
+      "end_id": "efaaa180-5fe4-471b-b4de-8f62a38bbfe0"
+    },
+    {
+      "id": "8bb69dfb-6700-4e74-bb7a-03afc0029d0b",
+      "label": "SATISFIES",
+      "properties": {},
+      "start_id": "7dd42e68-fd35-4527-bb89-d9262f7636da",
+      "end_id": "56f71415-23bf-4ddf-84de-6659e57de302"
+    },
+    {
+      "id": "bddafa09-263d-431d-a9cb-51050324cb64",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "56f71415-23bf-4ddf-84de-6659e57de302",
+      "end_id": "6d90cb14-1f35-4119-b2fc-9dba27291514"
+    },
+    {
+      "id": "8bcc83ff-bb51-4756-9ff6-f21a148b966b",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "b0c2fa8e-70da-41c0-b9d0-9a0fd19a908d",
+      "end_id": "d8d189c2-2bcf-4617-b650-d47bc9855826"
+    },
+    {
+      "id": "e8c2b072-c347-4c5a-a444-2f3d6280de8d",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "98e95ed0-cbd1-42e9-9614-ca6d6b6cfa53",
+      "end_id": "b84f66ed-114e-44c9-9d63-4e0960e8c74f"
+    },
+    {
+      "id": "c394a9ab-0250-4f63-9b3d-f43e8e71de3f",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "b0c2fa8e-70da-41c0-b9d0-9a0fd19a908d",
+      "end_id": "937501bc-563e-4cb9-8ead-9ed4c0d3a12e"
+    },
+    {
+      "id": "861ce4fd-079b-4a3e-919f-4647602a036a",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "1bf4fc84-f17b-44a5-ace8-c97246f30d31",
+      "end_id": "5b227c7c-c41b-409c-9531-8ba4bb6fe828"
+    },
+    {
+      "id": "bf2c11b9-0aed-464e-a903-b111304497b8",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "b32e82e0-dc43-469d-b5e5-c432bc540082",
+      "end_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00"
+    },
+    {
+      "id": "ce07eb0c-7fe7-4a78-877c-a4923c5adfe5",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "b63a0418-6895-48a8-bbc2-a7bc6c3ad27c",
+      "end_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00"
+    },
+    {
+      "id": "2dc4ed33-039e-4f48-84a9-6acd949482ee",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "5b2f5896-415f-467e-8a67-f99c35295a98",
+      "end_id": "30068ef8-13a2-42e7-8322-a10f4a2d147a"
+    },
+    {
+      "id": "04d20bc7-2e50-4379-9c05-2794dbcde161",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00",
+      "end_id": "473ea32e-a98e-494a-ab88-9dfbac795f5d"
+    },
+    {
+      "id": "47b7a62d-2784-4b5d-a9b3-dd93df9b186e",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "6d90cb14-1f35-4119-b2fc-9dba27291514",
+      "end_id": "6b94a0dc-4616-4eea-a099-cbb35ba94fa8"
+    },
+    {
+      "id": "62652a8f-ba54-448b-bf8e-398e61a364b4",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "98e95ed0-cbd1-42e9-9614-ca6d6b6cfa53",
+      "end_id": "a1439470-d577-4c91-8fae-5f13f9d189e2"
+    },
+    {
+      "id": "cf3d88f2-27da-48ed-a353-3f97cc35f72d",
+      "label": "SATISFIES",
+      "properties": {},
+      "start_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00",
+      "end_id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71"
+    },
+    {
+      "id": "203e3182-ffef-492d-b996-e27d00ca6533",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "fac4ac69-ad4e-4864-a594-802203a65d0e",
+      "end_id": "0fc334f2-f513-4e61-b59f-7a2a775d717d"
+    },
+    {
+      "id": "b629b9e7-76eb-409f-b091-27e3925be6f0",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "56f71415-23bf-4ddf-84de-6659e57de302",
+      "end_id": "5d8946c1-170c-4deb-8dbb-8f24f13d267a"
+    },
+    {
+      "id": "b8e11637-0c48-4207-9063-e3d5098ed31a",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "1bf4fc84-f17b-44a5-ace8-c97246f30d31",
+      "end_id": "d428351b-9b78-4ed2-9462-7273e918c54e"
+    },
+    {
+      "id": "764f53a8-f93b-425a-8ce6-f84de264c283",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "187bbe14-97b9-47ff-9c53-491ff1760906",
+      "end_id": "d428351b-9b78-4ed2-9462-7273e918c54e"
+    },
+    {
+      "id": "a5e949e9-4427-4adf-acd3-d494e4136e25",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "367c6daa-2f83-48e4-87ef-d50c0909c1b6",
+      "end_id": "72d15574-bfaf-4512-b6ea-710159243c81"
+    },
+    {
+      "id": "c0169583-08d1-4aaf-ade1-f21c0694e21e",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "bf292e90-bad8-483c-8d5e-dcb1891f446e",
+      "end_id": "b63a0418-6895-48a8-bbc2-a7bc6c3ad27c"
+    },
+    {
+      "id": "1a921173-7b40-49bb-b002-d951d8af9eaa",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "b32e82e0-dc43-469d-b5e5-c432bc540082",
+      "end_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b"
+    },
+    {
+      "id": "63fdab3b-cc50-4945-b391-7c015b33826d",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "bfd17907-cc8e-4cfe-a20e-4cce11b3cc8a",
+      "end_id": "bf292e90-bad8-483c-8d5e-dcb1891f446e"
+    },
+    {
+      "id": "25f07db5-3a4a-4f7d-aae2-33d808b59308",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "efaaa180-5fe4-471b-b4de-8f62a38bbfe0",
+      "end_id": "7ca2e1f0-d93b-44f0-adcd-ea883556a595"
+    },
+    {
+      "id": "8b0ee288-7259-4f94-9120-7e523c12dad4",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b",
+      "end_id": "11b426a9-97e7-4b65-a0a8-79ac9d0b3dfc"
+    },
+    {
+      "id": "24519203-5bc2-4dff-9ce2-85e6abdc37eb",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "30068ef8-13a2-42e7-8322-a10f4a2d147a",
+      "end_id": "a891258c-e243-4c44-afd4-4551d456cb7f"
+    },
+    {
+      "id": "199d0371-b820-4ea1-a365-2f9c440f6234",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "98e95ed0-cbd1-42e9-9614-ca6d6b6cfa53",
+      "end_id": "604f3e8d-78a5-4ce1-9236-4185953b36e5"
+    },
+    {
+      "id": "6bd2dd82-e0c1-4d71-a2dd-55ba4fa0ee73",
       "label": "BELONGS_TO",
       "properties": {},
-      "start_id": "a38b674c-fc06-4277-8dd1-896164c9fc6a",
-      "end_id": "3a65642d-752a-4773-9cd2-9b145d1c06fa"
+      "start_id": "7e1dedea-91e8-443b-b568-98ae9db4d5aa",
+      "end_id": "88047e91-fff9-42e3-967b-7b7a17d9e6d6"
     },
     {
-      "id": "b78ac1cc-7345-44c5-9946-f15a6a7aed4c",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "2cf67d61-d95d-4beb-bf2c-47ffb40962fe",
-      "end_id": "65593682-7caf-465f-91ef-6937e38e8886"
-    },
-    {
-      "id": "6a1e5c1f-2b89-4950-ace0-00dd234ab650",
+      "id": "63b9a82b-d528-4301-a07b-9695ede78bee",
       "label": "DEFINED_BY",
       "properties": {},
-      "start_id": "4dea3d66-c986-4c47-b533-7f2a6558e660",
-      "end_id": "ec99b307-6e57-4ecb-8482-7361d51b930a"
+      "start_id": "efaaa180-5fe4-471b-b4de-8f62a38bbfe0",
+      "end_id": "e155ea72-dbe3-4fee-ba0a-552ce9f6ab97"
     },
     {
-      "id": "6a14fb04-b5a7-40b1-9ff8-3519194999b4",
+      "id": "10d4b2bf-f355-4f81-b0bd-657462ecdbbe",
       "label": "DERIVED_FROM",
       "properties": {},
-      "start_id": "dffee55e-c6ae-4243-82a7-4126ec502eb5",
-      "end_id": "69dbf878-ed83-4458-9953-5fab1e77903b"
+      "start_id": "367c6daa-2f83-48e4-87ef-d50c0909c1b6",
+      "end_id": "0d154957-d41a-4076-bb2b-0e5c299d3cc5"
     },
     {
-      "id": "b6b49342-3bce-4879-839c-3ee6f2793231",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "c96a0b06-aafe-486d-8eff-48fb70908880",
-      "end_id": "add8403b-630c-49e4-944d-67cbb9a6f979"
-    },
-    {
-      "id": "a6d212ab-8175-446d-808d-34d425c15ba6",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "743da3c4-2ac0-4e34-8501-1294f40be227",
-      "end_id": "9a993693-a521-4309-affe-5ef9377803ed"
-    },
-    {
-      "id": "6139bd89-9c2a-4d3e-aea8-bfe174d0b3a9",
-      "label": "SATISFIES",
-      "properties": {},
-      "start_id": "743da3c4-2ac0-4e34-8501-1294f40be227",
-      "end_id": "ec99b307-6e57-4ecb-8482-7361d51b930a"
-    },
-    {
-      "id": "adde92bf-f120-4666-826d-62f30b1c238a",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "dffee55e-c6ae-4243-82a7-4126ec502eb5",
-      "end_id": "cb2ea747-606b-47ea-9e19-dd86f285055e"
-    },
-    {
-      "id": "cae74ec9-f7cf-4413-99c8-c318ad31c5f3",
+      "id": "76213d75-c409-4487-a12f-c7dd2fa7deed",
       "label": "DEPENDS_ON",
       "properties": {},
-      "start_id": "9b465b64-d011-43f2-a223-03c8454c8846",
-      "end_id": "c96a0b06-aafe-486d-8eff-48fb70908880"
+      "start_id": "8c9499d4-056e-4b79-a36b-5e42ac8ee7b1",
+      "end_id": "aacaa21b-e167-4a5d-9c7c-b26d1c5cad00"
     },
     {
-      "id": "fd69d394-23bb-40a4-b103-8a4a6e7419f6",
+      "id": "f3e251f9-da20-45b5-9bdb-e66851bcf8e2",
       "label": "DERIVED_FROM",
       "properties": {},
-      "start_id": "51735f56-8f4a-4ff1-819d-c315f214503b",
-      "end_id": "079216b9-ee22-42ed-9ab6-57fc4d1206a1"
+      "start_id": "b0c2fa8e-70da-41c0-b9d0-9a0fd19a908d",
+      "end_id": "133d185d-54de-4b5f-9893-b2d850ec0151"
     },
     {
-      "id": "f085eaca-7b96-4fc4-b452-f4b88d15953b",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "cb3dd63e-bb9d-495b-a991-4d1ce466c017",
-      "end_id": "3369b147-cb87-44dc-b931-aa3d6408cdd7"
-    },
-    {
-      "id": "04a55cc8-2223-47f2-a0e3-7f91615ff745",
+      "id": "23d5ddb0-e22e-4d8d-8d59-010381256f2f",
       "label": "DEFINED_BY",
       "properties": {},
-      "start_id": "3cb403ba-028c-4492-9356-1895c5d6e614",
-      "end_id": "6b7f90b0-d0f2-4812-a191-690eba437976"
+      "start_id": "187bbe14-97b9-47ff-9c53-491ff1760906",
+      "end_id": "5b227c7c-c41b-409c-9531-8ba4bb6fe828"
     },
     {
-      "id": "6a0e1423-9749-416b-b463-5a0b4b33eb5c",
-      "label": "SATISFIES",
-      "properties": {},
-      "start_id": "07f8e30c-a1a9-458b-ae66-1657ba2bc8e9",
-      "end_id": "ec99b307-6e57-4ecb-8482-7361d51b930a"
-    },
-    {
-      "id": "b790a7c5-3c33-4dfd-8351-06bb18877a66",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "07f8e30c-a1a9-458b-ae66-1657ba2bc8e9",
-      "end_id": "c63080e7-fc5a-431f-963a-7695e5112da4"
-    },
-    {
-      "id": "02da1d9e-779d-4fde-8fa1-8c03d769649d",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "9b465b64-d011-43f2-a223-03c8454c8846",
-      "end_id": "97e52c94-0cc3-401d-9fae-3744742b504c"
-    },
-    {
-      "id": "f8d4c8e5-3e03-4b31-903a-286c6c59046e",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "2060e535-fc50-4f0b-aeda-a6550fe9011a",
-      "end_id": "6b52cdc7-8777-45e8-972b-86937c8bb469"
-    },
-    {
-      "id": "177c600f-a99a-428a-81f6-45d777469270",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "dffee55e-c6ae-4243-82a7-4126ec502eb5",
-      "end_id": "24eb9fa6-0acb-4d2a-b8a0-f93180e2d15b"
-    },
-    {
-      "id": "356f6a64-e5db-407f-93ec-d3cb808849d2",
-      "label": "SATISFIES",
-      "properties": {},
-      "start_id": "9b465b64-d011-43f2-a223-03c8454c8846",
-      "end_id": "ec99b307-6e57-4ecb-8482-7361d51b930a"
-    },
-    {
-      "id": "b01fddd1-edd1-401e-9fd6-4e68d9fbead0",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "43360a89-361b-4072-87a7-d26c40a1af15",
-      "end_id": "743da3c4-2ac0-4e34-8501-1294f40be227"
-    },
-    {
-      "id": "ed121e8b-bbb7-4eb2-928d-e6422847d4f0",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "369bdcbd-bf4a-4ce8-9967-9b40899ed6ca",
-      "end_id": "44c709d2-cb81-41f6-ae1e-76080c1f255a"
-    },
-    {
-      "id": "1a648bf4-bbb7-4897-b4b6-017898e5a5d3",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "44c709d2-cb81-41f6-ae1e-76080c1f255a",
-      "end_id": "743da3c4-2ac0-4e34-8501-1294f40be227"
-    },
-    {
-      "id": "1c398eea-7fed-4190-92a8-cff070e1ccf2",
+      "id": "cce476eb-0ea6-4215-9be4-f8424836fc1b",
       "label": "DERIVED_FROM",
       "properties": {},
-      "start_id": "c96a0b06-aafe-486d-8eff-48fb70908880",
-      "end_id": "28196f7d-cef4-43c4-82e6-d420363194eb"
+      "start_id": "5d8946c1-170c-4deb-8dbb-8f24f13d267a",
+      "end_id": "f8a07f3f-ed99-41ea-9362-7b1344a89baa"
     },
     {
-      "id": "5cbc367d-15a6-43d5-8f10-ec09759f9495",
-      "label": "DERIVED_FROM",
+      "id": "a276c2e7-b6cf-474c-bb22-273b06999584",
+      "label": "DEFINED_BY",
       "properties": {},
-      "start_id": "743da3c4-2ac0-4e34-8501-1294f40be227",
-      "end_id": "fed8ca4a-4fc8-4bb8-9969-b78ce5b8a2dd"
+      "start_id": "30068ef8-13a2-42e7-8322-a10f4a2d147a",
+      "end_id": "8c9499d4-056e-4b79-a36b-5e42ac8ee7b1"
     },
     {
-      "id": "0e3e5965-07b5-4703-ac5a-704cafb1398b",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "c63080e7-fc5a-431f-963a-7695e5112da4",
-      "end_id": "13f7e8d7-6273-4f1a-bb90-7c0cd9342d99"
-    },
-    {
-      "id": "8a46ced2-400d-4238-899a-dcced7e4425a",
-      "label": "SATISFIES",
-      "properties": {},
-      "start_id": "7e25653b-6e38-44e2-9b01-4340cab02354",
-      "end_id": "73a31bd5-4ed3-4d8a-bdba-9b8d85594452"
-    },
-    {
-      "id": "9e025a34-bbca-453f-abf1-7e4e33adfbe7",
+      "id": "5ffc3d31-039b-4324-8c11-33b1009f0ec4",
       "label": "VALIDATED_BY",
       "properties": {
         "target_description": "List cloud providers as outsourcing partners.",
         "evidence_type": "subscription",
         "governed_resource": "rescile-subscription"
       },
-      "start_id": "ec99b307-6e57-4ecb-8482-7361d51b930a",
-      "end_id": "a38b674c-fc06-4277-8dd1-896164c9fc6a"
+      "start_id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71",
+      "end_id": "7e1dedea-91e8-443b-b568-98ae9db4d5aa"
     },
     {
-      "id": "7912373a-4645-44f5-8b9a-9d33c0935955",
+      "id": "534d2458-5d36-49c0-8a6d-f9d5eed97dfe",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "bfd17907-cc8e-4cfe-a20e-4cce11b3cc8a",
+      "end_id": "367c6daa-2f83-48e4-87ef-d50c0909c1b6"
+    },
+    {
+      "id": "0abdaf9f-7f40-4430-ac24-80698b8b52d8",
       "label": "DERIVED_FROM",
       "properties": {},
-      "start_id": "51735f56-8f4a-4ff1-819d-c315f214503b",
-      "end_id": "41a38639-e069-420c-a264-4ead1d4ff858"
+      "start_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b",
+      "end_id": "58ad013f-1cb5-4ccf-a08d-60fb29b09138"
     },
     {
-      "id": "f67b9b38-f1c1-410e-86f8-7d5ec4434f09",
+      "id": "30bc6085-dd18-41dc-96c0-a8a2fcef8ae3",
+      "label": "DERIVED_FROM",
+      "properties": {},
+      "start_id": "fac4ac69-ad4e-4864-a594-802203a65d0e",
+      "end_id": "29172e7b-ab55-4549-a40b-4db62faf68f2"
+    },
+    {
+      "id": "1f7a36d6-99a7-4492-8d40-6879ddef4108",
       "label": "SATISFIES",
       "properties": {},
-      "start_id": "73a31bd5-4ed3-4d8a-bdba-9b8d85594452",
-      "end_id": "ec99b307-6e57-4ecb-8482-7361d51b930a"
+      "start_id": "5b227c7c-c41b-409c-9531-8ba4bb6fe828",
+      "end_id": "5b2f5896-415f-467e-8a67-f99c35295a98"
     },
     {
-      "id": "aca9722a-5604-442b-88db-b4b9a7f7e6dd",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "2060e535-fc50-4f0b-aeda-a6550fe9011a",
-      "end_id": "28c9a08e-0a18-4eea-a2b6-afac12ef5ff4"
-    },
-    {
-      "id": "1571827e-4401-4e96-b97e-86bdf83bd995",
+      "id": "d6ec36ee-7cf9-43c8-a971-8582f6b5d264",
       "label": "DEFINED_BY",
       "properties": {},
-      "start_id": "bb27b70e-73f7-4199-bd95-c3bdd58e2ec1",
-      "end_id": "ae38f047-5c69-4230-a12c-8c4b0e7043bc"
+      "start_id": "1bf4fc84-f17b-44a5-ace8-c97246f30d31",
+      "end_id": "7dd42e68-fd35-4527-bb89-d9262f7636da"
     },
     {
-      "id": "5869c9cc-74c7-4e9c-a61a-d969e55882fb",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "bb27b70e-73f7-4199-bd95-c3bdd58e2ec1",
-      "end_id": "6b7f90b0-d0f2-4812-a191-690eba437976"
-    },
-    {
-      "id": "acfa6025-413c-4502-a6b3-37df9e937b82",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "9b465b64-d011-43f2-a223-03c8454c8846",
-      "end_id": "2cf67d61-d95d-4beb-bf2c-47ffb40962fe"
-    },
-    {
-      "id": "1f401951-ceac-4b1d-99f7-32858c709426",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "e47b3190-13d1-4bb1-8e7e-27f09ec342af",
-      "end_id": "743da3c4-2ac0-4e34-8501-1294f40be227"
-    },
-    {
-      "id": "f730b01e-c84d-4ff9-af1b-98e1bb749226",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "4fdd2d62-7bc5-49a3-b84b-f0a06c0dfc46",
-      "end_id": "743da3c4-2ac0-4e34-8501-1294f40be227"
-    },
-    {
-      "id": "6729c90d-b0c1-4422-9559-ca09e0597bc6",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "369bdcbd-bf4a-4ce8-9967-9b40899ed6ca",
-      "end_id": "3756e3c2-f281-4bf5-bcd0-20a15e78bf03"
-    },
-    {
-      "id": "722b12e7-e79d-4e75-b7b5-de8d92e05aa2",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "c63080e7-fc5a-431f-963a-7695e5112da4",
-      "end_id": "e47b3190-13d1-4bb1-8e7e-27f09ec342af"
-    },
-    {
-      "id": "4cceb023-ab5c-42d4-9019-98b0956d095c",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "369bdcbd-bf4a-4ce8-9967-9b40899ed6ca",
-      "end_id": "1050d978-4548-40f3-a6e0-dbe20b30115a"
-    },
-    {
-      "id": "556870d8-ee1b-41cd-8c8e-47cd679721c1",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "cbf4e38c-8573-40ba-ae4b-88482aa4c3cf",
-      "end_id": "743da3c4-2ac0-4e34-8501-1294f40be227"
-    },
-    {
-      "id": "7c3965e8-7da8-4ad4-8dff-817fad7ecfdb",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "1e219a25-7e97-4ed4-bebe-3a22f0f4df25",
-      "end_id": "743da3c4-2ac0-4e34-8501-1294f40be227"
-    },
-    {
-      "id": "f9ff0aba-433c-4c08-a410-e64e4d7c9d51",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "2060e535-fc50-4f0b-aeda-a6550fe9011a",
-      "end_id": "236c3216-9d6f-4e73-b99f-d56848d782e1"
-    },
-    {
-      "id": "d8138151-b9be-430a-8a08-d86b60eb7d5b",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "789eeb6d-c9a6-46da-8b6a-ff4a0e470cd0",
-      "end_id": "6b7f90b0-d0f2-4812-a191-690eba437976"
-    },
-    {
-      "id": "6db6982c-5b4f-436b-b9f8-77937b78a45b",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "369bdcbd-bf4a-4ce8-9967-9b40899ed6ca",
-      "end_id": "bedfe508-3dd2-4d39-9868-163f7b3e2d5d"
-    },
-    {
-      "id": "87caed92-3a86-4141-b426-388ab50ae7f8",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "2060e535-fc50-4f0b-aeda-a6550fe9011a",
-      "end_id": "9b5a1251-2d78-4ea3-a32d-85ae5b15ac80"
-    },
-    {
-      "id": "b69392a5-23ad-44fc-a72c-647359381249",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "51735f56-8f4a-4ff1-819d-c315f214503b",
-      "end_id": "83d62a93-cb7e-4220-80b6-6cdcad25728f"
-    },
-    {
-      "id": "b9707015-e639-4784-8149-24c01a39b8a3",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "97e52c94-0cc3-401d-9fae-3744742b504c",
-      "end_id": "cbf4e38c-8573-40ba-ae4b-88482aa4c3cf"
-    },
-    {
-      "id": "fe06b8c3-ef4f-4c15-a03f-3793df6f10d6",
-      "label": "BASELINE_TEMPLATE",
-      "properties": {},
-      "start_id": "ec99b307-6e57-4ecb-8482-7361d51b930a",
-      "end_id": "789eeb6d-c9a6-46da-8b6a-ff4a0e470cd0"
-    },
-    {
-      "id": "343bd759-a393-4cc7-99aa-b4cd8774528e",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "cb3dd63e-bb9d-495b-a991-4d1ce466c017",
-      "end_id": "43360a89-361b-4072-87a7-d26c40a1af15"
-    },
-    {
-      "id": "0aa537de-ffc5-4b7b-b4bc-8d9fd97fe9dc",
-      "label": "BASELINE_TEMPLATE",
-      "properties": {},
-      "start_id": "ec99b307-6e57-4ecb-8482-7361d51b930a",
-      "end_id": "3cb403ba-028c-4492-9356-1895c5d6e614"
-    },
-    {
-      "id": "46ef33ab-fd9a-43de-8100-494dfec65047",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "2cf67d61-d95d-4beb-bf2c-47ffb40962fe",
-      "end_id": "d6322506-ef04-4fa6-baae-5ffabeb52388"
-    },
-    {
-      "id": "3dfade1b-e43b-4201-be9f-8d69bc2fd067",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "3cb403ba-028c-4492-9356-1895c5d6e614",
-      "end_id": "ae38f047-5c69-4230-a12c-8c4b0e7043bc"
-    },
-    {
-      "id": "cd38728f-df55-485f-b77c-8b11cb178a0a",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "c63080e7-fc5a-431f-963a-7695e5112da4",
-      "end_id": "859dc6f2-2077-4c18-b5a1-790c9ff818e1"
-    },
-    {
-      "id": "48bde373-348b-4534-b958-41791d5d21f3",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "07f8e30c-a1a9-458b-ae66-1657ba2bc8e9",
-      "end_id": "cb3dd63e-bb9d-495b-a991-4d1ce466c017"
-    },
-    {
-      "id": "035d1975-0809-4bd7-bfd4-711b2a43fa93",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "c63080e7-fc5a-431f-963a-7695e5112da4",
-      "end_id": "ad5f4f7e-062e-40c6-80fa-57b7a11c2ed1"
-    },
-    {
-      "id": "2541cf4f-22cb-4a6b-86c1-fa84e02a6014",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "97e52c94-0cc3-401d-9fae-3744742b504c",
-      "end_id": "70e71cdb-9296-4307-bca7-b532398bb5da"
-    },
-    {
-      "id": "93d72172-5eb1-4f75-a2a8-2fb8d97b4d0c",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "73a31bd5-4ed3-4d8a-bdba-9b8d85594452",
-      "end_id": "dffee55e-c6ae-4243-82a7-4126ec502eb5"
-    },
-    {
-      "id": "09a9ef7c-04f2-4300-aef5-7e192cde1745",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "51735f56-8f4a-4ff1-819d-c315f214503b",
-      "end_id": "6c7aba02-ee14-46d3-8006-e3a35ab6097c"
-    },
-    {
-      "id": "72d31e1f-1039-4805-8cb2-94bf3c81d8ab",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "97e52c94-0cc3-401d-9fae-3744742b504c",
-      "end_id": "6189f566-814d-4a5b-bcc8-4a53e973c589"
-    },
-    {
-      "id": "3e5d4bc9-98e8-4d10-80d1-0d48819b5e09",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "789eeb6d-c9a6-46da-8b6a-ff4a0e470cd0",
-      "end_id": "7e25653b-6e38-44e2-9b01-4340cab02354"
-    },
-    {
-      "id": "deefa770-cf58-4d5e-bbb7-be80f60e0119",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "789eeb6d-c9a6-46da-8b6a-ff4a0e470cd0",
-      "end_id": "ae38f047-5c69-4230-a12c-8c4b0e7043bc"
-    },
-    {
-      "id": "ea4ab710-2eda-419d-bb61-e4cbbc556275",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "73a31bd5-4ed3-4d8a-bdba-9b8d85594452",
-      "end_id": "2060e535-fc50-4f0b-aeda-a6550fe9011a"
-    },
-    {
-      "id": "31ad0d85-c11b-47b4-8c2d-34f6054a82a6",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "2cf67d61-d95d-4beb-bf2c-47ffb40962fe",
-      "end_id": "0a7bad26-2a97-4d4f-8d73-2ccade1a4f64"
-    },
-    {
-      "id": "522361ea-b903-4352-8dc5-232d7469a0ae",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "c96a0b06-aafe-486d-8eff-48fb70908880",
-      "end_id": "1e219a25-7e97-4ed4-bebe-3a22f0f4df25"
-    },
-    {
-      "id": "1ff0064a-0177-4073-91ec-590bbe66f1af",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "6b52cdc7-8777-45e8-972b-86937c8bb469",
-      "end_id": "743da3c4-2ac0-4e34-8501-1294f40be227"
-    },
-    {
-      "id": "6246b584-911a-4b40-a24e-4fe2921c6bb4",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "73a31bd5-4ed3-4d8a-bdba-9b8d85594452",
-      "end_id": "369bdcbd-bf4a-4ce8-9967-9b40899ed6ca"
-    },
-    {
-      "id": "a7a2616c-e417-46dc-af5e-e7a58e443f70",
-      "label": "DEPENDS_ON",
-      "properties": {},
-      "start_id": "83d62a93-cb7e-4220-80b6-6cdcad25728f",
-      "end_id": "743da3c4-2ac0-4e34-8501-1294f40be227"
-    },
-    {
-      "id": "d7b7ebba-187e-4043-86e3-35b693dd1df0",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "743da3c4-2ac0-4e34-8501-1294f40be227",
-      "end_id": "2112fcb5-1d06-4e77-b0da-f68534a30d59"
-    },
-    {
-      "id": "bd61e5e0-1175-4845-ba69-6f38abd4a344",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "97e52c94-0cc3-401d-9fae-3744742b504c",
-      "end_id": "10cb1ead-426e-4a9b-96cf-85ed3e9df9c0"
-    },
-    {
-      "id": "e364670c-4e5d-4d7d-b0d8-d7ef10216248",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "cb3dd63e-bb9d-495b-a991-4d1ce466c017",
-      "end_id": "4fa59f21-c0cd-46ae-948f-56103fc751b7"
-    },
-    {
-      "id": "08874cbd-78a3-4e77-a166-219e5af0d94f",
-      "label": "DERIVED_FROM",
-      "properties": {},
-      "start_id": "c96a0b06-aafe-486d-8eff-48fb70908880",
-      "end_id": "8d0cbdda-1c96-471a-bf65-89d1ddb873cb"
-    },
-    {
-      "id": "e63116e8-f6a8-43ff-805a-4d6e7bb84aa6",
+      "id": "56ad1f20-5efc-4a71-a876-a35f319ceede",
       "label": "SATISFIES",
       "properties": {},
-      "start_id": "ae38f047-5c69-4230-a12c-8c4b0e7043bc",
-      "end_id": "07f8e30c-a1a9-458b-ae66-1657ba2bc8e9"
+      "start_id": "bfd17907-cc8e-4cfe-a20e-4cce11b3cc8a",
+      "end_id": "30a294ed-ed9c-42ac-8d0f-74795fd65c71"
     },
     {
-      "id": "8d0d7d21-56e1-4323-91b9-9ff987bea779",
-      "label": "SATISFIES",
+      "id": "161093e9-c842-407a-8f01-d43abe8e005f",
+      "label": "DEPENDS_ON",
       "properties": {},
-      "start_id": "6b7f90b0-d0f2-4812-a191-690eba437976",
-      "end_id": "9b465b64-d011-43f2-a223-03c8454c8846"
+      "start_id": "5b2f5896-415f-467e-8a67-f99c35295a98",
+      "end_id": "98e95ed0-cbd1-42e9-9614-ca6d6b6cfa53"
     },
     {
-      "id": "a5f138ae-5942-4fb4-aebd-e91d995c5fa3",
+      "id": "8670c661-9544-4d4f-8e28-1ba940652f61",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "75e9e677-98ec-466d-aa1b-98202a852188",
+      "end_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b"
+    },
+    {
+      "id": "1602dfd2-7221-4352-8298-ba7628d89377",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "8c9499d4-056e-4b79-a36b-5e42ac8ee7b1",
+      "end_id": "fb97a9ee-4d4e-4947-8095-d4fd579f257b"
+    },
+    {
+      "id": "e0e37920-d08d-43e7-9c9a-6f2baf641d2c",
       "label": "DERIVED_FROM",
       "properties": {},
-      "start_id": "dffee55e-c6ae-4243-82a7-4126ec502eb5",
-      "end_id": "77c54751-8b99-4261-b874-2167c97530b5"
-    },
-    {
-      "id": "1c6bbc83-0899-4efe-be29-a33832883f02",
-      "label": "DEFINED_BY",
-      "properties": {},
-      "start_id": "3cb403ba-028c-4492-9356-1895c5d6e614",
-      "end_id": "7e25653b-6e38-44e2-9b01-4340cab02354"
+      "start_id": "bf292e90-bad8-483c-8d5e-dcb1891f446e",
+      "end_id": "1c4d77d2-59fa-4597-ad8b-1e7083c90a52"
     }
   ]
 }

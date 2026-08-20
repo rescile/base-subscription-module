@@ -1,0 +1,11 @@
+origin_resource = "record"
+
+[[create_resource]]
+match_on = [ { property = "function", value = "vault" } ]
+resource_type = "vault"
+relation_type = "SATISFIES"
+name = "{{- subscription | lower -}}-vault" # Need to get the provider name here
+[create_resource.properties]
+function = "encryption"
+key = "{{- subscription | lower -}}-vault-key"
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

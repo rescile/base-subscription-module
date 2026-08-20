@@ -10,6 +10,7 @@ name = "{{- origin_resource.name | lower -}}-{{- subscription | lower -}}"
 home = "{{- location -}}"
 provider = "{{ provider }}"
 account = ["DEV", "PROD", "INT"]
+util = ["vault", "syslog"]
 logging = true
 auditing = true
 description = "The subscription defines the cloud environment for the resident {{ origin_resource.name | capitalize }}."

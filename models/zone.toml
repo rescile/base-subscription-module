@@ -1,6 +1,15 @@
 origin_resource = "resolver"
 
 [[create_resource]]
+resource_type = "zone"
+relation_type = "DEPENDS_ON"
+name = "utils.local"
+[create_resource.properties]
+function = "local"
+description = "A DNS zone is an administrative namespace that a single entity manages, containing resource records that map domain names to IP addresses."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+[[create_resource]]
 create_from = { property = "zone" }
 relation_type = "DEPENDS_ON"
 name = "{{- property.value | lower -}}"
@@ -13,7 +22,16 @@ origin_resource = "zone"
 
 [[link_resources]]
 with = "subscription"
+match_on = [ { property = "function", not = "local" } ]
 create_relation = { type = "SATISFIES" }
 copy_properties = [
   { from = "account", as = "record" }
+]
+
+[[link_resources]]
+with = "subscription"
+match_on = [ { property = "function", value = "local" } ]
+create_relation = { type = "SATISFIES" }
+copy_properties = [
+  { from = "util", as = "record" }
 ]
