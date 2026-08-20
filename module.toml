@@ -9,6 +9,7 @@ rescile_version = ">=0.1.193"
 
 # List of other modules this module depends on.
 [dependencies]
+graphviewer              = "https://github.com/rescile/graphviewer"
 # asset-editor = "https://github.com/rescile/asset-editor-module/releases/download/v{version}/asset-editor.zip"
 
 [params.location]

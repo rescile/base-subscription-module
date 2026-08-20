@@ -1,0 +1,6 @@
+version = 1
+
+[[module]]
+name = "graphviewer"
+source = "https://github.com/rescile/graphviewer"
+commit = "744694f0820873011ecdb2fbbc0eb081b79f2065"

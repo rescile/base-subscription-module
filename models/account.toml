@@ -11,6 +11,6 @@ environment = "{{- property.value | lower -}}"
 home = "{{- origin_resource.home -}}"
 template = "Core" # Only AWS
 location = ["London", "Paris"] # for multi region deployments
-contract = "{{- origin_resource.provider.name | lower -}}" # Placeholder sla in provider json missing
+contract = "{{- origin_resource.provider.sla -}}" # Placeholder sla in provider json missing
 description = "The {{ origin_resource.provider.display }} account is a secure digital identity that grants authorized access to {{ origin_resource.provider.name | upper }}'s cloud resources and enables a centralized management hub to automate cloud service deployments and configurations."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

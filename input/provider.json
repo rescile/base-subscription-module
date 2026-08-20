@@ -5,6 +5,7 @@
     "function": "cloud",
     "category": "public-cloud",
     "country": "US",
+    "sla": "https://aws.amazon.com/legal/service-level-agreements/",
     "services": [
       "compute",
       "storage",
@@ -25,13 +26,13 @@
     "terraform": true,
     "sovereign": false
   },
-
   "azure": {
     "name": "Azure",
     "display": "Microsoft Azure",
     "function": "cloud",
     "category": "public-cloud",
     "country": "US",
+    "sla":  "https://azure.microsoft.com/en-us/support/legal/sla/",
     "services": [
       "compute",
       "storage",
@@ -52,13 +53,13 @@
     "terraform": true,
     "sovereign": false
   },
-
   "gcp": {
     "name": "GCP",
     "display": "Google Cloud Platform",
     "function": "cloud",
     "category": "public-cloud",
     "country": "US",
+    "sla": "https://cloud.google.com/terms/sla",
     "services": [
       "compute",
       "storage",
@@ -79,13 +80,13 @@
     "terraform": true,
     "sovereign": false
   },
-
   "oci": {
     "name": "OCI",
     "display": "Oracle Cloud Infrastructure",
     "function": "cloud",
     "category": "public-cloud",
     "country": "US",
+    "sla": "https://www.oracle.com/cloud/sla/",
     "services": [
       "compute",
       "storage",
@@ -106,13 +107,13 @@
     "terraform": true,
     "sovereign": false
   },
-
   "ibm": {
     "name": "IBM Cloud",
     "display": "IBM Cloud",
     "function": "cloud",
     "category": "public-cloud",
     "country": "US",
+    "sla": "https://cloud.ibm.com/docs/overview?topic=overview-slas",
     "services": [
       "compute",
       "storage",
@@ -131,13 +132,13 @@
     "terraform": true,
     "sovereign": false
   },
-
   "OVH": {
     "name": "OVH",
     "display": "OVHcloud",
     "function": "baremetal",
     "category": "bare-metal-as-a-service",
     "country": "FR",
+    "sla": "https://www.ovhcloud.com/en/legal/",
     "services": [
       "baremetal",
       "compute",
@@ -156,13 +157,13 @@
     "terraform": true,
     "sovereign": true
   },
-
   "Hetzner": {
     "name": "Hetzner",
     "display": "Hetzner Dedicated",
     "function": "baremetal",
     "category": "bare-metal-as-a-service",
     "country": "DE",
+    "sla": "https://www.hetzner.com/legal/cloud-server/",
     "services": [
       "baremetal",
       "compute",
@@ -179,13 +180,13 @@
     "terraform": true,
     "sovereign": true
   },
-
   "i3D": {
     "name": "i3D",
     "display": "i3D.net",
     "function": "baremetal",
     "category": "bare-metal-as-a-service",
     "country": "NL",
+    "sla": "https://www.i3d.net/legal/terms-and-conditions/",
     "services": [
       "baremetal",
       "compute",
@@ -201,13 +202,13 @@
     "terraform": false,
     "sovereign": true
   },
-
   "Leaseweb": {
     "name": "Leaseweb",
     "display": "Leaseweb",
     "function": "baremetal",
     "category": "bare-metal-as-a-service",
     "country": "NL",
+    "sla": "https://www.leaseweb.com/en/products-services/service-level-agreements",
     "services": [
       "baremetal",
       "compute",
@@ -225,13 +226,13 @@
     "terraform": true,
     "sovereign": true
   },
-
   "Worldstream": {
     "name": "Worldstream",
     "display": "Worldstream",
     "function": "baremetal",
     "category": "bare-metal-as-a-service",
     "country": "NL",
+    "sla": "https://www.worldstream.com/legal/",
     "services": [
       "baremetal",
       "compute",
@@ -247,13 +248,13 @@
     "terraform": false,
     "sovereign": true
   },
-
   "Scaleway": {
     "name": "Scaleway",
     "display": "Scaleway",
     "function": "cloud",
     "category": "public-cloud",
     "country": "FR",
+    "sla": "https://www.scaleway.com/en/terms/sla/",
     "services": [
       "baremetal",
       "compute",
@@ -272,13 +273,13 @@
     "terraform": true,
     "sovereign": true
   },
-
   "Online.net": {
     "name": "Online",
     "display": "Online.net",
     "function": "baremetal",
     "category": "bare-metal-as-a-service",
     "country": "FR",
+    "sla": "https://www.online.net/en/terms-of-service",
     "services": [
       "baremetal",
       "compute",
@@ -291,13 +292,13 @@
     "terraform": true,
     "sovereign": true
   },
-
   "Contabo": {
     "name": "Contabo",
     "display": "Contabo",
     "function": "baremetal",
     "category": "dedicated-server",
     "country": "DE",
+    "sla": "https://contabo.com/en/terms-and-conditions/",
     "services": [
       "baremetal",
       "compute",
@@ -311,13 +312,13 @@
     "terraform": false,
     "sovereign": true
   },
-
   "Servers.com": {
     "name": "Servers.com",
     "display": "Servers.com",
     "function": "baremetal",
     "category": "bare-metal-as-a-service",
     "country": "NL",
+    "sla": "https://www.servers.com/legal/support-service-availability",
     "services": [
       "baremetal",
       "compute",
@@ -333,13 +334,13 @@
     "terraform": true,
     "sovereign": true
   },
-
   "Megaport": {
     "name": "Megaport",
     "display": "Megaport",
     "function": "naas",
     "category": "network-as-a-service",
     "country": "AU",
+    "sla": "https://www.megaport.com/legal/",
     "services": [
       "layer2-connectivity",
       "cloud-connect",
@@ -353,13 +354,13 @@
     "terraform": true,
     "sovereign": false
   },
-
   "Cloudflare": {
     "name": "Cloudflare",
     "display": "Cloudflare",
     "function": "naas",
     "category": "network-and-edge-as-a-service",
     "country": "US",
+    "sla": "https://www.cloudflare.com/business-sla/",
     "services": [
       "network",
       "dns",
@@ -377,13 +378,13 @@
     "terraform": true,
     "sovereign": false
   },
-
   "Latitude.sh": {
     "name": "Latitude.sh",
     "identifier": "Latitude.sh",
     "function": "baremetal",
     "category": "bare-metal-as-a-service",
     "country": "US",
+    "sla": "https://www.latitude.sh/legal/",
     "services": [
       "baremetal",
       "compute",
@@ -402,13 +403,13 @@
     "terraform": true,
     "sovereign": false
   },
-
   "Leafcloud": {
     "name": "Leafcloud",
     "identifier": "Leafcloud",
     "function": "cloud",
     "category": "sovereign-cloud",
     "country": "NL",
+    "sla": "https://leaf.cloud/legal/",
     "services": [
       "compute",
       "gpu",
