@@ -48,19 +48,23 @@ UCS provides the common control plane, while individual modules describe the inf
 ├── LICENSE
 ├── NOTICE
 ├── CONTRIBUTING.md
-├── data/
-│   └── models/
-│       ├── dns.toml
-│       ├── firewall.toml
-│       ├── location.toml
-│       ├── network.toml
-│       ├── observability.toml
-│       ├── role.toml
-│       └── subscirption.toml
+├── intput/
+│   └── ...
+├── models/
+│   ├── account.toml
+│   ├── gateway.toml
+│   ├── key.toml
+│   ├── location.toml
+│   ├── network.toml
+│   ├── record.toml
+│   ├── resolver.toml
+│   ├── router.toml
+│   ├── subnet.toml
+│   ├── vault.toml
+│   ├── zone.toml
+│   └── subscription.toml
 ├── output/
 │   └── ...
-└── runtimes/
-    └── ...
 └── module.toml
 ```
 
