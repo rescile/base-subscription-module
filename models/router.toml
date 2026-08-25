@@ -3,7 +3,7 @@ origin_resource = "region"
 [[create_resource]]
 resource_type = "router"
 relation_type = "SATISFIES"
-name = "{{- origin_resource.provider.name | lower -}}-{{- origin_resource.code | lower -}}-{{- origin_resource.function | lower -}}-router"
+name = "{{- origin_resource.provider.name | lower -}}-{{- origin_resource.code | lower -}}-router"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
 provider = "{{- origin_resource.provider -}}"

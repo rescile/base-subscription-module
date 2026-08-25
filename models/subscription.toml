@@ -5,7 +5,7 @@ provider = { "json!" = "provider.json", jmespath = "values(@)[?name == 'AWS' ] |
 [[create_resource]]
 resource_type = "subscription"
 relation_type = "DEFINED_BY"
-name = "{{- origin_resource.name | lower -}}-{{- params.solution | lower -}}"
+name = "{{- provider.name | lower -}}-{{- params.solution | lower -}}"
 [create_resource.properties]
 home = "{{- params.home_region -}}"
 provider = "{{ provider }}"

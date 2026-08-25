@@ -3,7 +3,7 @@ origin_resource = "subscription"
 [[create_resource]]
 create_from = { property = "account" }
 relation_type = "BASELINE_TEMPLATE"
-name = "{{- origin_resource.provider.name | upper -}}-{{- origin_resource.name | upper -}}-{{- property.value  | upper -}}"
+name = "{{- origin_resource.name | upper -}}-{{- property.value  | upper -}}"
 [create_resource.properties]
 function = "{{- origin_resource.provider.function | lower -}}"
 provider = "{{- origin_resource.provider -}}"

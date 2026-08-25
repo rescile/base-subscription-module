@@ -6,9 +6,10 @@ locations = { "json!" = "location_codes.json" }
 [[create_resource]]
 create_from = { property = "home", as = "region" }
 relation_type = "DEFINED_BY"
-name = "{{- property.value | lower -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- property.value | lower -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
+location = "{{- property.value | lower -}}"
 code = "{{- locations[property.value].iata  | upper -}}"
 timezone = "{{- locations[property.value].tz -}}"
 country = "{{- locations[property.value].country | upper -}}"
@@ -19,9 +20,10 @@ created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 [[create_resource]]
 create_from = { property = "region" }
 relation_type = "DEFINED_BY"
-name = "{{- property.value | lower -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- property.value | lower -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
+location = "{{- property.value | lower -}}"
 code = "{{- locations[property.value].iata  | upper -}}"
 timezone = "{{- locations[property.value].tz -}}"
 country = "{{- locations[property.value].country | upper -}}"
