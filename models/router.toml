@@ -1,4 +1,4 @@
-origin_resource = "location"
+origin_resource = "region"
 
 [[create_resource]]
 resource_type = "router"
@@ -7,7 +7,7 @@ name = "{{- origin_resource.provider.name | lower -}}-{{- origin_resource.code |
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
 provider = "{{- origin_resource.provider -}}"
-location = "{{- origin_resource.name -}}"
+region = "{{- origin_resource.name -}}"
 cidr = "10.0.0.0/19"
 bgp = ["172.16.0.1/30"]
 vpn = []

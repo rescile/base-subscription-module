@@ -1,11 +1,29 @@
+operator = { "function!" = '''
+{%- for sub in subscription -%}
+    {% set_global test = sub %}
+{%- endfor -%}
+{{- test -}}
+''' }
+
 origin_resource = "record"
 
 [[create_resource]]
 match_on = [ { property = "function", value = "vault" } ]
 resource_type = "vault"
 relation_type = "SATISFIES"
-name = "{{- subscription | lower -}}-vault" # Need to get the provider name here
+name = "{{- params.solution | lower -}}-vault" # Need to get the provider name here
 [create_resource.properties]
 function = "encryption"
-key = "{{- subscription | lower -}}-vault-key"
+test = "{{- operator -}}"
+key = "{{- params.solution | lower -}}-vault-key"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+#origin_resource = "vault"
+
+#[[link_resources]]
+#with = "provider"
+#match_on = [ { property = "function", not = "local" } ]
+#create_relation = { type = "CONNECTS_TO" }
+#copy_properties = [
+#  { from = "name", as = "provider" }
+#]

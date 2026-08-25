@@ -15,7 +15,7 @@ ports = { "template!" = '''
 #match_on = [expression = "{% if 53 in ports %}true{% else %}false{% endif %}"] missing expression
 resource_type = "resolver"
 relation_type = "DEFINED_BY"
-name = "{{- origin_resource.name | lower -}}-resolver" # Improve with regex
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower }}-resolver"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
 zone = ["my.rescile.com"]

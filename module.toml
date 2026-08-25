@@ -12,19 +12,19 @@ rescile_version = ">=0.1.193"
 graphviewer              = "https://github.com/rescile/graphviewer"
 # asset-editor = "https://github.com/rescile/asset-editor-module/releases/download/v{version}/asset-editor.zip"
 
-[params.location]
+[params.home_region]
 description = "The location where management resources are deployed, for a cloud provider this represents the home region."
 required = true
 default = "Zurich"
 
-[params.subscription]
+[params.solution]
 description = "A freeform name describing the solution that is deployed, this entry is used for naming conventions."
 required = true
-default = "Subscription"
+default = "Solution"
 
 # Temp entry for offline development
-[params.resident]
-description = "The resident represents the organization that owns a service."
+[params.tenant]
+description = "The tenant represents the organization that owns a service."
 required = true
 default = "Rescile"
 
