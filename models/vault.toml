@@ -4,7 +4,7 @@ origin_resource = "record"
 match_on = [ { property = "function", value = "vault" } ]
 resource_type = "vault"
 relation_type = "SATISFIES"
-name = "{{- params.solution | lower -}}-vault" # Need to get the provider name here
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- params.solution | lower -}}-vault" # Need to get the provider name here
 [create_resource.properties]
 function = "encryption"
 key = "{{- params.solution | lower -}}-vault-key"
