@@ -3,6 +3,7 @@ origin_resource = "vault"
 [[create_resource]]
 create_from = { property = "key" }
 relation_type = "DEPENDS_ON"
+name = "{{- origin_resource.name -}}-key"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
 secret = []

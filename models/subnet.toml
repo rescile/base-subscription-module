@@ -9,7 +9,7 @@ subnets = { "template!" = '''
 [[create_resource]]
 create_from = { property = "subnet" }
 relation_type = "DERIVED_FROM"
-name = "{{- origin_resource.name -}}_{{- property.value -}}" # Improve using regex
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+-[^-]+)-.*/\\1/') | lower }}-subnet_{{- property.value -}}"
 [create_resource.properties]
 cidr = "{{- subnets[property.index] -}}"
 description = "tbd"
