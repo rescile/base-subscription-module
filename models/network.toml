@@ -12,7 +12,7 @@ segments = { "template!" = '''
 [[create_resource]]
 create_from = { property = "network" }
 relation_type = "DEPENDS_ON"
-name = "{{- origin_resource.provider.name | lower -}}-{{- params.solution | lower -}}-{{- property.value | lower -}}-network"
+name = "{{- origin_resource.provider.name | lower -}}-{{- params.solution | lower -}}-{{- property.value | lower -}}-{{- resource_id.network -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
 pid = "{{- resource_id.network -}}"

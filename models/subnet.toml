@@ -11,7 +11,7 @@ subnets = { "template!" = '''
 [[create_resource]]
 create_from = { property = "subnet" }
 relation_type = "DERIVED_FROM"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+-[^-]+)-.*/\\1/') | lower }}-subnet_{{- property.value -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+-[^-]+)-.*/\\1/') | lower }}-{{- resource_id.subnet -}}_{{- property.value -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
 pid = "{{- resource_id.subnet -}}"

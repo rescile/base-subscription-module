@@ -6,7 +6,7 @@ resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == prov
 [[create_resource]]
 resource_type = "gateway"
 relation_type = "DERIVED_FROM"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+-[^-]+)-.*/\\1/') | lower }}-gateway"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+-[^-]+)-.*/\\1/') | lower }}-{{- resource_id.gateway -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
 pid = "{{- resource_id.gateway -}}"

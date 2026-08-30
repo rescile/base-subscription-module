@@ -17,7 +17,7 @@ ports = { "template!" = '''
 #match_on = [expression = "{% if 53 in ports %}true{% else %}false{% endif %}"] missing expression
 resource_type = "resolver"
 relation_type = "DEFINED_BY"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-resolver"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- resource_id.resolver -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
 pid = "{{- resource_id.resolver -}}"

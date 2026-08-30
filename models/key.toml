@@ -6,7 +6,7 @@ resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == prov
 [[create_resource]]
 create_from = { property = "key" }
 relation_type = "DEPENDS_ON"
-name = "{{- origin_resource.name -}}-key"
+name = "{{- origin_resource.name -}}-{{- resource_id.key -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
 pid = "{{- resource_id.key -}}"

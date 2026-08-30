@@ -7,7 +7,7 @@ resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == prov
 match_on = [ { property = "function", value = "vault" } ]
 resource_type = "vault"
 relation_type = "SATISFIES"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- params.solution | lower -}}-vault" # Need to get the provider name here
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- params.solution | lower -}}-{{- resource_id.vault -}}"
 [create_resource.properties]
 function = "encryption"
 pid = "{{- resource_id.vault -}}"
