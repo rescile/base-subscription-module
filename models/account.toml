@@ -9,7 +9,7 @@ relation_type = "BASELINE_TEMPLATE"
 name = "{{- origin_resource.name | upper -}}-{{- property.value  | upper -}}"
 [create_resource.properties]
 function = "{{- origin_resource.provider.function | lower -}}"
-pid = "{{- resource_id.account -}}"
+provider_type = "{{- resource_id.account -}}"
 provider = "{{- origin_resource.provider -}}"
 environment = "{{- property.value | lower -}}"
 home = "{{- origin_resource.home -}}"

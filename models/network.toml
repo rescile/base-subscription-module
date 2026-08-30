@@ -15,7 +15,7 @@ relation_type = "DEPENDS_ON"
 name = "{{- origin_resource.provider.name | lower -}}-{{- params.solution | lower -}}-{{- property.value | lower -}}-{{- resource_id.network -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
-pid = "{{- resource_id.network -}}"
+provider_type = "{{- resource_id.network -}}"
 cidr = "{{- segments[property.index] -}}"
 subnet = ["a", "b"]
 gateway = ["inbound"]

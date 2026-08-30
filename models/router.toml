@@ -9,7 +9,7 @@ relation_type = "SATISFIES"
 name = "{{- origin_resource.provider.name | lower -}}-{{- origin_resource.code | lower -}}-{{- resource_id.router -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
-pid = "{{- resource_id.router -}}"
+provider_type = "{{- resource_id.router -}}"
 provider = "{{- origin_resource.provider -}}"
 region = "{{- origin_resource.name -}}"
 cidr = "10.0.0.0/19"
