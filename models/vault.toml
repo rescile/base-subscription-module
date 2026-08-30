@@ -1,5 +1,6 @@
 origin_resource = "record"
 
+operator = { "json!" = "provider.json" }
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
 resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
 
@@ -10,6 +11,14 @@ relation_type = "SATISFIES"
 name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- params.solution | lower -}}-{{- resource_id.vault -}}"
 [create_resource.properties]
 function = "encryption"
+provider = "{{- operator[provider_name] -}}"
 pid = "{{- resource_id.vault -}}"
-key = "{{- params.solution | lower -}}-vault-key"
+key = ["management"]
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+origin_resource = "vault"
+
+[[link_resources]]
+with = "subscription"
+join = { local = "provider", remote = "provider" }
+create_relation = { type = "SATISFIES" }
