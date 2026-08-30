@@ -1,5 +1,7 @@
 origin_resource = "network"
 
+provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
+resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
 ports = { "template!" = '''
 {%- set p = [] -%}
 {%- set filters = origin_resource.filter -%}
@@ -18,6 +20,7 @@ relation_type = "DEFINED_BY"
 name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-resolver"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
+pid = "{{- resource_id.resolver -}}"
 zone = ["my.rescile.com"]
 description = "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

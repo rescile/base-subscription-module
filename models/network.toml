@@ -1,7 +1,8 @@
 origin_resource = "router"
 
 filters = { "json!" = "firewall-rules.json" }
-
+provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
+resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
 segments = { "template!" = '''
 {%- set count = origin_resource.network | length -%}
 {%- set range = origin_resource.cidr -%}
@@ -14,6 +15,7 @@ relation_type = "DEPENDS_ON"
 name = "{{- origin_resource.provider.name | lower -}}-{{- params.solution | lower -}}-{{- property.value | lower -}}-network"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
+pid = "{{- resource_id.network -}}"
 cidr = "{{- segments[property.index] -}}"
 subnet = ["a", "b"]
 gateway = ["inbound"]

@@ -1,11 +1,15 @@
 origin_resource = "region"
 
+provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
+resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
+
 [[create_resource]]
 resource_type = "router"
 relation_type = "SATISFIES"
 name = "{{- origin_resource.provider.name | lower -}}-{{- origin_resource.code | lower -}}-router"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
+pid = "{{- resource_id.router -}}"
 provider = "{{- origin_resource.provider -}}"
 region = "{{- origin_resource.name -}}"
 cidr = "10.0.0.0/19"

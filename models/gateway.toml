@@ -1,11 +1,15 @@
 origin_resource = "network"
 
+provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
+resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
+
 [[create_resource]]
 resource_type = "gateway"
 relation_type = "DERIVED_FROM"
 name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+-[^-]+)-.*/\\1/') | lower }}-gateway"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
+pid = "{{- resource_id.gateway -}}"
 description = "The {{ origin_resource.function }} gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
@@ -15,5 +19,6 @@ relation_type = "DERIVED_FROM"
 name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower }}-{{- property.value -}}-gateway"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
+pid = "{{- resource_id.gateway -}}"
 description = "The {{ origin_resource.function }} gateway is a network node that connects two different networks with dissimilar architectures and protocols so that data can flow between them."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

@@ -1,17 +1,20 @@
 origin_resource = "resident"
 
 provider = { "json!" = "provider.json", jmespath = "values(@)[?name == 'AWS' ] | [0]" }
+resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider.name ] | [0]" }
 
 [[create_resource]]
 resource_type = "subscription"
 relation_type = "DEFINED_BY"
 name = "{{- provider.name | lower -}}-{{- params.solution | lower -}}"
 [create_resource.properties]
+function = "{{- params.solution -}}"
+pid = "{{- resource_id.subscription -}}"
 home = "{{- params.home_region -}}"
 provider = "{{ provider }}"
 account = ["DEV", "PROD", "INT"]
 util = ["vault", "syslog"]
 logging = true
 auditing = true
-description = "The subscription defines the cloud environment for the resident {{ origin_resource.name | capitalize }}."
+description = "The subscription defines a cloud environment for {{ origin_resource.name | capitalize }} and represents a provider-level root that gives Rescile access to the {{ provider.display }} environment."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

@@ -1,6 +1,7 @@
 origin_resource = "account"
 
-# Check the use of variables
+provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
+resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
 locations = { "json!" = "location_codes.json" }
 
 [[create_resource]]
@@ -9,6 +10,7 @@ relation_type = "DEFINED_BY"
 name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- property.value | lower -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
+pid = "{{- resource_id.region -}}"
 location = "{{- property.value | lower -}}"
 code = "{{- locations[property.value].iata  | upper -}}"
 timezone = "{{- locations[property.value].tz -}}"
@@ -23,6 +25,7 @@ relation_type = "DEFINED_BY"
 name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- property.value | lower -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
+pid = "{{- resource_id.region -}}"
 location = "{{- property.value | lower -}}"
 code = "{{- locations[property.value].iata  | upper -}}"
 timezone = "{{- locations[property.value].tz -}}"
