@@ -1,4 +1,4 @@
-schemas = ["./schemas/identity.schema.json"]
+#schemas = ["./schemas/identity.schema.json"]
 
 [module]
 name = "Base Subscription Module"

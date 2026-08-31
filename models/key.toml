@@ -1,26 +1,17 @@
-origin_resource = "vault"
-
-provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
+origin_resource = "wallet"
 
 [[create_resource]]
 resource_type = "key"
-relation_type = "DEPENDS_ON"
-name = "{{- origin_resource.name -}}-{{- resource_id.key -}}"
+relation_type = "DEFINED_BY"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-master-key"
 [create_resource.properties]
-function = "{{- origin_resource.function -}}"
-provider_type = "{{- resource_id.key -}}"
-secret = []
-token = []
+function = "master"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
 [[create_resource]]
-create_from = { property = "key" }
-relation_type = "DEPENDS_ON"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower }}-{{- property.value | lower -}}-key"
+create_from = { property = "keys", as = "key" }
+relation_type = "DEFINED_BY"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- property.value -}}-key"
 [create_resource.properties]
-function = "{{- origin_resource.function -}}"
-provider_type = "{{- resource_id.key -}}"
-secret = ["storage"]
-token = []
+function = "{{- property.value -}}"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
