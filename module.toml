@@ -10,8 +10,8 @@ rescile_version = ">=0.1.193"
 # List of other modules this module depends on.
 [dependencies]
 graphviewer     = "https://github.com/rescile/graphviewer"
-asset-editor    = "https://github.com/rescile/asset-editor-module/releases/download/v{version}/asset-editor.zip"
-graphiql-module = "https://github.com/rescile/rescile-graphiql-module/releases/download/v0.0.4/graphiql-module-offline.zip"
+asset-editor    = "https://github.com/rescile/asset-editor-module"
+graphiql-module = "https://github.com/rescile/rescile-graphiql-module"
 
 [params.home_region]
 description = "The location where management resources are deployed, for a cloud provider this represents the home region."
