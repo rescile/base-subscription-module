@@ -6,7 +6,7 @@
     "category": "public-cloud",
     "country": "US",
     "sla": "https://aws.amazon.com/legal/service-level-agreements/",
-    "services": [
+    "service": [
       "compute",
       "storage",
       "network",
@@ -33,7 +33,7 @@
     "category": "public-cloud",
     "country": "US",
     "sla":  "https://azure.microsoft.com/en-us/support/legal/sla/",
-    "services": [
+    "service": [
       "compute",
       "storage",
       "network",
@@ -60,7 +60,7 @@
     "category": "public-cloud",
     "country": "US",
     "sla": "https://cloud.google.com/terms/sla",
-    "services": [
+    "service": [
       "compute",
       "storage",
       "network",
@@ -87,7 +87,7 @@
     "category": "public-cloud",
     "country": "US",
     "sla": "https://www.oracle.com/cloud/sla/",
-    "services": [
+    "service": [
       "compute",
       "storage",
       "network",
@@ -114,7 +114,7 @@
     "category": "public-cloud",
     "country": "US",
     "sla": "https://cloud.ibm.com/docs/overview?topic=overview-slas",
-    "services": [
+    "service": [
       "compute",
       "storage",
       "network",
@@ -139,7 +139,7 @@
     "category": "bare-metal-as-a-service",
     "country": "FR",
     "sla": "https://www.ovhcloud.com/en/legal/",
-    "services": [
+    "service": [
       "baremetal",
       "compute",
       "storage",
@@ -164,7 +164,7 @@
     "category": "bare-metal-as-a-service",
     "country": "DE",
     "sla": "https://www.hetzner.com/legal/cloud-server/",
-    "services": [
+    "service": [
       "baremetal",
       "compute",
       "storage",
@@ -187,7 +187,7 @@
     "category": "bare-metal-as-a-service",
     "country": "NL",
     "sla": "https://www.i3d.net/legal/terms-and-conditions/",
-    "services": [
+    "service": [
       "baremetal",
       "compute",
       "network",
@@ -209,7 +209,7 @@
     "category": "bare-metal-as-a-service",
     "country": "NL",
     "sla": "https://www.leaseweb.com/en/products-services/service-level-agreements",
-    "services": [
+    "service": [
       "baremetal",
       "compute",
       "storage",
@@ -233,7 +233,7 @@
     "category": "bare-metal-as-a-service",
     "country": "NL",
     "sla": "https://www.worldstream.com/legal/",
-    "services": [
+    "service": [
       "baremetal",
       "compute",
       "storage",
@@ -255,7 +255,7 @@
     "category": "public-cloud",
     "country": "FR",
     "sla": "https://www.scaleway.com/en/terms/sla/",
-    "services": [
+    "service": [
       "baremetal",
       "compute",
       "storage",
@@ -280,7 +280,7 @@
     "category": "bare-metal-as-a-service",
     "country": "FR",
     "sla": "https://www.online.net/en/terms-of-service",
-    "services": [
+    "service": [
       "baremetal",
       "compute",
       "storage",
@@ -299,7 +299,7 @@
     "category": "dedicated-server",
     "country": "DE",
     "sla": "https://contabo.com/en/terms-and-conditions/",
-    "services": [
+    "service": [
       "baremetal",
       "compute",
       "storage",
@@ -319,7 +319,7 @@
     "category": "bare-metal-as-a-service",
     "country": "NL",
     "sla": "https://www.servers.com/legal/support-service-availability",
-    "services": [
+    "service": [
       "baremetal",
       "compute",
       "storage",
@@ -341,7 +341,7 @@
     "category": "network-as-a-service",
     "country": "AU",
     "sla": "https://www.megaport.com/legal/",
-    "services": [
+    "service": [
       "layer2-connectivity",
       "cloud-connect",
       "virtual-cross-connect",
@@ -361,7 +361,7 @@
     "category": "network-and-edge-as-a-service",
     "country": "US",
     "sla": "https://www.cloudflare.com/business-sla/",
-    "services": [
+    "service": [
       "network",
       "dns",
       "ddos-protection",
@@ -385,7 +385,7 @@
     "category": "bare-metal-as-a-service",
     "country": "US",
     "sla": "https://www.latitude.sh/legal/",
-    "services": [
+    "service": [
       "baremetal",
       "compute",
       "gpu",
@@ -410,7 +410,7 @@
     "category": "sovereign-cloud",
     "country": "NL",
     "sla": "https://leaf.cloud/legal/",
-    "services": [
+    "service": [
       "compute",
       "gpu",
       "network",

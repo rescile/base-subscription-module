@@ -23,5 +23,5 @@ with = "subscription"
 join = { local = "provider", remote = "provider" }
 create_relation = { type = "SATISFIES" }
 copy_properties = [
-  { from = "service", as = "keys" }
+  { from = "platform", as = "keys" }
 ]
