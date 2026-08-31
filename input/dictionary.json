@@ -11,9 +11,7 @@
     "resolver": "resolver",
     "zone": "hosted-zone",
     "record": "record",
-    "region": "region",
-    "storage": "storage",
-    "database": "rds"
+    "region": "region"
   },
   "azure": {
     "subscription": "tenant",
@@ -27,9 +25,7 @@
     "resolver": "resolver",
     "zone": "zone",
     "record": "record",
-    "region": "location",
-    "storage": "storage",
-    "database": "database"
+    "region": "location"
   },
   "gcp": {
     "subscription": "organization",
@@ -43,9 +39,7 @@
     "resolver": "cloud-dns",
     "zone": "managed-zone",
     "record": "resource-record-set",
-    "region": "region",
-    "storage": "cloud-storage",
-    "database": "cloud-sql"
+    "region": "region"
   },
   "oci": {
     "subscription": "tenancy",
@@ -59,8 +53,6 @@
     "resolver": "resolver",
     "zone": "zone",
     "record": "record",
-    "region": "region",
-    "storage": "storage",
-    "database": "database"
+    "region": "region"
   }
 }
