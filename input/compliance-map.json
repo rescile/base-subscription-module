@@ -1,0 +1,89 @@
+{
+  "control_domains": {
+    "identity-and-access": {
+      "frameworks": {
+        "CSA-CCM": ["IAM", "AIS"],
+        "ISO-27001": ["A.5", "A.8"],
+        "SOC-2": ["CC6"],
+        "ISAE": ["Access Controls"]
+      },
+      "roles": [
+        "cloud-iam-admin",
+        "cloud-platform-admin"
+      ]
+    },
+
+    "change-management": {
+      "frameworks": {
+        "CSA-CCM": ["CCC"],
+        "ISO-27001": ["A.8"],
+        "SOC-2": ["CC8"],
+        "ISAE": ["Change Management"]
+      },
+      "roles": [
+        "cloud-compute-admin",
+        "cloud-network-admin",
+        "cloud-storage-admin",
+        "cloud-database-admin",
+        "cloud-container-admin",
+        "cloud-kubernetes-admin",
+        "cloud-load-balancer-admin",
+        "cloud-dns-admin",
+        "cloud-connectivity-admin"
+      ]
+    },
+
+    "logging-and-monitoring": {
+      "frameworks": {
+        "CSA-CCM": ["LOG", "SEF"],
+        "ISO-27001": ["A.8", "A.5"],
+        "SOC-2": ["CC7"],
+        "ISAE": ["Monitoring"]
+      },
+      "roles": [
+        "cloud-audit-admin",
+        "cloud-security-admin"
+      ]
+    },
+
+    "network-security": {
+      "frameworks": {
+        "CSA-CCM": ["IVS", "TVM"],
+        "ISO-27001": ["A.8"],
+        "SOC-2": ["CC6", "CC7"],
+        "ISAE": ["Logical Access", "Network Security"]
+      },
+      "roles": [
+        "cloud-network-admin",
+        "cloud-security-admin",
+        "cloud-connectivity-admin"
+      ]
+    },
+
+    "data-protection": {
+      "frameworks": {
+        "CSA-CCM": ["DSP", "DLP"],
+        "ISO-27001": ["A.8"],
+        "SOC-2": ["CC6", "C1"],
+        "ISAE": ["Data Protection"]
+      },
+      "roles": [
+        "cloud-storage-admin",
+        "cloud-database-admin",
+        "cloud-security-admin"
+      ]
+    },
+
+    "audit-and-assurance": {
+      "frameworks": {
+        "CSA-CCM": ["LOG", "GRC"],
+        "ISO-27001": ["A.5", "A.8"],
+        "SOC-2": ["CC2", "CC4", "CC7"],
+        "ISAE": ["Evidence", "Monitoring"]
+      },
+      "roles": [
+        "cloud-audit-admin"
+      ]
+    }
+  }
+}
