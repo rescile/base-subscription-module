@@ -1,25 +1,14 @@
 origin_resource = "key"
 
 operator = { "json!" = "provider.json" }
-provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
+provider_name = { "template!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
 
 [[create_resource]]
-match_on = [ { property = "function", value = "service" } ]
-resource_type = "login"
+create_from = { property = "login" }
 relation_type = "SATISFIES"
-name = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}-{{- operator[provider_name].service -}}-{{ origin_resource.function -}}-login"
+name = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}-{{- property.value -}}-{{ origin_resource.function -}}-login"
 [create_resource.properties]
-function = "{{ origin_resource.function -}}"
+function = "{{ property.value -}}"
 provider = "{{- operator[provider_name] -}}"
-description = "The {{ origin_resource.function  -}} login provides access to services operated by {{- operator[provider_name].display -}}."
+description = "The {{ property.value  -}} login provides access to services operated by {{- operator[provider_name].display -}}."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
-
-origin_resource = "login"
-
-[[link_resources]]
-with = "subscription"
-join = { local = "provider", remote = "provider" }
-create_relation = { type = "SATISFIES" }
-copy_properties = [
-  { from = "portfolio", as = "service" }
-]

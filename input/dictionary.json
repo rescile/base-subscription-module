@@ -11,7 +11,8 @@
     "resolver": "resolver",
     "zone": "hosted-zone",
     "record": "record",
-    "region": "region"
+    "region": "region",
+    "kubernetes": "eks"
   },
   "azure": {
     "subscription": "tenant",
