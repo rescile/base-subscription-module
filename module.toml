@@ -28,10 +28,3 @@ default = "Solution"
 description = "The tenant represents the organization that owns a service."
 required = true
 default = "Rescile"
-
-#[assets."identity.csv"]
-#resource_type = "identity"
-#name_template = "{{- name | lower -}}-{{- function | lower -}}"
-#match_on = [
-#    { property = "active", value = true }
-#]

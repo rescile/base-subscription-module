@@ -2,7 +2,7 @@
   "aws": {
     "name": "AWS",
     "display": "Amazon Web Services",
-    "function": "cloud",
+    "function": "access",
     "country": "US",
     "sla": "https://aws.amazon.com/legal/service-level-agreements/",
     "service": [
@@ -42,7 +42,7 @@
   "azure": {
     "name": "Azure",
     "display": "Microsoft Azure",
-    "function": "cloud",
+    "function": "access",
     "country": "US",
     "sla":  "https://azure.microsoft.com/en-us/support/legal/sla/",
     "service": [
@@ -68,7 +68,7 @@
   "gcp": {
     "name": "GCP",
     "display": "Google Cloud Platform",
-    "function": "cloud",
+    "function": "access",
     "country": "US",
     "sla": "https://cloud.google.com/terms/sla",
     "service": [
@@ -94,7 +94,7 @@
   "oci": {
     "name": "OCI",
     "display": "Oracle Cloud Infrastructure",
-    "function": "cloud",
+    "function": "access",
     "country": "US",
     "sla": "https://www.oracle.com/cloud/sla/",
     "service": [
@@ -120,7 +120,7 @@
   "ibm": {
     "name": "IBM Cloud",
     "display": "IBM Cloud",
-    "function": "cloud",
+    "function": "access",
     "country": "US",
     "sla": "https://cloud.ibm.com/docs/overview?topic=overview-slas",
     "service": [
@@ -190,7 +190,7 @@
   "i3D": {
     "name": "i3D",
     "display": "i3D.net",
-    "function": "baremetal",
+    "function": "core",
     "category": "bare-metal-as-a-service",
     "country": "NL",
     "sla": "https://www.i3d.net/legal/terms-and-conditions/",
@@ -256,7 +256,7 @@
   "Scaleway": {
     "name": "Scaleway",
     "display": "Scaleway",
-    "function": "cloud",
+    "function": "access",
     "country": "FR",
     "sla": "https://www.scaleway.com/en/terms/sla/",
     "service": [
@@ -404,7 +404,7 @@
   "Leafcloud": {
     "name": "Leafcloud",
     "identifier": "Leafcloud",
-    "function": "cloud",
+    "function": "access",
     "country": "NL",
     "sla": "https://leaf.cloud/legal/",
     "service": [

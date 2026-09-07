@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_id": "Base Subscription Module",
+  "version": "0.0.1",
+  "description": "A base subscription provides a enables a consistent and repeatable provisioning process for multi-cloud environments.",
+  "resources": {
+    "identity": {
+      "description": "",
+      "properties": {
+        "uid": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "function": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "services": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "domains",
+        "function",
+        "name",
+        "status",
+        "uid"
+      ],
+      "type": "object",
+      "relations": {},
+      "capabilities": {
+        "actions": {},
+        "ui": {}
+      }
+    }
+  }
+}
