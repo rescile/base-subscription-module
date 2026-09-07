@@ -3,7 +3,6 @@
     "name": "AWS",
     "display": "Amazon Web Services",
     "function": "cloud",
-    "category": "public-cloud",
     "country": "US",
     "sla": "https://aws.amazon.com/legal/service-level-agreements/",
     "service": [
@@ -20,6 +19,20 @@
       "vpn",
       "private-connectivity"
     ],
+    "dictionary": {
+      "subscription": "management-account",
+      "account": "account",
+      "network": "vpc",
+      "subnet": "subnet",
+      "router": "transit-gateway",
+      "gateway": "gateway",
+      "vault": "kms",
+      "wallet": "wallet",
+      "resolver": "resolver",
+      "zone": "hosted-zone",
+      "record": "record",
+      "region": "region"
+    },
     "regions": true,
     "multi_region": true,
     "api": true,
@@ -30,7 +43,6 @@
     "name": "Azure",
     "display": "Microsoft Azure",
     "function": "cloud",
-    "category": "public-cloud",
     "country": "US",
     "sla":  "https://azure.microsoft.com/en-us/support/legal/sla/",
     "service": [
@@ -57,7 +69,6 @@
     "name": "GCP",
     "display": "Google Cloud Platform",
     "function": "cloud",
-    "category": "public-cloud",
     "country": "US",
     "sla": "https://cloud.google.com/terms/sla",
     "service": [
@@ -84,7 +95,6 @@
     "name": "OCI",
     "display": "Oracle Cloud Infrastructure",
     "function": "cloud",
-    "category": "public-cloud",
     "country": "US",
     "sla": "https://www.oracle.com/cloud/sla/",
     "service": [
@@ -111,7 +121,6 @@
     "name": "IBM Cloud",
     "display": "IBM Cloud",
     "function": "cloud",
-    "category": "public-cloud",
     "country": "US",
     "sla": "https://cloud.ibm.com/docs/overview?topic=overview-slas",
     "service": [
@@ -135,8 +144,7 @@
   "OVH": {
     "name": "OVH",
     "display": "OVHcloud",
-    "function": "baremetal",
-    "category": "bare-metal-as-a-service",
+    "function": "core",
     "country": "FR",
     "sla": "https://www.ovhcloud.com/en/legal/",
     "service": [
@@ -160,8 +168,7 @@
   "Hetzner": {
     "name": "Hetzner",
     "display": "Hetzner Dedicated",
-    "function": "baremetal",
-    "category": "bare-metal-as-a-service",
+    "function": "core",
     "country": "DE",
     "sla": "https://www.hetzner.com/legal/cloud-server/",
     "service": [
@@ -205,8 +212,7 @@
   "Leaseweb": {
     "name": "Leaseweb",
     "display": "Leaseweb",
-    "function": "baremetal",
-    "category": "bare-metal-as-a-service",
+    "function": "core",
     "country": "NL",
     "sla": "https://www.leaseweb.com/en/products-services/service-level-agreements",
     "service": [
@@ -229,8 +235,7 @@
   "Worldstream": {
     "name": "Worldstream",
     "display": "Worldstream",
-    "function": "baremetal",
-    "category": "bare-metal-as-a-service",
+    "function": "core",
     "country": "NL",
     "sla": "https://www.worldstream.com/legal/",
     "service": [
@@ -252,7 +257,6 @@
     "name": "Scaleway",
     "display": "Scaleway",
     "function": "cloud",
-    "category": "public-cloud",
     "country": "FR",
     "sla": "https://www.scaleway.com/en/terms/sla/",
     "service": [
@@ -276,8 +280,7 @@
   "Online.net": {
     "name": "Online",
     "display": "Online.net",
-    "function": "baremetal",
-    "category": "bare-metal-as-a-service",
+    "function": "core",
     "country": "FR",
     "sla": "https://www.online.net/en/terms-of-service",
     "service": [
@@ -295,8 +298,7 @@
   "Contabo": {
     "name": "Contabo",
     "display": "Contabo",
-    "function": "baremetal",
-    "category": "dedicated-server",
+    "function": "core",
     "country": "DE",
     "sla": "https://contabo.com/en/terms-and-conditions/",
     "service": [
@@ -315,8 +317,7 @@
   "Servers.com": {
     "name": "Servers.com",
     "display": "Servers.com",
-    "function": "baremetal",
-    "category": "bare-metal-as-a-service",
+    "function": "core",
     "country": "NL",
     "sla": "https://www.servers.com/legal/support-service-availability",
     "service": [
@@ -337,8 +338,7 @@
   "Megaport": {
     "name": "Megaport",
     "display": "Megaport",
-    "function": "naas",
-    "category": "network-as-a-service",
+    "function": "backbone",
     "country": "AU",
     "sla": "https://www.megaport.com/legal/",
     "service": [
@@ -357,8 +357,7 @@
   "Cloudflare": {
     "name": "Cloudflare",
     "display": "Cloudflare",
-    "function": "naas",
-    "category": "network-and-edge-as-a-service",
+    "function": "edge",
     "country": "US",
     "sla": "https://www.cloudflare.com/business-sla/",
     "service": [
@@ -381,8 +380,7 @@
   "Latitude.sh": {
     "name": "Latitude.sh",
     "identifier": "Latitude.sh",
-    "function": "baremetal",
-    "category": "bare-metal-as-a-service",
+    "function": "core",
     "country": "US",
     "sla": "https://www.latitude.sh/legal/",
     "service": [
@@ -407,7 +405,6 @@
     "name": "Leafcloud",
     "identifier": "Leafcloud",
     "function": "cloud",
-    "category": "sovereign-cloud",
     "country": "NL",
     "sla": "https://leaf.cloud/legal/",
     "service": [

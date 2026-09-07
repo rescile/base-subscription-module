@@ -7,7 +7,7 @@ provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-
 match_on = [ { property = "function", value = "service" } ]
 resource_type = "login"
 relation_type = "SATISFIES"
-name = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}-{{ origin_resource.function -}}-login"
+name = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}-{{- operator[provider_name].service -}}-{{ origin_resource.function -}}-login"
 [create_resource.properties]
 function = "{{ origin_resource.function -}}"
 provider = "{{- operator[provider_name] -}}"
@@ -21,5 +21,5 @@ with = "subscription"
 join = { local = "provider", remote = "provider" }
 create_relation = { type = "SATISFIES" }
 copy_properties = [
-  { from = "platform", as = "service" }
+  { from = "portfolio", as = "service" }
 ]
