@@ -1,4 +1,4 @@
-origin_resource = "network"
+origin_resource = "firewall"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
 resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
@@ -6,21 +6,20 @@ ports = { "template!" = '''
 {%- set p = [] -%}
 {%- set filters = origin_resource.filter -%}
     {% for f in filters %}
-    {% if f.function == 'ingress' %}
         {%- set_global p = p | concat(with=f.port) -%}
-    {%- endif -%}
     {%- endfor -%}
 {{- p | unique | safe -}}
 ''' }
 
 [[create_resource]]
-#match_on = [expression = "{% if 53 in ports %}true{% else %}false{% endif %}"] missing expression
+match_on = [ { expression = "{% if 53 in ports %}true{% endif %}" } ]
 resource_type = "resolver"
 relation_type = "DEFINED_BY"
 name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- resource_id.resolver -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
 provider_type = "{{- resource_id.resolver -}}"
+ports = "{{- ports -}}"
 zone = ["my.rescile.com"]
 description = "The DNS resolver is a managed, authoritative name service that operates exclusively within the control plane of a cloud network."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
