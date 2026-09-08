@@ -15,7 +15,7 @@ name = "{{- origin_resource.provider.name | lower -}}-{{- params.solution | lowe
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
 cidr = "{{- segments[property.index] -}}"
-firewall = ["default"]
+firewall = ["default","internet"]
 subnet = ["a", "b"]
 gateway = ["inbound"]
 description = "The {{ origin_resource.function }} network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet."

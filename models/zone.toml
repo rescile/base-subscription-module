@@ -4,25 +4,13 @@ provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-
 resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
 
 [[create_resource]]
-resource_type = "zone"
-relation_type = "DEPENDS_ON"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-private-{{- resource_id.zone -}}"
-[create_resource.properties]
-function = "private"
-provider_type = "{{- resource_id.zone -}}"
-domain = "internal.utils.com"
-description = "A DNS zone is an administrative namespace that a single entity manages, containing resource records that map domain names to IP addresses."
-created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
-
-[[create_resource]]
 create_from = { property = "zone" }
 relation_type = "DEPENDS_ON"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-public-{{- resource_id.zone -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function -}}-{{- resource_id.zone -}}"
 [create_resource.properties]
-function = "public"
-provider_type = "{{- resource_id.zone -}}"
+function = "{{- origin_resource.function -}}"
 domain = "{{- property.value | lower -}}"
-description = "A DNS zone is an administrative namespace that a single entity manages, containing resource records that map domain names to IP addresses."
+description = "The {{ origin_resource.function }} hosted DNS zone is an administrative namespace that a single entity manages, containing resource records that map domain names to IP addresses."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
 origin_resource = "zone"
