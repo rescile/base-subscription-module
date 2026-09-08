@@ -1,16 +1,22 @@
-origin_resource = "service"
+origin_resource = "login"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
 resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
 
 [[create_resource]]
-resource_type = "policy"
+create_from = { property = "permission" }
 relation_type = "DERIVED_FROM"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower }}-policy"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower }}-{{ property.value | lower }}-permission"
 [create_resource.properties]
 function = "allow"
-#role = "{{- original_resource.role[0] -}}"
 description = "tbd"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
 # "eks:DescribeCluster","eks:ListClusters","eks:AccessKubernetesApi"
+
+#origin_resource = "role"
+
+#[[link_resources]]
+#with = "permission"
+#join = { local = "service", remote = "service" }
+#create_relation = { type = "DEPENDS_ON" }
