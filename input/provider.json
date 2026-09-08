@@ -17,19 +17,19 @@
       "iam",
       "firewall",
       "vpn",
-      "private-connectivity"
+      "connectivity"
     ],
     "dictionary": {
-      "subscription": "management-account",
+      "subscription": "management_account",
       "account": "account",
       "network": "vpc",
       "subnet": "subnet",
-      "router": "transit-gateway",
+      "router": "transit_gateway",
       "gateway": "gateway",
       "vault": "kms",
       "wallet": "wallet",
       "resolver": "resolver",
-      "zone": "hosted-zone",
+      "zone": "hosted_zone",
       "record": "record",
       "region": "region"
     },
@@ -57,7 +57,7 @@
       "iam",
       "firewall",
       "vpn",
-      "private-connectivity"
+      "connectivity"
     ],
     "regions": true,
     "multi_region": true,
@@ -83,7 +83,7 @@
       "iam",
       "firewall",
       "vpn",
-      "private-connectivity"
+      "connectivity"
     ],
     "regions": true,
     "multi_region": true,
@@ -109,7 +109,7 @@
       "iam",
       "firewall",
       "vpn",
-      "private-connectivity"
+      "connectivity"
     ],
     "regions": true,
     "multi_region": true,
@@ -157,7 +157,7 @@
       "firewall",
       "load-balancer",
       "kubernetes",
-      "private-connectivity"
+      "connectivity"
     ],
     "regions": true,
     "multi_region": true,
@@ -201,7 +201,7 @@
       "private-network",
       "ip-management",
       "ddos-protection",
-      "private-connectivity"
+      "connectivity"
     ],
     "regions": true,
     "multi_region": true,
@@ -345,7 +345,7 @@
       "layer2-connectivity",
       "cloud-connect",
       "virtual-cross-connect",
-      "private-connectivity",
+      "connectivity",
       "internet-exchange"
     ],
     "regions": true,
@@ -367,7 +367,7 @@
       "cdn",
       "edge",
       "zero-trust",
-      "private-connectivity",
+      "connectivity",
       "load-balancer",
       "firewall"
     ],

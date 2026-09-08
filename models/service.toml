@@ -1,14 +1,14 @@
-origin_resource = "key"
+origin_resource = "token"
 
 operator = { "json!" = "provider.json" }
 provider_name = { "template!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
 
 [[create_resource]]
-create_from = { property = "service" }
+resource_type = "service"
 relation_type = "SATISFIES"
-name = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}-{{- property.value -}}-service"
+name = "{{- origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower -}}-service"
 [create_resource.properties]
-function = "{{ property.value -}}"
+function = "{{ origin_resource.function -}}"
 provider = "{{- operator[provider_name] -}}"
-description = "The {{ property.value  -}} service is operated by {{- operator[provider_name].display -}}."
+description = "The {{ origin_resource.function -}} service is operated by {{- operator[provider_name].display -}}."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
