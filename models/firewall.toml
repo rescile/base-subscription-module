@@ -1,0 +1,15 @@
+origin_resource = "network"
+
+filters = { "json!" = "firewall-rules.json" }
+provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
+resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
+
+[[create_resource]]
+create_from = { property = "firewall" }
+relation_type = "PROTECTS"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower }}-{{- property.value -}}-{{- resource_id.firewall -}}"
+[create_resource.properties]
+function = "{{- origin_resource.function -}}"
+filter = ["{{- filters['unrestricted-tcp-egress'] -}}", "{{- filters['dns-udp-ingress'] -}}", "{{- filters['dns-tcp-ingress'] -}}"]
+description = "The {{ origin_resource.function }} firewall controls incoming (inbound) and outgoing (outbound) network traffic at the instance level."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

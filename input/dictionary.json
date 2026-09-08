@@ -12,7 +12,8 @@
     "zone": "hosted-zone",
     "record": "record",
     "region": "region",
-    "kubernetes": "eks"
+    "kubernetes": "eks",
+    "firewall": "security-group"
   },
   "azure": {
     "subscription": "tenant",
