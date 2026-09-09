@@ -10,7 +10,7 @@ name = "{{- provider.name | lower -}}-{{- params.solution | lower -}}"
 [create_resource.properties]
 function = "{{- params.solution -}}"
 provider_type = "{{- resource_id.subscription -}}"
-home = "{{- params.home_region -}}"
+home = "Zurich"
 provider = "{{ provider }}"
 account = ["DEV", "PROD", "INT"]
 util = ["vault", "syslog"]

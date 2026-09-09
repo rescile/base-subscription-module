@@ -13,11 +13,6 @@ graphviewer     = "https://github.com/rescile/graphviewer"
 asset-editor    = "https://github.com/rescile/asset-editor-module"
 graphiql-module = "https://github.com/rescile/rescile-graphiql-module"
 
-[params.home_region]
-description = "The location where management resources are deployed, for a cloud provider this represents the home region."
-required = true
-default = "Zurich"
-
 [params.solution]
 description = "A freeform name describing the service that is deployed, this entry is used for naming conventions."
 required = true

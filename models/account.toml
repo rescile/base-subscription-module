@@ -12,9 +12,8 @@ function = "{{- origin_resource.provider.function | lower -}}"
 provider_type = "{{- resource_id.account -}}"
 provider = "{{- origin_resource.provider -}}"
 environment = "{{- property.value | lower -}}"
-home = "{{- origin_resource.home -}}"
 template = "Core" # Only AWS
-region = ["London", "Paris"] # for multi region deployments
+region = ["{{- origin_resource.home -}}", "London", "Paris"] # for multi region deployments
 contract = "{{- origin_resource.provider.sla -}}" # Placeholder sla in provider json missing
 description = "The {{ origin_resource.provider.display }} account an independently manageable IAM security boundary within the {{ origin_resource.provider.name | upper }} subscription that enables a centralized management and grants authorized access to resources, services and configurations."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
