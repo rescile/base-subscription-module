@@ -13,10 +13,10 @@
   "roles": {
     "compute-administrator": {
       "service": "compute",
-      "resources": [
+      "component": [
         "ec2",
         "autoscaling",
-        "ec2-instance-connect",
+        "ec2instanceconnect",
         "imagebuilder"
       ],
       "permissions": [
@@ -41,11 +41,11 @@
         "ec2-instance-connect:*",
         "imagebuilder:*"
       ],
-      "notes": "Manage compute instances, images, autoscaling and instance connectivity. Restrict iam:PassRole separately to approved compute service roles."
+      "description": "Manage compute instances, images, autoscaling and instance connectivity. Restrict iam:PassRole separately to approved compute service roles."
     },
     "storage-administrator": {
       "service": "storage",
-      "resources": [
+      "component": [
         "s3",
         "ebs",
         "elasticfilesystem",
@@ -80,11 +80,11 @@
         "elasticfilesystem:*",
         "backup:*"
       ],
-      "notes": "Full operational storage administration. Protect bucket policy changes and KMS administration with separate controls where required."
+      "description": "Full operational storage administration. Protect bucket policy changes and KMS administration with separate controls where required."
     },
     "network-administrator": {
       "service": "network",
-      "resources": [
+      "component": [
         "ec2",
         "elasticloadbalancing",
         "route53",
@@ -126,11 +126,11 @@
         "elasticloadbalancing:*",
         "route53:*"
       ],
-      "notes": "Core VPC and L4/L7 network administration. Consider moving DNS, firewall, VPN and Direct Connect to their dedicated roles."
+      "description": "Core VPC and L4/L7 network administration. Consider moving DNS, firewall, VPN and Direct Connect to their dedicated roles."
     },
     "database-administrator": {
       "service": "database",
-      "resources": [
+      "component": [
         "rds",
         "rds-data",
         "dynamodb",
@@ -142,11 +142,11 @@
         "dynamodb:*",
         "elasticache:*"
       ],
-      "notes": "Operational administration of database services. Exclude IAM, KMS key administration and account-level controls."
+      "description": "Operational administration of database services. Exclude IAM, KMS key administration and account-level controls."
     },
     "container-administrator": {
       "service": "container",
-      "resources": [
+      "component": [
         "ecs",
         "ecr"
       ],
@@ -154,11 +154,11 @@
         "ecs:*",
         "ecr:*"
       ],
-      "notes": "ECS cluster/service/task and container registry administration. Restrict iam:PassRole to ECS task/execution roles."
+      "description": "ECS cluster/service/task and container registry administration. Restrict iam:PassRole to ECS task/execution roles."
     },
     "kubernetes-administrator": {
       "service": "kubernetes",
-      "resources": [
+      "component": [
         "eks",
         "eks-auth"
       ],
@@ -166,11 +166,11 @@
         "eks:*",
         "eks-auth:AssumeRoleForPodIdentity"
       ],
-      "notes": "EKS control-plane and cluster administration. Kubernetes RBAC remains separate from AWS IAM permissions."
+      "description": "EKS control-plane and cluster administration. Kubernetes RBAC remains separate from AWS IAM permissions."
     },
     "loadbalancer-administrator": {
-      "service": "load_balancer",
-      "resources": [
+      "service": "loadbalancer",
+      "component": [
         "elasticloadbalancing",
         "ec2"
       ],
@@ -186,11 +186,11 @@
         "ec2:CreateTags",
         "ec2:DeleteTags"
       ],
-      "notes": "Dedicated ELB administration with only the EC2 permissions normally needed for associated networking and security groups."
+      "description": "Dedicated ELB administration with only the EC2 permissions normally needed for associated networking and security groups."
     },
     "dns-administrator": {
       "service": "dns",
-      "resources": [
+      "component": [
         "route53",
         "route53resolver"
       ],
@@ -198,11 +198,11 @@
         "route53:*",
         "route53resolver:*"
       ],
-      "notes": "Route 53 public/private DNS and Resolver administration. DNSSEC/KMS operations should be separately governed if required."
+      "description": "Route 53 public/private DNS and Resolver administration. DNSSEC/KMS operations should be separately governed if required."
     },
     "iam-administrator": {
       "service": "iam",
-      "resources": [
+      "component": [
         "iam",
         "sts"
       ],
@@ -210,11 +210,11 @@
         "iam:*",
         "sts:GetCallerIdentity"
       ],
-      "notes": "Highly privileged role. In a regulated environment use JIT elevation, MFA, approval and strong CloudTrail monitoring. Do not grant Organizations or billing permissions by default."
+      "description": "Highly privileged role. In a regulated environment use JIT elevation, MFA, approval and strong CloudTrail monitoring. Do not grant Organizations or billing permissions by default."
     },
     "firewall-administrator": {
       "service": "firewall",
-      "resources": [
+      "component": [
         "network-firewall",
         "ec2"
       ],
@@ -225,11 +225,11 @@
         "ec2:ModifyVpcEndpoint",
         "ec2:DeleteVpcEndpoints"
       ],
-      "notes": "AWS Network Firewall administration. Resource/tag conditions should normally restrict this role to designated firewall resources."
+      "description": "AWS Network Firewall administration. Resource/tag conditions should normally restrict this role to designated firewall resources."
     },
     "vpn-administrator": {
       "service": "vpn",
-      "resources": [
+      "component": [
         "ec2"
       ],
       "permissions": [
@@ -257,11 +257,11 @@
         "ec2:CreateTags",
         "ec2:DeleteTags"
       ],
-      "notes": "Site-to-site and Client VPN operations. Certificates, private CA and IAM identity administration remain outside this role."
+      "description": "Site-to-site and Client VPN operations. Certificates, private CA and IAM identity administration remain outside this role."
     },
     "connectivity-administrator": {
       "service": "connectivity",
-      "resources": [
+      "component": [
         "directconnect",
         "ec2"
       ],
@@ -283,7 +283,7 @@
         "ec2:CreateTags",
         "ec2:DeleteTags"
       ],
-      "notes": "Direct Connect and Transit Gateway connectivity. Provider/partner-side provisioning is outside AWS IAM."
+      "description": "Direct Connect and Transit Gateway connectivity. Provider/partner-side provisioning is outside AWS IAM."
     }
   }
 }

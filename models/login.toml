@@ -14,7 +14,7 @@ function = "{{- origin_resource.function -}}"
 provider = "{{- operator[provider_name] -}}"
 permission = "{{- roles[role_name].permissions -}}"
 channel = ["email", "alert", "notification"]
-description = "The login provides access and defines the permissions of a {{ origin_resource.function }} service administrator."
+description = "{{- roles[role_name].description -}}"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
 origin_resource = "identity"
