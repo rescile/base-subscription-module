@@ -8,8 +8,8 @@
         "ISAE": ["Access Controls"]
       },
       "roles": [
-        "cloud-iam-admin",
-        "cloud-platform-admin"
+        "iam-admin",
+        "platform-admin"
       ]
     },
 
@@ -21,15 +21,15 @@
         "ISAE": ["Change Management"]
       },
       "roles": [
-        "cloud-compute-admin",
-        "cloud-network-admin",
-        "cloud-storage-admin",
-        "cloud-database-admin",
-        "cloud-container-admin",
-        "cloud-kubernetes-admin",
-        "cloud-load-balancer-admin",
-        "cloud-dns-admin",
-        "cloud-connectivity-admin"
+        "compute-admin",
+        "network-admin",
+        "storage-admin",
+        "database-admin",
+        "container-admin",
+        "kubernetes-admin",
+        "load-balancer-admin",
+        "dns-admin",
+        "connectivity-admin"
       ]
     },
 
@@ -41,8 +41,8 @@
         "ISAE": ["Monitoring"]
       },
       "roles": [
-        "cloud-audit-admin",
-        "cloud-security-admin"
+        "audit-admin",
+        "security-admin"
       ]
     },
 
@@ -54,9 +54,9 @@
         "ISAE": ["Logical Access", "Network Security"]
       },
       "roles": [
-        "cloud-network-admin",
-        "cloud-security-admin",
-        "cloud-connectivity-admin"
+        "network-admin",
+        "security-admin",
+        "connectivity-admin"
       ]
     },
 
@@ -68,9 +68,9 @@
         "ISAE": ["Data Protection"]
       },
       "roles": [
-        "cloud-storage-admin",
-        "cloud-database-admin",
-        "cloud-security-admin"
+        "storage-admin",
+        "database-admin",
+        "security-admin"
       ]
     },
 
@@ -82,7 +82,7 @@
         "ISAE": ["Evidence", "Monitoring"]
       },
       "roles": [
-        "cloud-audit-admin"
+        "audit-admin"
       ]
     }
   }

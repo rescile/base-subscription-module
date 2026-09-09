@@ -1,7 +1,7 @@
 uid,name,function,domain,services,status
 3001,a.chen@cloudcorp.com,administrator,access,"compute,storage",true
-2001,b.loud@cloudcorp.com,engineer,access,"network,load-balancer,dns,firewall,vpn",true
-2002,j.doe@cloudcorp.com,engineer,access,"database",true
+2001,b.loud@cloudcorp.com,administrator,access,"network,load_balancer,dns,firewall,vpn",true
+2002,j.doe@cloudcorp.com,administrator,access,"database",true
 3002,j.smith@cloudcorp.com,administrator,access,"container,kubernetes",true
 1001,k.mueller@cloudcorp.com,auditor,access,"iam",true
-2003,s.rivera@cloudcorp.com,engineer,access,"compute,storage,network,database,container,kubernetes,load-balancer,dns,iam,firewall,vpn",false
+2003,s.rivera@cloudcorp.com,administrator,access,"compute,storage,network,database,container,kubernetes,load_balancer,dns,iam,firewall,vpn",false
