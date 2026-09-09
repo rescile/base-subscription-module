@@ -12,7 +12,7 @@ function = "{{- property.value | lower -}}"
 provider_type = "{{- resource_id.wallet -}}"
 key = "{{- origin_resource.keys -}}"
 secret = ["compute", "database", "iam", "vpn"]
-certificate = ["storage", "database", "kubernetes", "loadbalancer", "dns", "iam", "vpn", "connectivity"]
+certificate = ["compute", "storage", "database", "kubernetes", "loadbalancer", "dns", "iam", "vpn", "connectivity"]
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
 origin_resource = "wallet"
