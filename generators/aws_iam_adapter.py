@@ -1,3 +1,7 @@
+# ---------------------------------------------------------------------------
+# Still under development
+# ---------------------------------------------------------------------------
+
 #!/usr/bin/env python3
 """
 Rescile cloud authorization adapter.
@@ -28,7 +32,8 @@ from typing import Any
 # adapter implementation details and should be versioned independently.
 # ---------------------------------------------------------------------------
 
-AWS_OPERATION_ACTIONS: dict[str, list[str]] =
+# Reference missing
+# AWS_OPERATION_ACTIONS: dict[str, list[str]] =
 
 
 @dataclass

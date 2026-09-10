@@ -21,15 +21,15 @@
         "ISAE": ["Change Management"]
       },
       "roles": [
-        "compute-admin",
-        "network-admin",
-        "storage-admin",
-        "database-admin",
-        "container-admin",
-        "kubernetes-admin",
-        "load-balancer-admin",
-        "dns-admin",
-        "connectivity-admin"
+        "compute-administrator",
+        "network-administrator",
+        "storage-administrator",
+        "database-administrator",
+        "container-administrator",
+        "kubernetes-administrator",
+        "load-balancer-administrator",
+        "dns-administrator",
+        "connectivity-administrator"
       ]
     },
 
