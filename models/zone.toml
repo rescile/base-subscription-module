@@ -1,12 +1,12 @@
 origin_resource = "resolver"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
+provider = { "json!" = "{{- provider_name -}}.json" }
 
 [[create_resource]]
 create_from = { property = "zone" }
 relation_type = "DEPENDS_ON"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function -}}-{{- resource_id.zone -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function -}}-{{- provider.dictionary.zone -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
 domain = "{{- property.value | lower -}}"

@@ -1,8 +1,7 @@
 origin_resource = "service"
 
-operator = { "json!" = "provider.json" }
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-roles = { "json!" = "aws-roles.json", jmespath = "roles" }
+provider = "{{- provider_name -}}.json"
 role_name = { "template!" = "{{ origin_resource.name | regexp(expr='s/^[^-]+-([^-]+)-.*/\\1/') | lower }}-administrator" }
 
 [[create_resource]]
@@ -11,11 +10,20 @@ relation_type = "DEFINED_BY"
 name = "{{- origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower -}}-administrator"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
-provider = "{{- operator[provider_name] -}}"
-permission = "{{- roles[role_name].permissions -}}"
+provider = "{{- provider_name -}}"
+#permission = "{{- provider.roles[role_name].permissions -}}"
 channel = ["email", "alert", "notification"]
-description = "{{- roles[role_name].description -}}"
+#description = "{{- provider.roles[role_name].description -}}"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+origin_resource = "secret"
+
+[[link_resources]]
+with = "login"
+match_with = [
+  { expression = "{% if target_resource.function == origin_resource.function %}true{% endif %}" }
+]
+create_relation = { type = "PROTECTS" }
 
 origin_resource = "identity"
 

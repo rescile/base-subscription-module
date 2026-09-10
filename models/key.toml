@@ -9,7 +9,6 @@ function = "master"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
 origin_resource = "wallet"
-operator = { "json!" = "provider.json" }
 provider_name = { "template!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
 
 [[create_resource]]
@@ -18,5 +17,5 @@ relation_type = "DEFINED_BY"
 name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower }}-key"
 [create_resource.properties]
 function = "service"
-provider = "{{- operator[provider_name] -}}"
+provider = "{{- provider_name | lower -}}"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

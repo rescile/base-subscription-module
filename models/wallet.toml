@@ -1,15 +1,14 @@
 origin_resource = "vault"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
+provider = { "json!" = "{{- provider_name -}}.json" }
 
 [[create_resource]]
 create_from = { property = "wallet" }
 relation_type = "DEPENDS_ON"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- property.value | lower -}}-{{- resource_id.wallet -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- property.value | lower -}}-{{- provider.dictionary.wallet -}}"
 [create_resource.properties]
 function = "{{- property.value | lower -}}"
-provider_type = "{{- resource_id.wallet -}}"
 key = "{{- origin_resource.keys -}}"
 secret = ["compute", "database", "iam", "vpn"]
 certificate = ["compute", "storage", "database", "kubernetes", "loadbalancer", "dns", "iam", "vpn", "connectivity"]

@@ -1,19 +1,17 @@
 origin_resource = "subscription"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
+provider = { "json!" = "{{- provider_name -}}.json" }
 
 [[create_resource]]
 create_from = { property = "account" }
 relation_type = "BASELINE_TEMPLATE"
-name = "{{- origin_resource.name | upper -}}-{{- property.value  | upper -}}"
+name = "{{- origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | upper -}}-{{- property.value  | upper -}}-{{- provider.dictionary.account | upper -}}"
 [create_resource.properties]
-function = "{{- origin_resource.provider.function | lower -}}"
-provider_type = "{{- resource_id.account -}}"
+function = "{{- origin_resource.function | lower -}}"
 provider = "{{- origin_resource.provider -}}"
 environment = "{{- property.value | lower -}}"
 template = "Core" # Only AWS
 region = ["{{- origin_resource.home -}}", "London", "Paris"] # for multi region deployments
-contract = "{{- origin_resource.provider.sla -}}" # Placeholder sla in provider json missing
-description = "The {{ origin_resource.provider.display }} account an independently manageable IAM security boundary within the {{ origin_resource.provider.name | upper }} subscription that enables a centralized management and grants authorized access to resources, services and configurations."
+description = "The {{ provider_name }} account an independently manageable IAM security boundary within the {{ origin_resource.name | upper }} subscription that enables a centralized management and grants authorized access to resources, services and configurations."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

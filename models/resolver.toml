@@ -1,7 +1,7 @@
 origin_resource = "firewall"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
+provider = { "json!" = "{{- provider_name -}}.json" }
 ports = { "template!" = '''
 {%- set p = [] -%}
 {%- set filters = origin_resource.filter -%}
@@ -15,10 +15,9 @@ ports = { "template!" = '''
 match_on = [ { expression = "{% if 53 in ports %}true{% endif %}" } ]
 resource_type = "resolver"
 relation_type = "SATISFIES"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function -}}-dns-{{- resource_id.resolver -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function -}}-dns-{{- provider.dictionary.resolver -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
-provider_type = "{{- resource_id.resolver -}}"
 ports = "{{- ports -}}"
 zone = [ '''
     {% if origin_resource.function == 'public' %}

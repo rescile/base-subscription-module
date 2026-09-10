@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "AWS Provider File",
+  "title": "AWS Provider Definition File",
   "version": "1.0",
   "description": "Amazon Web Services (AWS) is a comprehensive, globally distributed cloud computing provider for on-demand IT infrastructure—including compute power, storage, databases, networking, and analytics—over the internet on a pay-as-you-go basis.",
   "name": "AWS",
@@ -9,18 +9,20 @@
   "country": "US",
   "sla": "https://aws.amazon.com/legal/service-level-agreements/",
   "dictionary": {
-    "subscription": "managementaccount",
+    "subscription": "management_account",
     "account": "account",
     "network": "vpc",
     "subnet": "subnet",
-    "router": "transitgateway",
+    "router": "transit_gateway",
     "gateway": "gateway",
     "vault": "kms",
     "wallet": "wallet",
     "resolver": "resolver",
     "zone": "hostedzone",
     "record": "record",
-    "region": "region"
+    "region": "region",
+    "kubernetes": "eks",
+    "firewall": "security_group"
   },
   "services": [
     "compute",
@@ -29,7 +31,7 @@
     "database",
     "container",
     "kubernetes",
-    "loadbalancer",
+    "load_balancer",
     "dns",
     "iam",
     "firewall",

@@ -1,7 +1,7 @@
 origin_resource = "router"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
+provider = { "json!" = "{{- provider_name -}}.json" }
 segments = { "template!" = '''
     {%- set count = origin_resource.network | length -%}
     {%- set range = origin_resource.cidr -%}
@@ -11,12 +11,12 @@ segments = { "template!" = '''
 [[create_resource]]
 create_from = { property = "network" }
 relation_type = "DEPENDS_ON"
-name = "{{- origin_resource.provider.name | lower -}}-{{- params.solution | lower -}}-{{- property.value | lower -}}-{{- resource_id.network -}}"
+name = "{{- provider_name | lower -}}-{{- params.solution | lower -}}-{{- property.value | lower -}}-{{- provider.dictionary.network -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
 cidr = "{{- segments[property.index] -}}"
 firewall = ["default","internet"]
 subnet = ["a", "b"]
-gateway = ["inbound"]
+gateway = [] # Add value to create a route level gateway, e.g. for third-party services
 description = "The {{ origin_resource.function }} network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

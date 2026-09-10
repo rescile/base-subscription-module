@@ -1,16 +1,15 @@
 origin_resource = "zone"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-resource_id = { "json!" = "dictionary.json", jmespath = "values(@)[?name == provider_name ] | [0]" }
+provider = { "json!" = "{{- provider_name -}}.json" }
 
 [[create_resource]]
 match_on = [ { property = "function", value = "public" } ]
 create_from = { property = "record" }
 relation_type = "DERIVED_FROM"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function | lower -}}-{{- property.value | lower -}}-{{- resource_id.record -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function | lower -}}-{{- property.value | lower -}}-{{- provider.dictionary.record -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
-provider_type = "{{- resource_id.record -}}"
 record_type = "A"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
@@ -18,10 +17,9 @@ created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 match_on = [ { property = "function", value = "private" } ]
 create_from = { property = "record" }
 relation_type = "DERIVED_FROM"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function | lower -}}-{{- property.value | lower -}}-{{- resource_id.record -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function | lower -}}-{{- property.value | lower -}}-{{- provider.dictionary.record -}}"
 [create_resource.properties]
 function = "{{- property.value | lower -}}"
-provider_type = "{{- resource_id.record -}}"
 uri = "{{- property.value | lower -}}.{{- origin_resource.name -}}"
 record_type = "A"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
