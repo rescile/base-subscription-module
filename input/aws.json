@@ -196,7 +196,7 @@
       ],
       "description": "EKS control-plane and cluster administration. Kubernetes RBAC remains separate from AWS IAM permissions."
     },
-    "loadbalancer-administrator": {
+    "load_balancer-administrator": {
       "service": "loadbalancer",
       "component": [
         "elasticloadbalancing",

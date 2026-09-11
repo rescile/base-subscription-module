@@ -1,8 +1,9 @@
 origin_resource = "service"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-provider = "{{- provider_name -}}.json"
+provider = { "json!" = "{{- provider_name -}}.json" }
 role_name = { "template!" = "{{ origin_resource.name | regexp(expr='s/^[^-]+-([^-]+)-.*/\\1/') | lower }}-administrator" }
+roles = { "json!" = "{{- provider_name -}}.json", jmespath = "roles" }
 
 [[create_resource]]
 resource_type = "login"
@@ -10,10 +11,9 @@ relation_type = "DEFINED_BY"
 name = "{{- origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower -}}-administrator"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
-provider = "{{- provider_name -}}"
-#permission = "{{- provider.roles[role_name].permissions -}}"
+permission = "{{- roles[role_name].permissions -}}"
 channel = ["email", "alert", "notification"]
-#description = "{{- provider.roles[role_name].description -}}"
+description = "{{- roles[role_name].description -}}"
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
 origin_resource = "secret"
