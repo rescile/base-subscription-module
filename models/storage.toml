@@ -1,0 +1,34 @@
+origin_resource = "endpoint"
+
+provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
+provider = { "json!" = "{{- provider_name -}}.json" }
+services = { "json!" = "{{- provider_name -}}.json", jmespath = "values(roles)[?service == 'storage' ] | [0]" }
+
+[[create_resource]]
+match_on = [{ property = "function", value = "storage" }]
+resource_type = "{{- origin_resource.function | lower -}}"
+relation_type = "DEFINED_BY"
+name = "{{- origin_resource.name | regexp(expr='s/^([^-]+-[^-]+-[^-]+)-.*/\\1/') | lower -}}"
+[create_resource.properties]
+function = "{{- params.solution -}}"
+provider = "{{- provider_name -}}"
+component = "{{- services.component -}}"
+description = "Storage provided by {{ provider.display }} is an on-demand, API-driven storage infrastructure operating at multi-regional scale, designed to abstract physical hardware into elastic utility services."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+origin_resource = "storage"
+
+decoder = {
+    "s3" = "object",
+    "ebs" = "block",
+    "elasticfilesystem" = "file",
+    "backup" = "backup"
+}
+
+[[create_resource]]
+create_from = { property = "component" }
+relation_type = "DERIVED_FROM"
+name = "{{- origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower -}}-{{- decoder[property.value] | lower -}}-{{- origin_resource._type -}}"
+[create_resource.properties]
+function = "{{- property.value -}}"
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
