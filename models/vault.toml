@@ -1,13 +1,13 @@
 origin_resource = "record"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-provider = { "json!" = "{{- provider_name -}}.json" }
+decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
 
 [[create_resource]]
 match_on = [ { property = "function", value = "vault" } ]
 resource_type = "vault"
 relation_type = "SATISFIES"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- params.solution | lower -}}-{{- provider.dictionary.vault -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- params.solution | lower -}}-{{- decoder.resource.vault -}}"
 [create_resource.properties]
 function = "encryption"
 provider = "{{- provider_name | lower -}}"
@@ -21,5 +21,5 @@ with = "subscription"
 join = { local = "provider", remote = "provider" }
 create_relation = { type = "SATISFIES" }
 copy_properties = [
-  { from = "portfolio", as = "keys" }
+  { from = "services", as = "keys" }
 ]

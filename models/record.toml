@@ -1,13 +1,13 @@
 origin_resource = "zone"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-provider = { "json!" = "{{- provider_name -}}.json" }
+decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
 
 [[create_resource]]
 match_on = [ { property = "function", value = "public" } ]
 create_from = { property = "record" }
 relation_type = "DERIVED_FROM"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function | lower -}}-{{- property.value | lower -}}-{{- provider.dictionary.record -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function | lower -}}-{{- property.value | lower -}}-{{- decoder.resource.record -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
 record_type = "A"
@@ -17,7 +17,7 @@ created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 match_on = [ { property = "function", value = "private" } ]
 create_from = { property = "record" }
 relation_type = "DERIVED_FROM"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function | lower -}}-{{- property.value | lower -}}-{{- provider.dictionary.record -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower }}-{{- origin_resource.function | lower -}}-{{- property.value | lower -}}-{{- decoder.resource.record -}}"
 [create_resource.properties]
 function = "{{- property.value | lower -}}"
 uri = "{{- property.value | lower -}}.{{- origin_resource.name -}}"

@@ -1,7 +1,7 @@
 origin_resource = "router"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-provider = { "json!" = "{{- provider_name -}}.json" }
+decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
 segments = { "template!" = '''
     {%- set count = origin_resource.network | length -%}
     {%- set range = origin_resource.cidr -%}
@@ -11,7 +11,7 @@ segments = { "template!" = '''
 [[create_resource]]
 create_from = { property = "network" }
 relation_type = "DEPENDS_ON"
-name = "{{- provider_name | lower -}}-{{- params.solution | lower -}}-{{- property.value | lower -}}-{{- provider.dictionary.network -}}"
+name = "{{- provider_name | lower -}}-{{- params.solution | lower -}}-{{- property.value | lower -}}-{{- decoder.resource.network -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function -}}"
 cidr = "{{- segments[property.index] -}}"

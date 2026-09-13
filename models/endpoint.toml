@@ -1,7 +1,7 @@
 origin_resource = "certificate"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-provider = { "json!" = "{{- provider_name -}}.json" }
+decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
 
 [[create_resource]]
 resource_type = "endpoint"
@@ -10,5 +10,5 @@ name = "{{- provider_name -}}-{{- params.solution | lower -}}-{{- origin_resourc
 [create_resource.properties]
 function = "{{ origin_resource.function -}}"
 provider = "{{- provider_name -}}"
-description = "The {{ origin_resource.function -}} endpoint is provided by {{- provider.display -}}."
+description = "The {{ origin_resource.function -}} endpoint is provided by {{- provider_name | upper -}}."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"

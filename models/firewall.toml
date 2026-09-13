@@ -2,12 +2,12 @@ origin_resource = "network"
 
 filters = { "json!" = "firewall-rules.json" }
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-provider = { "json!" = "{{- provider_name -}}.json" }
+decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
 
 [[create_resource]]
 create_from = { property = "firewall" }
 relation_type = "PROTECTS"
-name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower }}-{{- property.value -}}-{{- provider.dictionary.firewall -}}"
+name = "{{ origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower }}-{{- property.value -}}-{{- decoder.resource.firewall -}}"
 [create_resource.properties]
 function = "{% if property.value == 'internet' %}public{% else %}private{% endif %}"
 filter = ["{{- filters['unrestricted-tcp-egress'] -}}", "{{- filters['dns-udp-ingress'] -}}", "{{- filters['dns-tcp-ingress'] -}}"]

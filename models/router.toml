@@ -1,12 +1,12 @@
 origin_resource = "region"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-provider = { "json!" = "{{- provider_name -}}.json" }
+decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
 
 [[create_resource]]
 resource_type = "router"
 relation_type = "SATISFIES"
-name = "{{- provider_name | lower -}}-{{- origin_resource.code | lower -}}-{{- provider.dictionary.router -}}"
+name = "{{- provider_name | lower -}}-{{- origin_resource.code | lower -}}-{{- decoder.resource.router -}}"
 [create_resource.properties]
 function = "{{- origin_resource.function | lower -}}"
 provider = "{{- origin_resource.provider -}}"
@@ -14,7 +14,7 @@ region = "{{- origin_resource.name -}}"
 cidr = "10.0.0.0/19"
 bgp = ["172.16.0.1/30"]
 vpn = []
-description = "The {{ provider.display }} {{ origin_resource.function }} router is a virtual appliance that analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination."
+description = "The {{ provider_name | upper }} {{ origin_resource.function }} router is a virtual appliance that analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
 origin_resource = "router"

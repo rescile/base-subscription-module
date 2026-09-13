@@ -1,0 +1,21 @@
+{
+  "title": "AWS Decoder",
+  "version": "1.0",
+  "provider": "AWS",
+  "resource": {
+    "subscription": "management_account",
+    "account": "account",
+    "network": "vpc",
+    "subnet": "subnet",
+    "router": "transit_gateway",
+    "gateway": "gateway",
+    "vault": "kms",
+    "wallet": "wallet",
+    "resolver": "resolver",
+    "zone": "hostedzone",
+    "record": "record",
+    "region": "region",
+    "kubernetes": "eks",
+    "firewall": "security_group"
+  }
+}

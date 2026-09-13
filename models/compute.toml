@@ -1,8 +1,8 @@
 origin_resource = "endpoint"
 
 provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
-provider = { "json!" = "{{- provider_name -}}.json" }
-services = { "json!" = "{{- provider_name -}}.json", jmespath = "values(roles)[?service == 'compute' ] | [0]" }
+decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
+services = { "json!" = "{{- provider_name -}}-roles.json", jmespath = "values(roles)[?service == 'compute' ] | [0]" }
 
 [[create_resource]]
 match_on = [{ property = "function", value = "compute" }]
@@ -13,7 +13,7 @@ name = "{{- origin_resource.name | regexp(expr='s/^([^-]+-[^-]+-[^-]+)-.*/\\1/')
 function = "{{- params.solution -}}"
 provider = "{{- provider_name -}}"
 component = "{{- services.component -}}"
-description = "Compute infrastructure provided by {{ provider.display }} is an on-demand, scalable processing power—ranging from virtual machines to serverless containers—that is managed entirely through code. Access and inter-node communication rely on dynamic, short-lived IAM tokens and automated TLS certificates rather than static passwords."
+description = "Compute infrastructure provided by {{ provider_name | upper }} is an on-demand, scalable processing power—ranging from virtual machines to serverless containers—that is managed entirely through code. Access and inter-node communication rely on dynamic, short-lived IAM tokens and automated TLS certificates rather than static passwords."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
 
 origin_resource = "compute"

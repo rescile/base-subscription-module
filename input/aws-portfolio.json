@@ -1,0 +1,19 @@
+{
+  "title": "AWS Portfolio",
+  "version": "1.0",
+  "provider": "AWS",
+  "services": [
+    "compute",
+    "storage",
+    "network",
+    "database",
+    "container",
+    "kubernetes",
+    "load_balancer",
+    "dns",
+    "iam",
+    "firewall",
+    "vpn",
+    "connectivity"
+  ]
+}

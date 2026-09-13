@@ -1,21 +1,31 @@
 origin_resource = "resident"
 
 provider_name = "aws"
-provider = { "json!" = "{{- provider_name -}}.json" }
+decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
+portfolio = { "json!" = "{{- provider_name -}}-portfolio.json" }
 
 [[create_resource]]
 resource_type = "subscription"
 relation_type = "DEFINED_BY"
-name = "{{- provider_name | upper -}}-{{- params.solution | upper -}}-{{- provider.dictionary.subscription | upper -}}"
+name = "{{- provider_name | upper -}}-{{- params.solution | upper -}}-{{- decoder.resource.subscription | upper -}}"
 [create_resource.properties]
 function = "{{- params.solution -}}"
 home = "Zurich"
 provider = "{{- provider_name | lower -}}"
-contract = "{{- provider.sla -}}"
-portfolio = "{{- provider.services -}}"
+services = "{{- portfolio.services -}}"
 account = ["DEV", "PROD", "INT"]
 util = ["vault", "syslog"]
 logging = true
 auditing = true
 description = "The subscription defines a cloud environment at {{- provider_name | capitalize -}} and allows {{ origin_resource.name | capitalize }} to manage it."
 created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+origin_resource = "subscription"
+
+[[link_resources]]
+with = "provider"
+join = { local = "provider", remote = "name" }
+create_relation = { type = "BASELINE_TEMPLATE" }
+copy_properties = [
+  { from = "sla", as = "contract" }
+]

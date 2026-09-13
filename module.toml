@@ -9,9 +9,10 @@ rescile_version = ">=0.1.193"
 
 # List of other modules this module depends on.
 [dependencies]
-graphviewer     = "https://github.com/rescile/graphviewer"
-asset-editor    = "https://github.com/rescile/asset-editor-module"
+graphviewer = "https://github.com/rescile/graphviewer"
+asset-editor = "https://github.com/rescile/asset-editor-module"
 graphiql-module = "https://github.com/rescile/rescile-graphiql-module"
+aws-provider = "https://github.com/rescile/aws-provider-module"
 
 [params.solution]
 description = "A freeform name describing the service that is deployed, this entry is used for naming conventions."
