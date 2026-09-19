@@ -9,8 +9,7 @@ rescile.createResource(
   origin='resident',
   resourceType='subscription',
   relationType='OWNED_BY',
-  name=provider + '-' + tenant + '-' + solution,
-  //name='{{- provider_name | upper -}}-{{- params.solution | upper -}}-{{- provider.dictionary.subscription | upper -}}',
+  name=std.asciiUpper(provider) + '-' + tenant + '-' + solution,
   properties={
     operator: provider,
     type: solution,

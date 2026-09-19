@@ -1,5 +1,3 @@
-#schemas = ["./schemas/identity.schema.json"]
-
 [module]
 name = "Base Subscription Module"
 url = "https://github.com/rescile/base_subscription_module"
@@ -11,7 +9,7 @@ rescile_version = ">=0.1.193"
 [dependencies]
 graphviewer = "https://github.com/rescile/graphviewer"
 graphiql-module = "https://github.com/rescile/rescile-graphiql-module"
-aws-provider = "https://github.com/rescile/aws-provider-module"
+#aws-provider = "https://github.com/rescile/aws-provider-module"
 
 [params.solution]
 description = "A freeform name describing the service that is deployed, this entry is used for naming conventions."
