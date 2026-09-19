@@ -1,4 +1,4 @@
-local decoder = import 'aws.libsonnet';
+local aws = import 'aws.libsonnet';
 local rescile = import 'rescile/v1/rescile.libsonnet';
 
 local provider = '{{- origin_resource.name | regexp(expr="s/^([^-]+)-.*/\\1/") | lower -}}';
