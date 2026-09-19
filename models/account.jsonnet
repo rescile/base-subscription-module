@@ -1,20 +1,23 @@
 local aws = import 'aws.libsonnet';
 local rescile = import 'rescile/v1/rescile.libsonnet';
 
-local provider = '{{- origin_resource.name | regexp(expr="s/^([^-]+)-.*/\\1/") | lower -}}';
+local parent = '{{- origin_resource.name | regexp(expr="s/^([^-]+-[^-]+)-.*/\\1/") | upper -}}';
+local provider = '{{- origin_resource.name | regexp(expr="s/^([^-]+)-.*/\\1/") | capitalize -}}';
+local timestamp = '{{- now(utc=true) | date(format="%Y-%m-%dT%H:%M:%SZ") -}}';
+local home = '{{- origin_resource.home | capitalize -}}';
 
 rescile.createResource(
   origin='subscription',
   resourceType='account',
   relationType='BASELINE_TEMPLATE',
-  name='{{- origin_resource.name | regexp(expr="s/^([^-]+-[^-]+)-.*/\\1/") | upper -}}-ACCOUNT',
+  name=parent + '-ACCOUNT',
   properties={
     type: '{{- origin_resource.type | lower -}}',
     //environment = "{{- property.value | lower -}}"
     //template = "Core" # Only AWS
-    region: ['{{- origin_resource.home -}}', 'London', 'Paris'],
+    region: [home, 'London', 'Paris'],
     description: 'The ' + provider + ' account an independently manageable IAM security boundary within the {{ origin_resource.name | capitalize }} subscription that enables a centralized management and grants authorized access to resources, services and configurations.',
-    created: '{{- now(utc=true) | date(format="%Y-%m-%dT%H:%M:%SZ") -}}',
+    created: timestamp,
   },
   id=provider
 )
