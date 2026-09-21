@@ -1,0 +1,35 @@
+origin_resource = "service"
+
+provider_name = { "function!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
+decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
+role_name = { "template!" = "{{ origin_resource.name | regexp(expr='s/^[^-]+-([^-]+)-.*/\\1/') | lower }}-administrator" }
+roles = { "json!" = "{{- provider_name -}}-roles.json", jmespath = "roles" }
+
+[[create_resource]]
+resource_type = "login"
+relation_type = "DEFINED_BY"
+name = "{{- origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower -}}-administrator"
+[create_resource.properties]
+function = "{{- origin_resource.function -}}"
+permission = "{{- roles[role_name].permissions -}}"
+channel = ["email", "alert", "notification"]
+description = "{{- roles[role_name].description -}}"
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+origin_resource = "secret"
+
+[[link_resources]]
+with = "login"
+match_with = [
+  { expression = "{% if target_resource.function == origin_resource.function %}true{% endif %}" }
+]
+create_relation = { type = "PROTECTS" }
+
+origin_resource = "identity"
+
+[[link_resources]]
+with = "login"
+match_with = [
+  { expression = "{% if target_resource.function in origin_resource.services %}true{% endif %}" },
+]
+create_relation = { type = "RESPONSIBLE_FOR" }

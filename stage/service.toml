@@ -1,0 +1,22 @@
+origin_resource = "token"
+
+provider_name = { "template!" = "{{- origin_resource.name | regexp(expr='s/^([^-]+)-.*/\\1/') | lower -}}" }
+decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
+
+[[create_resource]]
+resource_type = "service"
+relation_type = "SATISFIES"
+name = "{{- origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | lower -}}-service"
+[create_resource.properties]
+function = "{{ origin_resource.function -}}"
+description = "The {{ origin_resource.function }} service is operated by {{ provider_name | upper }}."
+created = "{{- now(utc=true) | date(format='%Y-%m-%dT%H:%M:%SZ') -}}"
+
+origin_resource = "certificate"
+
+[[link_resources]]
+with = "service"
+match_with = [
+  { expression = "{% if target_resource.function == origin_resource.function %}true{% endif %}" }
+]
+create_relation = { type = "PROTECTS" }

@@ -15,14 +15,10 @@ rescile.createResource(
   name=parent + '-{{ value }}',
   properties={
     type: type,
-    environment: "{{- value | lower -}}",
+    environment: '{{- value | lower -}}',
     //template = "Core" # Only AWS
     region: [home, 'London', 'Paris'],
-    description: 'The ' + provider + ' account an independently manageable IAM security boundary within the {{ origin_resource.name | capitalize }} subscription that enables a centralized management and grants authorized access to resources, services and configurations.',
+    description: 'The ' + provider + ' ' + aws.decode.account + ' defines an independently manageable IAM security boundary for the {{ origin_resource.name | upper }} subscription and enables a centralized management and grants authorized access to resources, services and configurations.',
     created: timestamp,
   },
 )
-
-
-//decoder = { "json!" = "{{- provider_name -}}-decoder.json" }
-//name = "{{- origin_resource.name | regexp(expr='s/^([^-]+-[^-]+)-.*/\\1/') | upper -}}-{{- property.value  | upper -}}-{{- decoder.resource.account | upper -}}"
