@@ -17,7 +17,7 @@ rescile.createResource(
     type: type,
     environment: '{{- value | lower -}}',
     //template = "Core" # Only AWS
-    region: [home, 'London', 'Paris'],
+    regions: [home, 'London', 'Paris'],
     description: 'The ' + provider + ' ' + aws.decode.account + ' defines an independently manageable IAM security boundary for the {{ origin_resource.name | upper }} subscription and enables a centralized management and grants authorized access to resources, services and configurations.',
     created: timestamp,
   },
