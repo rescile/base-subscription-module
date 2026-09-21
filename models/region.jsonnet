@@ -15,7 +15,7 @@ rescile.createResource(
   name=parent + '-{{ value | trim }}',
   properties={
     type: type,
-    locs: locations['-{{ value | trim }}'].iata,
+    locs: locations['-{{ value | trim }}'].iata,  // This doesn`t work
     created: timestamp,
   },
 )
