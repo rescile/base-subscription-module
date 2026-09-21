@@ -21,5 +21,5 @@ rescile.createResource(
     description: 'The subscription defines a cloud environment at ' + provider + ' that allows ' + tenant + ' to deploy the ' + solution + ' solution.',
     created: timestamp,
   },
-  id=provider
+  //id=provider
 )
