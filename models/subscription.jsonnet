@@ -11,7 +11,7 @@ rescile.createResource(
   relationType='OWNED_BY',
   name=std.asciiUpper(provider) + '-' + tenant + '-' + solution,
   properties={
-    operator: provider,
+    provider: provider,
     type: solution,
     home: 'Zurich',
     account: ['DEV', 'PROD', 'INT'],

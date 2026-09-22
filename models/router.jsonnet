@@ -18,6 +18,7 @@ rescile.createResource(
   name=provider + '-' + solution + '-' + location + '-' + aws.decode.router,
   properties={
     type: type,
+    provider: provider,
     cidr: cidr,
     bgp: bgp,
     vpn: vpn,
@@ -25,5 +26,4 @@ rescile.createResource(
     created: timestamp,
   },
 )
-
 
