@@ -1,0 +1,593 @@
+{
+  "vertices": [
+    {
+      "id": "5a6ebe92-825b-4c0e-b3cc-d63951badb50",
+      "label": "control",
+      "properties": {
+        "control_name": "Outsourcing",
+        "evidence_summary": {
+          "_compliance": true,
+          "audit_id": "ISAE3000",
+          "code": "COMPLIANCE",
+          "control_id": "COMPLIANCE",
+          "message": "Outsourcing",
+          "rule_id": "COMPLIANCE",
+          "severity": "CRITICAL"
+        },
+        "name": "COMPLIANCE"
+      }
+    },
+    {
+      "id": "897b6614-b513-41cd-b765-43419ac12c23",
+      "label": "resident",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::temp/resident.jsonnet:0",
+        "created": "2026-09-24T14:46:50Z",
+        "description": "The resident represents Corp and isolates data and applications from other cloud users through dedicated partitions of compute, storage and network resources.",
+        "name": "Corp"
+      }
+    },
+    {
+      "id": "5a764d59-0eb2-4be0-9ebd-4fb873d96c41",
+      "label": "region",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::region.jsonnet:0",
+        "city": "London",
+        "country": "GB",
+        "created": "2026-09-24T14:46:51Z",
+        "iata": "STN",
+        "name": "AWS-CORP-FINANCE-LONDON",
+        "timezone": "Europe/London",
+        "type": "finance"
+      }
+    },
+    {
+      "id": "509050f9-a65e-4590-b029-798f3c39ff07",
+      "label": "router",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::router.jsonnet:0",
+        "bgp": "172.16.0.1/30",
+        "cidr": "10.0.0.0/19",
+        "created": "2026-09-24T14:46:51Z",
+        "description": "Theawsfinancevirtual transit_gateway analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.",
+        "name": "aws-finance-london-transit_gateway",
+        "network": [
+          "DEV",
+          "INT",
+          "PROD"
+        ],
+        "provider": "aws",
+        "type": "finance",
+        "vpn": "tbd"
+      }
+    },
+    {
+      "id": "bd94e2b7-4e19-43e6-8d74-1c84f6135f3a",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "administrator",
+        "name": "j.doe@cloudcorp.com",
+        "original_name": "j.doe@cloudcorp.com",
+        "services": [
+          "database"
+        ],
+        "status": true,
+        "uid": 2002
+      }
+    },
+    {
+      "id": "4ae42683-91fb-469c-8db2-46e0af4dcfd8",
+      "label": "router",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::router.jsonnet:0",
+        "bgp": "172.16.0.1/30",
+        "cidr": "10.0.0.0/19",
+        "created": "2026-09-24T14:46:51Z",
+        "description": "Theawsfinancevirtual transit_gateway analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.",
+        "name": "aws-finance-paris-transit_gateway",
+        "network": [
+          "DEV",
+          "INT",
+          "PROD"
+        ],
+        "provider": "aws",
+        "type": "finance",
+        "vpn": "tbd"
+      }
+    },
+    {
+      "id": "83d68e83-e51b-40f6-a670-bb307e91cba6",
+      "label": "region",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::region.jsonnet:0",
+        "city": "Paris",
+        "country": "FR",
+        "created": "2026-09-24T14:46:51Z",
+        "iata": "ORY",
+        "name": "AWS-CORP-FINANCE-PARIS",
+        "timezone": "Europe/Paris",
+        "type": "finance"
+      }
+    },
+    {
+      "id": "d99d0799-b3b2-4c61-a95e-2ddf66368882",
+      "label": "account",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::account.jsonnet:0",
+        "created": "2026-09-24T14:46:50Z",
+        "description": "TheAwsaccountTest defines an independently manageable IAM security boundary for the AWS-CORP-FINANCE subscription that enables a centralized management and grants authorized access to resources, services and configurations.",
+        "environment": "dev",
+        "name": "AWS-CORP-FINANCE-DEV",
+        "regions": [
+          "Zurich",
+          "London",
+          "Paris"
+        ],
+        "type": "finance"
+      }
+    },
+    {
+      "id": "6863ef47-74ff-43e0-86a5-f0c20d81939d",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "auditor",
+        "name": "k.mueller@cloudcorp.com",
+        "original_name": "k.mueller@cloudcorp.com",
+        "services": [
+          "iam"
+        ],
+        "status": true,
+        "uid": 1001
+      }
+    },
+    {
+      "id": "208df86f-6906-4940-948f-9c2480cd5418",
+      "label": "router",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::router.jsonnet:0",
+        "bgp": "172.16.0.1/30",
+        "cidr": "10.0.0.0/19",
+        "created": "2026-09-24T14:46:51Z",
+        "description": "Theawsfinancevirtual transit_gateway analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.",
+        "name": "aws-finance-zurich-transit_gateway",
+        "network": [
+          "DEV",
+          "INT",
+          "PROD"
+        ],
+        "provider": "aws",
+        "type": "finance",
+        "vpn": "tbd"
+      }
+    },
+    {
+      "id": "66aa9f2f-bb22-4056-8377-ef74601614be",
+      "label": "network",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::network.jsonnet:0",
+        "cidr": [
+          "10.0.0.0/21",
+          "10.0.8.0/21",
+          "10.0.16.0/21",
+          "10.0.24.0/21"
+        ],
+        "created": "2026-09-24T14:46:51Z",
+        "name": "aws-finance-dev-vpc",
+        "type": "finance"
+      }
+    },
+    {
+      "id": "b811f734-83f9-4375-a22b-278074518243",
+      "label": "network",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::network.jsonnet:0",
+        "cidr": [
+          "10.0.0.0/21",
+          "10.0.8.0/21",
+          "10.0.16.0/21",
+          "10.0.24.0/21"
+        ],
+        "created": "2026-09-24T14:46:51Z",
+        "name": "aws-finance-int-vpc",
+        "type": "finance"
+      }
+    },
+    {
+      "id": "f0444937-832b-4b27-af31-ab138d6e548c",
+      "label": "audit",
+      "properties": {
+        "audit_name": "Assurance Report",
+        "name": "ISAE3000"
+      }
+    },
+    {
+      "id": "dbd89756-6c77-4491-bf79-3a81c383d5bb",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "administrator",
+        "name": "s.rivera@cloudcorp.com",
+        "original_name": "s.rivera@cloudcorp.com",
+        "services": [
+          "compute",
+          "storage",
+          "network",
+          "database",
+          "container",
+          "kubernetes",
+          "load_balancer",
+          "dns",
+          "iam",
+          "firewall",
+          "vpn"
+        ],
+        "status": false,
+        "uid": 2003
+      }
+    },
+    {
+      "id": "7f3bc836-4e76-4f2a-a6c1-af974c2eff43",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "administrator",
+        "name": "j.smith@cloudcorp.com",
+        "original_name": "j.smith@cloudcorp.com",
+        "services": [
+          "container",
+          "kubernetes"
+        ],
+        "status": true,
+        "uid": 3002
+      }
+    },
+    {
+      "id": "b589ddc5-df3d-48d2-80ee-4126993a64a3",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "administrator",
+        "name": "a.chen@cloudcorp.com",
+        "original_name": "a.chen@cloudcorp.com",
+        "services": [
+          "compute",
+          "storage"
+        ],
+        "status": true,
+        "uid": 3001
+      }
+    },
+    {
+      "id": "b21b00dc-50a7-49a6-9fcc-08ecd75937e4",
+      "label": "subscription",
+      "properties": {
+        "_compliance": true,
+        "_source_model_file": "mod2::Base Subscription Module::subscription.jsonnet:0",
+        "account": [
+          "DEV",
+          "PROD",
+          "INT"
+        ],
+        "audit_id": "ISAE3000",
+        "auditing": true,
+        "code": "COMPLIANCE",
+        "control_id": "COMPLIANCE",
+        "created": "2026-09-24T14:46:50Z",
+        "description": "The subscription defines a cloud environment at aws that allows CORP to deploy the FINANCE solution.",
+        "home": "Zurich",
+        "logging": true,
+        "message": "Outsourcing",
+        "name": "AWS-CORP-FINANCE",
+        "provider": "aws",
+        "rule_id": "COMPLIANCE",
+        "severity": "CRITICAL",
+        "type": "FINANCE",
+        "util": [
+          "vault",
+          "syslog"
+        ]
+      }
+    },
+    {
+      "id": "3091749e-9699-4a10-9905-6db143b3a0ec",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "administrator",
+        "name": "b.loud@cloudcorp.com",
+        "original_name": "b.loud@cloudcorp.com",
+        "services": [
+          "network",
+          "load_balancer",
+          "dns",
+          "firewall",
+          "vpn"
+        ],
+        "status": true,
+        "uid": 2001
+      }
+    },
+    {
+      "id": "bf441843-c6d3-4856-bcce-7940533bf7c0",
+      "label": "account",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::account.jsonnet:0",
+        "created": "2026-09-24T14:46:50Z",
+        "description": "TheAwsaccountTest defines an independently manageable IAM security boundary for the AWS-CORP-FINANCE subscription that enables a centralized management and grants authorized access to resources, services and configurations.",
+        "environment": "int",
+        "name": "AWS-CORP-FINANCE-INT",
+        "regions": [
+          "Zurich",
+          "London",
+          "Paris"
+        ],
+        "type": "finance"
+      }
+    },
+    {
+      "id": "017e177c-cf29-4f7d-86ce-94d3f9602fab",
+      "label": "account",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::account.jsonnet:0",
+        "created": "2026-09-24T14:46:50Z",
+        "description": "TheAwsaccountTest defines an independently manageable IAM security boundary for the AWS-CORP-FINANCE subscription that enables a centralized management and grants authorized access to resources, services and configurations.",
+        "environment": "prod",
+        "name": "AWS-CORP-FINANCE-PROD",
+        "regions": [
+          "Zurich",
+          "London",
+          "Paris"
+        ],
+        "type": "finance"
+      }
+    },
+    {
+      "id": "ec809ba3-c793-4652-8c21-347cff041863",
+      "label": "region",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::region.jsonnet:0",
+        "city": "Zurich",
+        "country": "CH",
+        "created": "2026-09-24T14:46:51Z",
+        "iata": "ZRH",
+        "name": "AWS-CORP-FINANCE-ZURICH",
+        "timezone": "Europe/Zurich",
+        "type": "finance"
+      }
+    },
+    {
+      "id": "4891cbb2-0164-4e8e-9144-0ea56e77c26f",
+      "label": "network",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::network.jsonnet:0",
+        "cidr": [
+          "10.0.0.0/21",
+          "10.0.8.0/21",
+          "10.0.16.0/21",
+          "10.0.24.0/21"
+        ],
+        "created": "2026-09-24T14:46:51Z",
+        "name": "aws-finance-prod-vpc",
+        "type": "finance"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "54685899-bc69-4050-bd79-63466d0afaba",
+      "label": "BASELINE_TEMPLATE",
+      "properties": {},
+      "start_id": "b21b00dc-50a7-49a6-9fcc-08ecd75937e4",
+      "end_id": "bf441843-c6d3-4856-bcce-7940533bf7c0"
+    },
+    {
+      "id": "86c2b7e3-37b4-4d83-92f9-e6946bc5b52d",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "bf441843-c6d3-4856-bcce-7940533bf7c0",
+      "end_id": "5a764d59-0eb2-4be0-9ebd-4fb873d96c41"
+    },
+    {
+      "id": "f070517a-33b9-4080-950f-7c03d6fa93aa",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "509050f9-a65e-4590-b029-798f3c39ff07",
+      "end_id": "66aa9f2f-bb22-4056-8377-ef74601614be"
+    },
+    {
+      "id": "0c9a45d3-bb3b-4131-aa01-003020205a9d",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "509050f9-a65e-4590-b029-798f3c39ff07",
+      "end_id": "b21b00dc-50a7-49a6-9fcc-08ecd75937e4"
+    },
+    {
+      "id": "52287777-ae28-4290-a242-ce67f4b2ff05",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "017e177c-cf29-4f7d-86ce-94d3f9602fab",
+      "end_id": "83d68e83-e51b-40f6-a670-bb307e91cba6"
+    },
+    {
+      "id": "b8d24dfe-f7ba-46cf-acf2-ac78813f8202",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "4ae42683-91fb-469c-8db2-46e0af4dcfd8",
+      "end_id": "b21b00dc-50a7-49a6-9fcc-08ecd75937e4"
+    },
+    {
+      "id": "9e30ec28-9153-4ad1-88fc-e69678b749c1",
+      "label": "SATISFIES",
+      "properties": {},
+      "start_id": "5a764d59-0eb2-4be0-9ebd-4fb873d96c41",
+      "end_id": "509050f9-a65e-4590-b029-798f3c39ff07"
+    },
+    {
+      "id": "0a450812-ac98-48b7-8720-27baeebd194c",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "509050f9-a65e-4590-b029-798f3c39ff07",
+      "end_id": "b811f734-83f9-4375-a22b-278074518243"
+    },
+    {
+      "id": "0334f5a8-8092-4078-9b81-bd3949f2c07c",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "208df86f-6906-4940-948f-9c2480cd5418",
+      "end_id": "b811f734-83f9-4375-a22b-278074518243"
+    },
+    {
+      "id": "6c7c43e2-a544-4ba8-b5d1-9e0656547e06",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "208df86f-6906-4940-948f-9c2480cd5418",
+      "end_id": "4891cbb2-0164-4e8e-9144-0ea56e77c26f"
+    },
+    {
+      "id": "8f2d6582-c8b0-4127-abbb-4ff794cfc021",
+      "label": "SATISFIES",
+      "properties": {},
+      "start_id": "ec809ba3-c793-4652-8c21-347cff041863",
+      "end_id": "208df86f-6906-4940-948f-9c2480cd5418"
+    },
+    {
+      "id": "5389ce4e-0d45-4138-a479-d1c42ed9adf1",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "509050f9-a65e-4590-b029-798f3c39ff07",
+      "end_id": "4891cbb2-0164-4e8e-9144-0ea56e77c26f"
+    },
+    {
+      "id": "e732e478-cacb-42c9-b70b-e25da2b33c98",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "d99d0799-b3b2-4c61-a95e-2ddf66368882",
+      "end_id": "ec809ba3-c793-4652-8c21-347cff041863"
+    },
+    {
+      "id": "2aa922b6-d14e-492a-af3c-d76252131c17",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "bf441843-c6d3-4856-bcce-7940533bf7c0",
+      "end_id": "ec809ba3-c793-4652-8c21-347cff041863"
+    },
+    {
+      "id": "584e027f-fc69-4e34-b35a-bf34efed51f0",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "d99d0799-b3b2-4c61-a95e-2ddf66368882",
+      "end_id": "83d68e83-e51b-40f6-a670-bb307e91cba6"
+    },
+    {
+      "id": "6f559ff7-a1d3-447e-ac44-4a53a6835522",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "4ae42683-91fb-469c-8db2-46e0af4dcfd8",
+      "end_id": "b811f734-83f9-4375-a22b-278074518243"
+    },
+    {
+      "id": "48a0da05-c170-4c17-a37f-482e5dbebc16",
+      "label": "SATISFIES",
+      "properties": {},
+      "start_id": "83d68e83-e51b-40f6-a670-bb307e91cba6",
+      "end_id": "4ae42683-91fb-469c-8db2-46e0af4dcfd8"
+    },
+    {
+      "id": "fa4e212e-6d99-4396-ac70-19aae070d8a5",
+      "label": "BASELINE_TEMPLATE",
+      "properties": {},
+      "start_id": "b21b00dc-50a7-49a6-9fcc-08ecd75937e4",
+      "end_id": "017e177c-cf29-4f7d-86ce-94d3f9602fab"
+    },
+    {
+      "id": "92746531-d136-460a-af9a-d62e7e5e87b0",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "208df86f-6906-4940-948f-9c2480cd5418",
+      "end_id": "b21b00dc-50a7-49a6-9fcc-08ecd75937e4"
+    },
+    {
+      "id": "23b1bbf2-0193-4d3f-ba42-22b196656a84",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "4ae42683-91fb-469c-8db2-46e0af4dcfd8",
+      "end_id": "66aa9f2f-bb22-4056-8377-ef74601614be"
+    },
+    {
+      "id": "0c169c65-8787-40fa-9130-fc4526ea11d6",
+      "label": "OWNED_BY",
+      "properties": {},
+      "start_id": "897b6614-b513-41cd-b765-43419ac12c23",
+      "end_id": "b21b00dc-50a7-49a6-9fcc-08ecd75937e4"
+    },
+    {
+      "id": "4549872f-7f45-401e-ba9d-749bda75198f",
+      "label": "VALIDATED_BY",
+      "properties": {
+        "evidence_type": "subscription",
+        "governed_resource": "AWS-CORP-FINANCE",
+        "target_description": "List cloud providers as outsourcing partners."
+      },
+      "start_id": "b21b00dc-50a7-49a6-9fcc-08ecd75937e4",
+      "end_id": "5a6ebe92-825b-4c0e-b3cc-d63951badb50"
+    },
+    {
+      "id": "5a07927b-035b-4e57-b344-00dacc93c880",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "d99d0799-b3b2-4c61-a95e-2ddf66368882",
+      "end_id": "5a764d59-0eb2-4be0-9ebd-4fb873d96c41"
+    },
+    {
+      "id": "842f11c0-ff2b-4e7f-bd39-9f0459aaaa4b",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "4ae42683-91fb-469c-8db2-46e0af4dcfd8",
+      "end_id": "4891cbb2-0164-4e8e-9144-0ea56e77c26f"
+    },
+    {
+      "id": "61b388c1-ae4f-429e-a8c8-c710d604c7e0",
+      "label": "DEPENDS_ON",
+      "properties": {},
+      "start_id": "208df86f-6906-4940-948f-9c2480cd5418",
+      "end_id": "66aa9f2f-bb22-4056-8377-ef74601614be"
+    },
+    {
+      "id": "735f3883-0383-4a7d-bd11-4cfcafbc39ab",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "017e177c-cf29-4f7d-86ce-94d3f9602fab",
+      "end_id": "5a764d59-0eb2-4be0-9ebd-4fb873d96c41"
+    },
+    {
+      "id": "b49a40da-8eb1-45cc-8f32-ce5af6bebfb4",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "017e177c-cf29-4f7d-86ce-94d3f9602fab",
+      "end_id": "ec809ba3-c793-4652-8c21-347cff041863"
+    },
+    {
+      "id": "71119df7-49cb-4971-abf8-50a2cce5d72d",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "bf441843-c6d3-4856-bcce-7940533bf7c0",
+      "end_id": "83d68e83-e51b-40f6-a670-bb307e91cba6"
+    },
+    {
+      "id": "955de228-9459-42ed-b309-1317ccd76b3f",
+      "label": "BASELINE_TEMPLATE",
+      "properties": {},
+      "start_id": "b21b00dc-50a7-49a6-9fcc-08ecd75937e4",
+      "end_id": "d99d0799-b3b2-4c61-a95e-2ddf66368882"
+    },
+    {
+      "id": "b5b0b2ae-7e60-4d57-b9d0-f8c878d5f0ef",
+      "label": "BELONGS_TO",
+      "properties": {},
+      "start_id": "5a6ebe92-825b-4c0e-b3cc-d63951badb50",
+      "end_id": "f0444937-832b-4b27-af31-ab138d6e548c"
+    }
+  ]
+}
