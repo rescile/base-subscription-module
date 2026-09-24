@@ -8,7 +8,7 @@ rescile.createResource(
   name=std.asciiUpper(provider) + '-' + '{{- tenant -}}' + '-' + '{{- solution -}}',
   properties={
     provider: provider,
-    type: '{{- solution -}}',
+    class: '{{- solution -}}',
     home: 'Zurich',
     account: ['DEV', 'PROD', 'INT', 'EDU', 'TST'],
     util: ['vault', 'syslog'],
