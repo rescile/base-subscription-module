@@ -14,7 +14,7 @@ rescile.createResource(
   name=parent + '-{{- value | lower -}}-' + aws.decode.network,
   properties={
     type: type,
-    cidr: segments,
+    cidr: segments[1],
     created: timestamp,
   },
 )
