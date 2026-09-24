@@ -11,19 +11,32 @@ local cidr = '10.0.0.0/19';
 local bgp = '172.16.0.1/30';
 local vpn = 'tbd';
 
-rescile.createResource(
-  origin='region',
-  resourceType='router',
-  relationType='SATISFIES',
-  name=provider + '-' + solution + '-' + location + '-' + aws.decode.router,
-  properties={
-    type: type,
-    provider: provider,
-    cidr: cidr,
-    bgp: bgp,
-    vpn: vpn,
-    description: 'The ' + provider + ' ' + type + ' virtual ' + aws.decode.router + ' analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.',
-    created: timestamp,
-  },
-)
+[
+  rescile.createResource(
+    origin='region',
+    resourceType='router',
+    relationType='SATISFIES',
+    name=provider + '-' + solution + '-' + location + '-' + aws.decode.router,
+    properties={
+      type: type,
+      provider: provider,
+      cidr: cidr,
+      bgp: bgp,
+      vpn: vpn,
+      description: 'The ' + provider + ' ' + type + ' virtual ' + aws.decode.router + ' analyzes incoming data packets, determines the best path for them to travel across interconnected networks, and forwards them toward their intended destination.',
+      created: timestamp,
+    },
+  ),
+
+  rescile.linkResources(
+    origin='router',
+    withResource='subscription',
+    joinLocal='provider',
+    joinRemote='provider',
+    relationType='DEPENDS_ON',
+    copyProperties=[
+      { from: 'account', as: 'network' },
+    ],
+  )
+]
 
