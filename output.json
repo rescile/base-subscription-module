@@ -1,0 +1,356 @@
+{
+  "vertices": [
+    {
+      "id": "9184d8eb-2641-40b4-8784-d9949ff41acd",
+      "label": "resident",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::temp/resident:0",
+        "created": "2026-09-21T17:49:54Z",
+        "description": "The resident represents Corp and isolates data and applications from other cloud users through dedicated partitions of compute, storage and network resources.",
+        "name": "Corp"
+      }
+    },
+    {
+      "id": "3a6f9366-0f7d-4240-a1c5-c4d4569e44eb",
+      "label": "account",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::account:0",
+        "created": "2026-09-21T17:49:54Z",
+        "description": "TheAwsaccountTest defines an independently manageable IAM security boundary for the AWS-CORP-FINANCE subscription that enables a centralized management and grants authorized access to resources, services and configurations.",
+        "environment": "int",
+        "name": "AWS-CORP-FINANCE-INT",
+        "region": [
+          "Zurich",
+          "London",
+          "Paris"
+        ],
+        "type": "finance"
+      }
+    },
+    {
+      "id": "0a0eba4f-f6b1-4397-8bab-a7bea1728a8e",
+      "label": "region",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::region:0",
+        "created": "2026-09-21T17:49:54Z",
+        "locs": null,
+        "name": "AWS-CORP-FINANCE-Zurich",
+        "type": "finance"
+      }
+    },
+    {
+      "id": "b6918e0e-0578-4c4f-8b24-d3280adbff76",
+      "label": "region",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::region:0",
+        "created": "2026-09-21T17:49:54Z",
+        "locs": null,
+        "name": "AWS-CORP-FINANCE-London",
+        "type": "finance"
+      }
+    },
+    {
+      "id": "bb631c9a-80ea-4bd7-ac6d-c603a186df01",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "administrator",
+        "name": "j.doe@cloudcorp.com",
+        "original_name": "j.doe@cloudcorp.com",
+        "services": [
+          "database"
+        ],
+        "status": true,
+        "uid": 2002
+      }
+    },
+    {
+      "id": "73e85ec1-7fa2-479b-97ae-dc9e641dacf7",
+      "label": "audit",
+      "properties": {
+        "audit_name": "Assurance Report",
+        "name": "ISAE3000"
+      }
+    },
+    {
+      "id": "d395a7f4-5770-47bc-8c62-8cd972898b2e",
+      "label": "region",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::region:0",
+        "created": "2026-09-21T17:49:54Z",
+        "locs": null,
+        "name": "AWS-CORP-FINANCE-Paris",
+        "type": "finance"
+      }
+    },
+    {
+      "id": "e7da30d2-aba5-4ee3-af3d-4533a88c9107",
+      "label": "control",
+      "properties": {
+        "control_name": "Outsourcing",
+        "evidence_summary": {},
+        "name": "COMPLIANCE"
+      }
+    },
+    {
+      "id": "34ae7a99-c8c4-4b8d-a8b0-066d953bdd18",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "auditor",
+        "name": "k.mueller@cloudcorp.com",
+        "original_name": "k.mueller@cloudcorp.com",
+        "services": [
+          "iam"
+        ],
+        "status": true,
+        "uid": 1001
+      }
+    },
+    {
+      "id": "1d3b8a21-e13c-483d-a4f7-43b9887ca803",
+      "label": "subscription",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::subscription:0",
+        "account": [
+          "DEV",
+          "PROD",
+          "INT"
+        ],
+        "auditing": true,
+        "created": "2026-09-21T17:49:54Z",
+        "description": "The subscription defines a cloud environment at aws that allows CORP to deploy the FINANCE solution.",
+        "home": "Zurich",
+        "logging": true,
+        "name": "AWS-CORP-FINANCE",
+        "operator": "aws",
+        "type": "FINANCE",
+        "util": [
+          "vault",
+          "syslog"
+        ]
+      }
+    },
+    {
+      "id": "664b99c3-85b0-4b03-a451-4558d8cd270d",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "administrator",
+        "name": "a.chen@cloudcorp.com",
+        "original_name": "a.chen@cloudcorp.com",
+        "services": [
+          "compute",
+          "storage"
+        ],
+        "status": true,
+        "uid": 3001
+      }
+    },
+    {
+      "id": "b7ee99a7-dd64-4025-a0b3-f224023e6a3a",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "administrator",
+        "name": "s.rivera@cloudcorp.com",
+        "original_name": "s.rivera@cloudcorp.com",
+        "services": [
+          "compute",
+          "storage",
+          "network",
+          "database",
+          "container",
+          "kubernetes",
+          "load_balancer",
+          "dns",
+          "iam",
+          "firewall",
+          "vpn"
+        ],
+        "status": false,
+        "uid": 2003
+      }
+    },
+    {
+      "id": "31dd3f2b-b466-424d-a2a2-633190598e7e",
+      "label": "account",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::account:0",
+        "created": "2026-09-21T17:49:54Z",
+        "description": "TheAwsaccountTest defines an independently manageable IAM security boundary for the AWS-CORP-FINANCE subscription that enables a centralized management and grants authorized access to resources, services and configurations.",
+        "environment": "dev",
+        "name": "AWS-CORP-FINANCE-DEV",
+        "region": [
+          "Zurich",
+          "London",
+          "Paris"
+        ],
+        "type": "finance"
+      }
+    },
+    {
+      "id": "c5b3c03d-217e-4204-bb7b-39c3c3f88f49",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "administrator",
+        "name": "j.smith@cloudcorp.com",
+        "original_name": "j.smith@cloudcorp.com",
+        "services": [
+          "container",
+          "kubernetes"
+        ],
+        "status": true,
+        "uid": 3002
+      }
+    },
+    {
+      "id": "0c569a80-8c6a-4a13-964c-fbeff7e0aba4",
+      "label": "identity",
+      "properties": {
+        "domain": "access",
+        "function": "administrator",
+        "name": "b.loud@cloudcorp.com",
+        "original_name": "b.loud@cloudcorp.com",
+        "services": [
+          "network",
+          "load_balancer",
+          "dns",
+          "firewall",
+          "vpn"
+        ],
+        "status": true,
+        "uid": 2001
+      }
+    },
+    {
+      "id": "990535eb-3576-4742-9fd3-f1760e29b51d",
+      "label": "account",
+      "properties": {
+        "_source_model_file": "mod2::Base Subscription Module::account:0",
+        "created": "2026-09-21T17:49:54Z",
+        "description": "TheAwsaccountTest defines an independently manageable IAM security boundary for the AWS-CORP-FINANCE subscription that enables a centralized management and grants authorized access to resources, services and configurations.",
+        "environment": "prod",
+        "name": "AWS-CORP-FINANCE-PROD",
+        "region": [
+          "Zurich",
+          "London",
+          "Paris"
+        ],
+        "type": "finance"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "db50e3ba-b942-48fa-8522-84d9a3010e54",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "3a6f9366-0f7d-4240-a1c5-c4d4569e44eb",
+      "end_id": "d395a7f4-5770-47bc-8c62-8cd972898b2e"
+    },
+    {
+      "id": "c42da488-842c-477c-b252-7d5ed36bccdb",
+      "label": "BELONGS_TO",
+      "properties": {},
+      "start_id": "e7da30d2-aba5-4ee3-af3d-4533a88c9107",
+      "end_id": "73e85ec1-7fa2-479b-97ae-dc9e641dacf7"
+    },
+    {
+      "id": "9ee1bb38-5967-404e-ba72-139d983b2e49",
+      "label": "BASELINE_TEMPLATE",
+      "properties": {},
+      "start_id": "1d3b8a21-e13c-483d-a4f7-43b9887ca803",
+      "end_id": "990535eb-3576-4742-9fd3-f1760e29b51d"
+    },
+    {
+      "id": "c6cf06ee-d8ff-4f30-9da9-0e823c04610e",
+      "label": "BASELINE_TEMPLATE",
+      "properties": {},
+      "start_id": "1d3b8a21-e13c-483d-a4f7-43b9887ca803",
+      "end_id": "31dd3f2b-b466-424d-a2a2-633190598e7e"
+    },
+    {
+      "id": "8733c5c9-9ad2-49e9-91c8-583adeb1363f",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "31dd3f2b-b466-424d-a2a2-633190598e7e",
+      "end_id": "0a0eba4f-f6b1-4397-8bab-a7bea1728a8e"
+    },
+    {
+      "id": "49ba30f8-16b0-42f5-a7e2-e417e4a49384",
+      "label": "OWNED_BY",
+      "properties": {},
+      "start_id": "9184d8eb-2641-40b4-8784-d9949ff41acd",
+      "end_id": "1d3b8a21-e13c-483d-a4f7-43b9887ca803"
+    },
+    {
+      "id": "7d6fcb36-333f-48f1-9dac-b0f3e8bd9e4c",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "990535eb-3576-4742-9fd3-f1760e29b51d",
+      "end_id": "0a0eba4f-f6b1-4397-8bab-a7bea1728a8e"
+    },
+    {
+      "id": "f363e2ea-408c-456f-94ae-ed02e697f769",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "990535eb-3576-4742-9fd3-f1760e29b51d",
+      "end_id": "d395a7f4-5770-47bc-8c62-8cd972898b2e"
+    },
+    {
+      "id": "f328f49c-3d60-4614-9c59-913dff68adf7",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "31dd3f2b-b466-424d-a2a2-633190598e7e",
+      "end_id": "d395a7f4-5770-47bc-8c62-8cd972898b2e"
+    },
+    {
+      "id": "bb32437a-e0df-4b9f-b0b3-0f67362ea3df",
+      "label": "BASELINE_TEMPLATE",
+      "properties": {},
+      "start_id": "1d3b8a21-e13c-483d-a4f7-43b9887ca803",
+      "end_id": "3a6f9366-0f7d-4240-a1c5-c4d4569e44eb"
+    },
+    {
+      "id": "2284013a-0bd0-43b3-9b8e-c38cf48c4f92",
+      "label": "VALIDATED_BY",
+      "properties": {
+        "evidence_type": "subscription",
+        "governed_resource": "AWS-CORP-FINANCE",
+        "target_description": "List cloud providers as outsourcing partners."
+      },
+      "start_id": "1d3b8a21-e13c-483d-a4f7-43b9887ca803",
+      "end_id": "e7da30d2-aba5-4ee3-af3d-4533a88c9107"
+    },
+    {
+      "id": "6683773c-dbb8-45b2-ad10-922485c696aa",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "3a6f9366-0f7d-4240-a1c5-c4d4569e44eb",
+      "end_id": "b6918e0e-0578-4c4f-8b24-d3280adbff76"
+    },
+    {
+      "id": "a02f9da7-b47e-48c3-9195-cf607ee387e7",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "3a6f9366-0f7d-4240-a1c5-c4d4569e44eb",
+      "end_id": "0a0eba4f-f6b1-4397-8bab-a7bea1728a8e"
+    },
+    {
+      "id": "1aabcff6-8936-474c-b151-b1f96c45cfa1",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "990535eb-3576-4742-9fd3-f1760e29b51d",
+      "end_id": "b6918e0e-0578-4c4f-8b24-d3280adbff76"
+    },
+    {
+      "id": "3df7656c-34f5-415a-8bfd-e27844af874d",
+      "label": "DEFINED_BY",
+      "properties": {},
+      "start_id": "31dd3f2b-b466-424d-a2a2-633190598e7e",
+      "end_id": "b6918e0e-0578-4c4f-8b24-d3280adbff76"
+    }
+  ]
+}
