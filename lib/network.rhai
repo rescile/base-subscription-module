@@ -1,6 +1,12 @@
    // lib/network.rhai
 
    fn parse_cidr_v4(cidr_str) {
+       if type_of(cidr_str) == "array" {
+           if cidr_str.is_empty() {
+               throw "Cannot parse empty array as CIDR";
+           }
+           cidr_str = cidr_str[0]; // Take the first CIDR in the list
+       }
        let slash_idx = cidr_str.index_of('/');
        if slash_idx < 0 {
            throw `Invalid CIDR format: ${cidr_str}`;
