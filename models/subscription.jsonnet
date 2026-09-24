@@ -1,24 +1,24 @@
 local rescile = import 'rescile/v1/rescile.libsonnet';
-
 local provider = 'aws';
-local tenant = '{{ params.tenant | upper }}';
-local solution = '{{ params.solution | upper }}';
-local timestamp = '{{- now(utc=true) | date(format="%Y-%m-%dT%H:%M:%SZ") -}}';
 
 rescile.createResource(
   origin='resident',
   resourceType='subscription',
   relationType='OWNED_BY',
-  name=std.asciiUpper(provider) + '-' + tenant + '-' + solution,
+  name=std.asciiUpper(provider) + '-' + '{{- tenant -}}' + '-' + '{{- solution -}}',
   properties={
     provider: provider,
-    type: solution,
+    type: '{{- solution -}}',
     home: 'Zurich',
-    account: ['DEV', 'PROD', 'INT'],
+    account: ['DEV', 'PROD', 'INT', 'EDU', 'TST'],
     util: ['vault', 'syslog'],
     logging: true,
     auditing: true,
-    description: 'The subscription defines a cloud environment at ' + provider + ' that allows ' + tenant + ' to deploy the ' + solution + ' solution.',
-    created: timestamp,
+    description: 'The subscription defines a cloud environment at ' + provider + ' that allows ' + '{{ tenant }}' + ' to deploy the ' + '{{ solution }}' + ' solution.',
+    created: '{{- timestamp -}}',
   },
-)
+) + {
+  tenant: '{{ params.tenant | upper }}',
+  solution: '{{ params.solution | upper }}',
+  timestamp: '{{- now(utc=true) | date(format="%Y-%m-%dT%H:%M:%SZ") -}}',
+}
