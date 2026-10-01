@@ -6,7 +6,7 @@ local subnet = ["a", "b"];
 local gateway = ["default"];
 
 local parent = '{{- origin_resource.name | regexp(expr="s/^([^-]+-[^-]+)-.*/\\1/") | lower -}}';
-local class = '{{- origin_resource.class | lower -}}';
+local class = '{{ origin_resource.class | lower }}';
 local timestamp = '{{- now(utc=true) | date(format="%Y-%m-%dT%H:%M:%SZ") -}}';
 
 rescile.createResource(
@@ -21,7 +21,7 @@ rescile.createResource(
     firewall: firewall,
     subnet: subnet,
     gateway: gateway,
-    description: "The ' + class +  ' network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.",
+    description: 'The ' + class +  ' network is an virtual, on-demand infrastructure that connects users and applications to computing resources like servers, storage, and software, all delivered over the internet.',
     created: timestamp,
   },
 ) + {

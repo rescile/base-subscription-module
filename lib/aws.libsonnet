@@ -5,7 +5,7 @@
   provider: 'AWS',
   decode: {
     subscription: 'management_account',
-    account: 'accountTest',
+    account: 'account',
     network: 'vpc',
     subnet: 'subnet',
     router: 'transit_gateway',

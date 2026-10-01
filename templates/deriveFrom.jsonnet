@@ -15,7 +15,7 @@ rescile.createResource(
   createFrom=rescile.createFromProperty('<resource_type>', asName='<resource_type>'),
   resourceType='<resource_type>',
   relationType='DERIVED_FROM',
-  name=parent + '-{{ value }}',
+  name=parent + '-{{- value | lower -}}-' + <provider>.decode.<resource_type>,
   properties={
     class: class,
     description: '<description>',

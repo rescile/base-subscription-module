@@ -5,10 +5,10 @@ local cidr = '10.0.0.0/19';
 local bgp = '172.16.0.1/30';
 local vpn = 'tbd';
 
-local provider = '{{- origin_resource.name | regexp(expr="s/^([^-]+)-.*/\\1/") | lower -}}';
-local parent = '{{- origin_resource.name -}}';
+local provider = '{{ origin_resource.name | regexp(expr="s/^([^-]+)-.*/\\1/") | lower }}';
+local parent = '{{ origin_resource.name }}';
 local solution = '{{ params.solution | lower }}';
-local class = '{{- origin_resource.class | lower -}}';
+local class = '{{ origin_resource.class | lower }}';
 local timestamp = '{{- now(utc=true) | date(format="%Y-%m-%dT%H:%M:%SZ") -}}';
 local location = '{{- origin_resource.city | lower -}}';
 
